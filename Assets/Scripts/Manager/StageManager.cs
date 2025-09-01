@@ -42,6 +42,9 @@ public class StageManager : Singleton<StageManager>
         _player.OnCharacterDie += OnPlayerDie;
         _player.SetPosition(playerPos);
         _player.Init();
+
+        var playerInfo = UIManager.Instance.GetUI<UIInGame>();
+        //playerInfo.SetCharacter(_player);
     }
 
     private void SpawnVirtualCamera()

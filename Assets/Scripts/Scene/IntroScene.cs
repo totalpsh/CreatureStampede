@@ -7,7 +7,7 @@ public class IntroScene : SceneBase
 
     public override void OnSceneEnter()
     {
-        
+        UIManager.Instance.GetUI<UIIntro>();
     }
 
     public override void OnSceneExit()

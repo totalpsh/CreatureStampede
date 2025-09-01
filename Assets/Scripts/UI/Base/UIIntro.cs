@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIIntro : UIBase
+{
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button settingButton;
+    [SerializeField] private Button exitButton;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        startButton.onClick.AddListener(() => SceneLoadManager.Instance.LoadScene(SceneType.PlayerTest));
+        //settingButton.onClick.AddListener();
+        exitButton.onClick.AddListener(Application.Quit);   
+    }
+}
