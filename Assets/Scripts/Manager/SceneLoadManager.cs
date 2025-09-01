@@ -18,6 +18,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         _scenes.Add(SceneType.Intro, new IntroScene());
         _scenes.Add(SceneType.Town, new TownScene());
         _scenes.Add(SceneType.Battle, new BattleScene());
+        _scenes.Add(SceneType.PlayerTest, new PlayerTestScene());
     }
 
     public void LoadScene(SceneType sceneType)
