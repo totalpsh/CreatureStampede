@@ -2,7 +2,8 @@ public enum SceneType
 {
     Intro,
     Town,
-    Battle
+    Battle,
+    PlayerTest
 }
 
 public static class Path
@@ -11,6 +12,7 @@ public static class Path
     public const string UI = Prefab + "UI/";
     public const string Character = Prefab + "Character/";
     public const string Map = Prefab + "Map/";
+    public const string Camera = Prefab + "Camera/";
 }
     
 public static class Prefab
@@ -18,7 +20,10 @@ public static class Prefab
     // Character
     public const string Player = "Player";
     public const string Enemy = "Enemy";
-    
+
+    // camera
+    public const string VirtualCamera = "VirtualCamera";
+
     // Map
     public const string Stage = "Stage";
     public const string Town = "Town";
