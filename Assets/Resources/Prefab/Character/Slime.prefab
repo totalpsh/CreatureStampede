@@ -122,7 +122,7 @@ MonoBehaviour:
   monsterData: {fileID: 11400000, guid: f23a7cd446257ea4bbcd0994e47fba81, type: 2}
   rb: {fileID: 7358461050957877277}
   spriteRenderer: {fileID: 4923216570691801327}
-  target: {fileID: 0}
+  animator: {fileID: 1187860035516992239}
 --- !u!1 &6660899973372782441
 GameObject:
   m_ObjectHideFlags: 0

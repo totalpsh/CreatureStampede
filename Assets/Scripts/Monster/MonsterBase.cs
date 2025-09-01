@@ -25,6 +25,7 @@ public class MonsterBase : MonoBehaviour
 
     private Player target;
     private Vector2 dir;
+    private bool canAttack;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class MonsterBase : MonoBehaviour
     {
         dir = target.transform.position - transform.position;
         dir = dir.normalized;
+        
     }
 
     private void FixedUpdate()
@@ -55,8 +57,9 @@ public class MonsterBase : MonoBehaviour
 
         target = PlayerManager.Instance.Player;
 
-        animator.SetBool(EnemyAnimParam.IsChasing, target != null);
-        animator.SetBool(EnemyAnimParam.IsDead, false);
+        animator.SetBool(MonsterAnimParam.IsChasing, target != null);
+        animator.SetBool(MonsterAnimParam.IsDead, false);
+        canAttack = true;
 
     }
 
@@ -85,5 +88,35 @@ public class MonsterBase : MonoBehaviour
         }
 
         rb.MovePosition(rb.position + dir * MoveSpeed * Time.fixedDeltaTime);
+    }
+
+    IEnumerator MonsterAttackWithDelay(float delay)
+    {
+        canAttack = false;
+        animator.SetTrigger(MonsterAnimParam.IsAttacking);
+
+        Debug.Log($"{Name}이/가 플레이어를 공격");
+        // player.TakeDamage(Damage);
+
+        yield return new WaitForSeconds(delay);
+        canAttack = true;
+
+    }
+
+    private void Attack(Player player, float delay = 0.5f)
+    {
+        if (!canAttack)
+            return;
+
+        StartCoroutine(MonsterAttackWithDelay(0.5f));
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            return;
+
+        Attack(target, 0.5f);
     }
 }

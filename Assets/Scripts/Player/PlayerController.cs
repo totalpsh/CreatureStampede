@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        Debug.Log("OnMove");
         if (context.phase == InputActionPhase.Performed)
         {
             MovementDirection = context.ReadValue<Vector2>();

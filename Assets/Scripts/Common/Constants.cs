@@ -41,9 +41,10 @@ public static class PrefKey
     
 }
 
-public static class EnemyAnimParam
+public static class MonsterAnimParam
 {
     public const string IsChasing = "IsChasing";
     public const string IsDead = "IsDead";
+    public const string IsAttacking = "IsAttacking";
 
 }
