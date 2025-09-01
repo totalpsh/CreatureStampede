@@ -3,7 +3,9 @@ public enum SceneType
     Intro,
     Town,
     Battle,
-    PlayerTest
+    PlayerTest,
+    MonsterDev,
+
 }
 
 public static class Path
@@ -37,4 +39,12 @@ public static class PrefKey
 {
     public const string Score = "Score";
     
+}
+
+public static class MonsterAnimParam
+{
+    public const string IsChasing = "IsChasing";
+    public const string IsDead = "IsDead";
+    public const string IsAttacking = "IsAttacking";
+
 }
