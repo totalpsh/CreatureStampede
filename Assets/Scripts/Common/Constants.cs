@@ -3,7 +3,9 @@ public enum SceneType
     Intro,
     Town,
     Battle,
-    PlayerTest
+    PlayerTest,
+    MonsterDev,
+
 }
 
 public static class Path
