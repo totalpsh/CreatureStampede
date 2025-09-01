@@ -9,6 +9,7 @@ public class MonsterBase : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator animator;
 
     public string Name { get; private set; }
     public MonsterGrade Grade { get; private set; }
@@ -53,6 +54,10 @@ public class MonsterBase : MonoBehaviour
         Exp = monsterData.Exp;
 
         target = PlayerManager.Instance.Player;
+
+        animator.SetBool(EnemyAnimParam.IsChasing, target != null);
+        animator.SetBool(EnemyAnimParam.IsDead, false);
+
     }
 
     public void SetHealth(float health)
