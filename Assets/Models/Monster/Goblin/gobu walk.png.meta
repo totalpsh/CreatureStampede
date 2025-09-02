@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 79db0f1df0026604d898fef8d38ecded
+guid: f9471fa3d0a28d94f94ae62c67ef0d2f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,181 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: orc2_idle_full_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f26f3978c6e77c042806eb56795d74ce
-      internalID: -2066423718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 657c6e26cc293fc4bae328109b2ae463
-      internalID: 1245345780
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef281e232f7f2c2479c4484fd866bf93
-      internalID: 1074602106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e68652f58a8b3e44986287e61756149f
-      internalID: -2004998638
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3df3133a5fabfee4c9f9acb7780f5f51
-      internalID: -427117815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94c39d7afad538944b52410ed1c47033
-      internalID: -610303693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 856dcf4b6f281ad4798e7b576e7516fb
-      internalID: 847111755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_7
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19f63410160ea394f9f38403e719cdd2
-      internalID: -640729335
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: orc2_idle_full_8
+      name: gobu walk_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,20 +150,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8afa21c12cdf4844c9664342ceb16d32
-      internalID: -378253270
+      spriteID: 8f40e8dd7430514478a2d86a2c76a094
+      internalID: -7053434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_9
+      name: gobu walk_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e86b57d497468428716dc0891e59fb
+      internalID: 232919218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_2
       rect:
         serializedVersion: 2
         x: 64
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,20 +192,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00c58dc717b6f074b98dc27ebe7800ba
-      internalID: -709759867
+      spriteID: 4019bc0e7adbaa74383d54b58fa48fb0
+      internalID: 1310961436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_10
+      name: gobu walk_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb12bb5e89ae67e4b8bf0802733009a6
+      internalID: -1059606146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_4
       rect:
         serializedVersion: 2
         x: 128
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acd67c4adfcfdff49b0f9bd638d82c90
-      internalID: 162296193
+      spriteID: 8fab97620a02d3047bdcbb8cde074d2a
+      internalID: 598795726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_11
+      name: gobu walk_5
       rect:
         serializedVersion: 2
-        x: 192
+        x: 160
         y: 64
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,20 +255,146 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70754a3626ed1914dae927fe18889563
-      internalID: -2135380439
+      spriteID: 0e2decb0de928e74ba2c6cb151b941b4
+      internalID: 97278991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_12
+      name: gobu walk_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47970fd74b259d149b4661036a23c53e
+      internalID: 789703347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026b73be7f23b28408b191ff24ea00bc
+      internalID: 2073122733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2537cca12d9a678468958bdaa0836133
+      internalID: 91842700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01dc05261e1d2984786960d0ab50efe4
+      internalID: -1690426488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d1a27c22548a04a9558f909e579c21
+      internalID: -119858075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4202f25918e0ab44190421b14fd1b932
+      internalID: -1422256460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,20 +402,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8de042433e47a048b26585aec5d5cae
-      internalID: -2103997146
+      spriteID: fdad7f5dadb44564f93d1ebbc73b415a
+      internalID: 704297246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_13
+      name: gobu walk_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77cb2ec5fba419a42be2ee34e14bed16
+      internalID: 1993842176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_14
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,20 +444,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4180be73968ef6543b1551456de6048f
-      internalID: 1637218212
+      spriteID: d747d476f94c1764d85f6dd112a2c6f9
+      internalID: -78353786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_14
+      name: gobu walk_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e890f752995e6a64d920833de2b3b4f8
+      internalID: -1414316600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_16
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,20 +486,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6660b7f27504381429b43354799eeeb2
-      internalID: -656635684
+      spriteID: 1c85b6e33f3af6d45a24527579643551
+      internalID: -2059182544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orc2_idle_full_15
+      name: gobu walk_17
       rect:
         serializedVersion: 2
-        x: 192
+        x: 160
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,8 +507,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af94ab4b314a88a4b8ea98f1c0d521d5
-      internalID: -746957598
+      spriteID: f2ef7ab455e3a3f4e82439ed110d8814
+      internalID: 1565542625
       vertices: []
       indices: 
       edges: []
@@ -482,22 +524,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      orc2_idle_full_0: -2066423718
-      orc2_idle_full_1: 1245345780
-      orc2_idle_full_10: 162296193
-      orc2_idle_full_11: -2135380439
-      orc2_idle_full_12: -2103997146
-      orc2_idle_full_13: 1637218212
-      orc2_idle_full_14: -656635684
-      orc2_idle_full_15: -746957598
-      orc2_idle_full_2: 1074602106
-      orc2_idle_full_3: -2004998638
-      orc2_idle_full_4: -427117815
-      orc2_idle_full_5: -610303693
-      orc2_idle_full_6: 847111755
-      orc2_idle_full_7: -640729335
-      orc2_idle_full_8: -378253270
-      orc2_idle_full_9: -709759867
+      gobu walk_0: -7053434
+      gobu walk_1: 232919218
+      gobu walk_10: -119858075
+      gobu walk_11: -1422256460
+      gobu walk_12: 704297246
+      gobu walk_13: 1993842176
+      gobu walk_14: -78353786
+      gobu walk_15: -1414316600
+      gobu walk_16: -2059182544
+      gobu walk_17: 1565542625
+      gobu walk_2: 1310961436
+      gobu walk_3: -1059606146
+      gobu walk_4: 598795726
+      gobu walk_5: 97278991
+      gobu walk_6: 789703347
+      gobu walk_7: 2073122733
+      gobu walk_8: 91842700
+      gobu walk_9: -1690426488
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
