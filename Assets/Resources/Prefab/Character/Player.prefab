@@ -141,7 +141,19 @@ MonoBehaviour:
     m_ActionId: 850658d8-f6c7-4092-ab21-6357cf549e0d
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6709776276375088735}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4655f2e7-264a-4173-8bb8-e75ea8b4b52e
     m_ActionName: Player/Dash[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -161,6 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a2776e7359c784cab2fa9c38937c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 6bee7f75e8f7d3848bcd745004e55419, type: 2}
+  <MaxHealth>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 0
+  <Damage>k__BackingField: 0
 --- !u!114 &6709776276375088735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!1 &2403112750848479616
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,9 +8,15 @@ public class Player : MonoBehaviour
 {
     PlayerController controller;
 
+    [field: SerializeField] public PlayerSO Data { get; private set; }
+
     public event Action<float, float> OnChangeHealth;
     public event Action<Player> OnCharacterDie;
 
+
+    [field: SerializeField] public float MaxHealth { get; private set; }
+    [field: SerializeField] public float CurrentHealth { get; private set; }
+    [field: SerializeField] public float Damage { get; private set; }
     public bool IsDead { get; private set; } = false;
     private void Awake()
     {
@@ -19,7 +25,17 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
+        DataInitialization();
+        controller.DataInitialization(Data.PlayerData.dashSpeed, Data.PlayerData.dashDuration, Data.PlayerData.dashCooldown);
+    }
 
+    void DataInitialization()
+    {
+        MaxHealth = Data.PlayerData.maxHealth;
+        CurrentHealth = MaxHealth;
+        Damage = Data.PlayerData.damage;
+        OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
+        IsDead = false;
     }
 
     public virtual void Stop()
