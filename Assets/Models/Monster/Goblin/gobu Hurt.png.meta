@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4825b81e76c74604fa4340d5150f171f
-      internalID: -1356188439
+      spriteID: 4daca4350d3434b40980de3d43eb5077
+      internalID: -1531662416
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb24ab3e83979d1449b3ac77f5d106bc
-      internalID: 944357888
+      spriteID: 0873bd0d49c055e4bb61495c3eea0f90
+      internalID: 225145040
       vertices: []
       indices: 
       edges: []
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ca6918eb7bd70418523db9a75879f8
-      internalID: 1951814639
+      spriteID: 442f87e4b45433645a4912214c1b306c
+      internalID: 1048559834
       vertices: []
       indices: 
       edges: []
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c495d2457090fca479fcfc4931f74be8
-      internalID: -468135301
+      spriteID: 21a5a701d5d95e44ea6a14cbf3660852
+      internalID: -211811426
       vertices: []
       indices: 
       edges: []
@@ -234,8 +234,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2a4467fb5a4e4747b7980fb1692bd84
-      internalID: -1183360921
+      spriteID: 292adcda3bd6d5b4caa425f32c66fc49
+      internalID: 420068439
       vertices: []
       indices: 
       edges: []
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcf114194b5b5684dbbec0daa1fae27a
-      internalID: 674034094
+      spriteID: c399b9ca672c3f1428534a0c12d9cfb6
+      internalID: 1467811281
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      gobu Hurt_0: -1356188439
-      gobu Hurt_1: 944357888
-      gobu Hurt_2: 1951814639
-      gobu Hurt_3: -468135301
-      gobu Hurt_4: -1183360921
-      gobu Hurt_5: 674034094
+      gobu Hurt_0: -1531662416
+      gobu Hurt_1: 225145040
+      gobu Hurt_2: 1048559834
+      gobu Hurt_3: -211811426
+      gobu Hurt_4: 420068439
+      gobu Hurt_5: 1467811281
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -45,6 +45,8 @@ public static class MonsterAnimParam
 {
     public const string IsChasing = "IsChasing";
     public const string IsDead = "IsDead";
-    public const string IsAttacking = "IsAttacking";
+    public const string IsHit = "IsHit";
+
+    public const string Attack = "Attack";
 
 }
