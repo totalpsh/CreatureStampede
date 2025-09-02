@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class StageManager : Singleton<StageManager>
 {
-    //private Stage _stage;
+    private Stage _stage;
     private Player _player;
 
     private int _monsterCount;
@@ -22,9 +22,10 @@ public class StageManager : Singleton<StageManager>
     public event Action OnGameOver;
     public event Action<int> OnMonsterCountChanged;
 
-    public void InitStage(/*Stage stage*/)
+    public void InitStage(Stage stage)
     {
         // ¸Ê »ý¼º
+        _stage = stage;
         SpawnPlayer();
         SpawnVirtualCamera();
     }
@@ -42,6 +43,9 @@ public class StageManager : Singleton<StageManager>
         _player.OnCharacterDie += OnPlayerDie;
         _player.SetPosition(playerPos);
         _player.Init();
+
+        var playerInfo = UIManager.Instance.GetUI<UIInGame>();
+        //playerInfo.SetCharacter(_player);
     }
 
     private void SpawnVirtualCamera()
