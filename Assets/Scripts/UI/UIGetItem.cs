@@ -14,15 +14,7 @@ public class UIGetItem : UIBase
     void Start()
     {
         ShowSlot();
-        
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void ShowSlot()
     {
@@ -33,12 +25,24 @@ public class UIGetItem : UIBase
             slot = UIManager.Instance.CreateSlotUI<UICardSlot>();
             slot.transform.SetParent(showTransform[i], false);
 
-            SkillData data = datas[Random.Range(0, datas.Length)];
+            SkillData data;
+
+            do
+            {
+                data = datas[Random.Range(0, datas.Length)];
+            }while (skillList.Contains(data));
 
             if (skillList.Contains(data)) return;
+
             skillList.Add(data);
 
             slot.InSlot(data);
         }
+    }
+
+    public bool HasItem()
+    {
+
+        return false;
     }
 }

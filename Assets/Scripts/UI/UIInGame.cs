@@ -13,6 +13,7 @@ public class UIInGame : UIBase
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Image DashIcon;
     [SerializeField] private Image skillIcon;
+    [SerializeField] private TextMeshProUGUI skillLevel;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
@@ -27,6 +28,7 @@ public class UIInGame : UIBase
 
         // 업데이트
         //UpdateExp(_player.currentExp, _player.maxExp);
+        //UpdateSkillIcon();
     }
 
     void UpdateExp(float currentExp, float maxExp)
@@ -35,5 +37,10 @@ public class UIInGame : UIBase
         expSlider.value = currentExp;
 
         expText.text = $"{currentExp} / {maxExp}";
+    }
+
+    public void UpdateSkillIcon()
+    {
+
     }
 }

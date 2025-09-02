@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991b4395382133a4b91fc673b2aefbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectButton: {fileID: 7111876808675197474}
   nameText: {fileID: 6315286738649075688}
   icon: {fileID: 867858070066828342}
   levelText: {fileID: 6527857200749779183}
