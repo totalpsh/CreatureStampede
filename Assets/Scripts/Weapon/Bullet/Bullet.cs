@@ -35,10 +35,22 @@ public class Bullet : MonoBehaviour
         //{
         //    if(!isPierce)
         //    {
-        //        _rigidbody.velocity = Vector2.zero;
-        //        gameObject.SetActive(false);
+        //        BulletSetActive();
         //    }
         //}
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("BulletBoundary"))
+        {
+            BulletSetActive();
+        }
+    }
+
+    void BulletSetActive()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        gameObject.SetActive(false);
     }
 }

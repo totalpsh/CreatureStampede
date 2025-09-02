@@ -17,11 +17,13 @@ MonoBehaviour:
     count: 3
     speed: 150
     fireRate: 0
+    abilityValue: 0
     isPierce: 1
     damageIncrease: 2
     countIncrease: 1
     speedIncrease: 0
     fireRateDecrease: 0
+    abilityValueIncrease: 0
     projectilePrefab: {fileID: 3768648204572782143, guid: fb38be26338e09b4e9dc507a96902ce6, type: 3}
     projectileLifetime: 0
     spreadAngle: 0

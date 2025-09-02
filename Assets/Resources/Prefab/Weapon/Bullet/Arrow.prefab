@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8925157755470104719}
   - component: {fileID: 5736539869973677065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 44879387315266642}
   - component: {fileID: 8917613238402298108}
   - component: {fileID: 6639104597376115414}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,3 +206,6 @@ MonoBehaviour:
   damage: 0
   isPierce: 0
   speed: 0
+  despawnLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096

@@ -7,13 +7,12 @@ using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     PlayerController controller;
-    public Scanner scanner;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
     public event Action<float, float> OnChangeHealth;
     public event Action<Player> OnCharacterDie;
 
-
+    public GameObject bulletpoolGO;
     [field: SerializeField] public float MaxHealth { get; private set; }
     [field: SerializeField] public float CurrentHealth { get; private set; }
     [field: SerializeField] public float Damage { get; private set; }
@@ -21,7 +20,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-        scanner = GetComponent<Scanner>();
+        bulletpoolGO = new GameObject("bulletpoolGO");
     }
 
     public void Init()

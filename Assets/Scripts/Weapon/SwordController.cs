@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : BaseWeapon
+public class SwordController : BaseWeapon
 {
     // 생성 위치
     [SerializeField] private float radius = 1.5f;

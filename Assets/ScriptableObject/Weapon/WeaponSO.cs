@@ -16,6 +16,8 @@ public class WeaponData
     public float speed = 20f; // 발사 속도, 회전 속도
     [Tooltip("발사 속도 (초당 발사 횟수)")]
     public float fireRate = 0.5f; // 발사 속도 (초당 발사 횟수)
+    [Tooltip("능력 값")]
+    public float abilityValue = 0f; // 능력 값
 
     [Tooltip("관통 여부")]
     public bool isPierce = false; // 관통 여부    
@@ -30,6 +32,9 @@ public class WeaponData
     public float speedIncrease = 2f; // 발사 속도, 회전 속도 증가량
     [Tooltip("발사 속도 (초당 발사 횟수) 증가량")]
     public float fireRateDecrease = 0.05f; // 발사 속도 (초당 발사 횟수) 증가량
+    [Tooltip("능력 증가량")]
+    public float abilityValueIncrease = 1f; // 능력 증가량
+
 
     [Header("Projectile Settings")]
 

@@ -12,6 +12,7 @@ public abstract class BaseWeapon : MonoBehaviour
     protected float damage;
     protected float speed;
     protected float fireRate; // 발사 속도 (초당 발사 횟수)
+    protected float abilityValue; // 능력 값
 
 
     protected virtual void Awake()
@@ -21,6 +22,7 @@ public abstract class BaseWeapon : MonoBehaviour
         damage = Data.WeaponData.damage;
         speed = Data.WeaponData.speed;
         fireRate = Data.WeaponData.fireRate;
+        abilityValue = Data.WeaponData.abilityValue;
     }
 
     [SerializeField] protected Transform firePoint; // 발사 위치

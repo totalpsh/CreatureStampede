@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d021ab0e475aa249b3e2ca883eed124, type: 3}
-  m_Name: Bow
+  m_Name: Ice
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField:
     damage: 3
     count: 3
-    speed: 15
-    fireRate: 1
-    abilityValue: 0
+    speed: 20
+    fireRate: 3
+    abilityValue: 10
     isPierce: 1
-    damageIncrease: 0
-    countIncrease: 2
+    damageIncrease: 1
+    countIncrease: 0
     speedIncrease: 0
     fireRateDecrease: 0
-    abilityValueIncrease: 0
-    projectilePrefab: {fileID: 6164056080916582720, guid: e5aa5ff44d5baf247b931a62237259e3, type: 3}
+    abilityValueIncrease: 10
+    projectilePrefab: {fileID: 6164056080916582720, guid: 7d789975ce7319746ae71004bc7a9a9a, type: 3}
     projectileLifetime: 5
-    spreadAngle: 20
+    spreadAngle: 100
     shootSound: {fileID: 0}

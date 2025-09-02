@@ -8,14 +8,14 @@ public class BowController : BaseWeapon
     Player player;
     PlayerController playerController;
 
-    GameObject bulletpoolGO;
+    
 
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon의 Awake 호출
         player = GetComponentInParent<Player>();
         playerController = GetComponentInParent<PlayerController>();
-        bulletpoolGO = new GameObject("bulletpoolGO");
+        
     }
     private void Update()
     {
@@ -55,7 +55,7 @@ public class BowController : BaseWeapon
             bullet.position = transform.position; // 발사 위치 설정
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, fireDirection); // 발사 방향 설정
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, fireDirection, Data.WeaponData.speed);
-            bullet.SetParent(bulletpoolGO.transform);
+            bullet.SetParent(player.bulletpoolGO.transform);
         }
     }
 

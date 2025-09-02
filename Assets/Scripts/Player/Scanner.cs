@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    public float scanRange;
     public LayerMask targetLayer;
-    public RaycastHit2D[] targets;
+    public Collider2D[] targets; // RaycastHit2D[]에서 Collider2D[]로 변경되었습니다.
     public Transform nearestTarget;
+
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     private void FixedUpdate()
     {
-        // 캐스팅 시작 위치, 반지름, 방향, 거리, 레이어
-        targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0f, targetLayer);
+        if (mainCamera == null) return;
+
+        // 카메라의 월드 좌표 기준 크기 계산
+        float cameraHeight = mainCamera.orthographicSize * 2;
+        float cameraWidth = cameraHeight * mainCamera.aspect;
+        Vector2 boxSize = new Vector2(cameraWidth, cameraHeight);
+
+        // 화면 크기에 맞는 사각형 영역으로 모든 타겟을 감지
+        targets = Physics2D.OverlapBoxAll(mainCamera.transform.position, boxSize, 0f, targetLayer);
         nearestTarget = GetNearest();
     }
 
     Transform GetNearest()
     {
         Transform result = null;
-        float diff = 100; // 충분히 큰 값으로 초기화
+        float diff = float.MaxValue; // 최대값으로 초기화
 
-        foreach (RaycastHit2D target in targets)
+        // Collider2D 배열을 순회하도록 수정
+        foreach (Collider2D target in targets)
         {
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.transform.position;
@@ -37,5 +51,19 @@ public class Scanner : MonoBehaviour
 
 
         return result;
+    }
+
+    // 디버그용
+    private void OnDrawGizmos()
+    {
+        if (mainCamera == null) return;
+
+        Gizmos.color = Color.red;
+        
+        // 카메라 뷰에 맞는 사각형 그리기
+        float cameraHeight = mainCamera.orthographicSize * 2;
+        float cameraWidth = cameraHeight * mainCamera.aspect;
+        Vector3 boxSize = new Vector3(cameraWidth, cameraHeight, 0);
+        Gizmos.DrawWireCube(mainCamera.transform.position, boxSize);
     }
 }
