@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Bullet
+  - BulletBoundary
   - Enemy
   layers:
   - Default
@@ -13,12 +15,13 @@ TagManager:
   - Water
   - UI
   - Player
+  - Bullet
+  - 
   - Enemy
   - 
   - 
   - 
-  - 
-  - 
+  - BulletBoundary
   - 
   - 
   - 

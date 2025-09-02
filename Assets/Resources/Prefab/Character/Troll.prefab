@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1431242683805603493}
   - component: {fileID: 5166866628819832304}
   - component: {fileID: 3014038536750241461}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Troll
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3586027038405127076}
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.40681913, y: 0.44559613}
   m_EdgeRadius: 0
---- !u!114 &3014038536750241461
+--- !u!114 &1190100976994434014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,13 +116,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162888124135970746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271fa3f1897757d4f9ce230e875afd10, type: 3}
+  m_Script: {fileID: 11500000, guid: d74734dfdc46a714194f60ca2f0a6fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 81d5a200a29cac343813a60e1879e31d, type: 2}
   rb: {fileID: 1431242683805603493}
   spriteRenderer: {fileID: 2762453385606449082}
   animator: {fileID: 5041081599091117648}
+  monsterCollider: {fileID: 5166866628819832304}
 --- !u!1 &7397278765341570864
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ GameObject:
   - component: {fileID: 3586027038405127076}
   - component: {fileID: 2762453385606449082}
   - component: {fileID: 5041081599091117648}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +219,7 @@ Animator:
   m_GameObject: {fileID: 7397278765341570864}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e96a16d43867cb244ad45f052cfefef6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 809078e429d4b0f4bb6ddb3834bf2ba0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

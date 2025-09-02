@@ -7,9 +7,10 @@ public class MonsterBase : MonoBehaviour
 {
     [SerializeField] SO_Monster monsterData;
 
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Collider2D monsterCollider;
 
     public string Name { get; private set; }
     public MonsterGrade Grade { get; private set; }
@@ -23,25 +24,39 @@ public class MonsterBase : MonoBehaviour
     public event Action OnHpZero;
     public event Action OnHpChanged;
 
-    private Player target;
-    private Vector2 dir;
-    private bool canAttack;
+    protected Player target;
+    protected Vector2 dir;
+    protected bool canAttack;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         InitializeMonster();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         dir = target.transform.position - transform.position;
         dir = dir.normalized;
         
+       
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         ChaseTarget();
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            HitReaction();
+        }
     }
 
     private void InitializeMonster()
@@ -57,8 +72,8 @@ public class MonsterBase : MonoBehaviour
 
         target = PlayerManager.Instance.Player;
 
-        animator.SetBool(MonsterAnimParam.IsChasing, target != null);
-        animator.SetBool(MonsterAnimParam.IsDead, false);
+        animator.SetBool(MonsterAnimParam.IsMoving, target != null);
+        animator.SetBool(MonsterAnimParam.Die, false);
         canAttack = true;
 
     }
@@ -75,17 +90,22 @@ public class MonsterBase : MonoBehaviour
         }
     }
 
-    private void ChaseTarget()
+    protected virtual void SetCharacterDirection()
     {
         if (dir.x < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else if (dir.x > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
 
         }
+    }
+
+    private void ChaseTarget()
+    {
+        SetCharacterDirection();
 
         rb.MovePosition(rb.position + dir * MoveSpeed * Time.fixedDeltaTime);
     }
@@ -93,7 +113,7 @@ public class MonsterBase : MonoBehaviour
     IEnumerator MonsterAttackWithDelay(float delay)
     {
         canAttack = false;
-        animator.SetTrigger(MonsterAnimParam.Attack);
+        //animator.SetTrigger(MonsterAnimParam.Attack);
 
         Debug.Log($"{Name}이/가 플레이어를 공격");
         // player.TakeDamage(Damage);
@@ -103,7 +123,7 @@ public class MonsterBase : MonoBehaviour
 
     }
 
-    private void Attack(Player player, float delay = 0.5f)
+    protected virtual void Attack(Player player, float delay = 0.5f)
     {
         if (!canAttack)
             return;
@@ -118,5 +138,26 @@ public class MonsterBase : MonoBehaviour
             return;
 
         Attack(target, 0.5f);
+    }
+
+    protected void Die()
+    {
+        animator.SetTrigger(MonsterAnimParam.Die);
+        monsterCollider.enabled = false;
+        rb.simulated = false;
+
+        StartCoroutine(DestroyAfterDelay(0.5f));
+    }
+
+    protected void HitReaction()
+    {
+        animator.SetTrigger(MonsterAnimParam.Hit);
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Destroy(gameObject);
     }
 }

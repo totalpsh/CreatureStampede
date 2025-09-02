@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5846345119172498826}
   - component: {fileID: 8518701275884546545}
   - component: {fileID: 7655268529632908067}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 980845936202679128}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 148475ed1bb754441be8f3798c9e24a8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5785198f031567f419f0370fe4525220, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 917696952835682850}
   - component: {fileID: 5181104967633279093}
   - component: {fileID: 2097937422772225243}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49246436, y: 0.5394361}
   m_EdgeRadius: 0
---- !u!114 &2097937422772225243
+--- !u!114 &3739270951930862028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,10 +222,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215716996706743405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271fa3f1897757d4f9ce230e875afd10, type: 3}
+  m_Script: {fileID: 11500000, guid: 55875e0f0b977a74dae477ef4962bb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: be31146fafc16c84ca715f01e7bd22ae, type: 2}
   rb: {fileID: 917696952835682850}
   spriteRenderer: {fileID: 8518701275884546545}
   animator: {fileID: 7655268529632908067}
+  monsterCollider: {fileID: 5181104967633279093}

@@ -19,6 +19,12 @@ public class MonsterDevScene : SceneBase
         _stageManager = StageManager.Instance;
         _stageManager.InitStage(map);
 
+        ResourceManager.Instance.CreateCharacter<Troll>("Troll");
+        ResourceManager.Instance.CreateCharacter<Slime>("Slime");
+        ResourceManager.Instance.CreateCharacter<Goblin>("Goblin");
+        ResourceManager.Instance.CreateCharacter<Bat>("Bat");
+
+
         // 콜백 등록
         _stageManager.OnStageClear += GameClear;
         _stageManager.OnGameOver += GameOver;

@@ -43,10 +43,15 @@ public static class PrefKey
 
 public static class MonsterAnimParam
 {
-    public const string IsChasing = "IsChasing";
-    public const string IsDead = "IsDead";
+    public const string MoveX = "MoveX";
+    public const string MoveY = "MoveY";
+
+    public const string IsMoving = "IsMoving";
     public const string IsHit = "IsHit";
 
     public const string Attack = "Attack";
+    public const string Die = "Die";
+    public const string Hit = "Hit";
+
 
 }
