@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    // 한국어 주석
     Rigidbody2D _rigidbody;
 
     SpriteRenderer spriteRenderer; // 캐릭터 스프라이트 렌더러
@@ -12,16 +11,32 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f; // 이동 속도
 
+    // 대시 관련 변수
+    [Header("Dash Settings")]
+    public float dashSpeed = 20f;     // 대시 속도
+    [Range(0.1f, 2.0f)] public float dashDuration = 0.2f; // 대시 지속 시간
+    public float dashCooldown = 1f;   // 대시 쿨타임
+
+
+    private bool isDashing = false;      // 현재 대시 중인지 확인
+    private bool canDash = true;         // 대시 사용 가능 여부 확인
+
+    private Vector2 dashDirection; // 대시 방향 벡터
     Vector2 movementDirection = Vector2.zero; // 이동 방향 벡터
+    public Vector2 LastMovementDirection { get; private set; } = Vector2.right;
     public Vector2 MovementDirection
     {
         get { return movementDirection; }
         set
         {
             movementDirection = value;
-            if (movementDirection.x != 0) // 좌우 이동 방향에 따라 스프라이트 뒤집기
+            if (movementDirection != Vector2.zero)
             {
-                spriteRenderer.flipX = movementDirection.x < 0;
+                LastMovementDirection = movementDirection;
+                if (movementDirection.x != 0) // 좌우 이동 방향에 따라 스프라이트 뒤집기
+                {
+                    spriteRenderer.flipX = movementDirection.x < 0;
+                }
             }
         }
     }
@@ -32,20 +47,21 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void DataInitialization(float moveSpeed,float dashSpeed, float dashDuration, float dashCooldown)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        this.moveSpeed = moveSpeed;
+        this.dashSpeed = dashSpeed;
+        this.dashDuration = dashDuration;
+        this.dashCooldown = dashCooldown;
     }
 
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         Movment(MovementDirection);
     }
 
@@ -58,17 +74,54 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("OnMove");
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !isDashing)
         {
-            MovementDirection = context.ReadValue<Vector2>();
-            MovementDirection = MovementDirection.normalized;
+            MovementDirection = context.ReadValue<Vector2>().normalized;
 
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             MovementDirection = Vector2.zero;
         }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed && canDash && !isDashing)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+
+        // 대시 방향 설정 (현재 이동 방향 또는 바라보는 방향)
+        Vector2 inputDir = MovementDirection;
+        if (inputDir != Vector2.zero)
+        {
+            dashDirection = inputDir.normalized;
+        }
+        else
+        {
+            // 멈춰있을 경우, 마지막 이동 방향으로 대시
+            dashDirection = LastMovementDirection;
+        }
+
+        // 대시 속도 적용
+        _rigidbody.velocity = dashDirection * dashSpeed;
+        Debug.Log("Dash Input Received");
+        // 대시 지속 시간만큼 대기
+        yield return new WaitForSeconds(dashDuration);
+        // 대시 종료
+        isDashing = false;
+        _rigidbody.velocity = Vector2.zero;
+
+        // 쿨타임 적용
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
 
