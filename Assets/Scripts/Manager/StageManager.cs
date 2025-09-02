@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class StageManager : Singleton<StageManager>
 {
-    //private Stage _stage;
+    private Stage _stage;
     private Player _player;
 
     private int _monsterCount;
@@ -25,6 +25,7 @@ public class StageManager : Singleton<StageManager>
     public void InitStage(Stage stage)
     {
         // ¸Ê »ý¼º
+        _stage = stage;
         SpawnPlayer();
         SpawnVirtualCamera();
     }
