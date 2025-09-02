@@ -7,7 +7,7 @@ using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     PlayerController controller;
-
+    public Scanner scanner;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
     public event Action<float, float> OnChangeHealth;
@@ -21,12 +21,13 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
+        scanner = GetComponent<Scanner>();
     }
 
     public void Init()
     {
         DataInitialization();
-        controller.DataInitialization(Data.PlayerData.dashSpeed, Data.PlayerData.dashDuration, Data.PlayerData.dashCooldown);
+        controller.DataInitialization(Data.PlayerData.moveSpeed, Data.PlayerData.dashSpeed, Data.PlayerData.dashDuration, Data.PlayerData.dashCooldown);
     }
 
     void DataInitialization()

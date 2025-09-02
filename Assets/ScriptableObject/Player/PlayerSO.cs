@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +7,15 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
-    [Header("Player Stets")]
-    public float maxHealth = 100f; // ÃÖ´ë Ã¼·Â
-    public float moveSpeed = 3f; // ÀÌµ¿ ¼Óµµ
-    public float damage = 5f; // °ø°İ·Â
+    [Header("Player Stats")]
+    public float maxHealth = 100f; // ìµœëŒ€ ì²´ë ¥
+    public float moveSpeed = 3f; // ì´ë™ ì†ë„
+    public float damage = 5f; // ê³µê²©ë ¥
 
     [Header("Dash Settings")]
-    public float dashSpeed = 20f;     // ´ë½Ã ¼Óµµ
-    [Range(0.1f, 2.0f)] public float dashDuration = 0.2f; // ´ë½Ã Áö¼Ó ½Ã°£
-    public float dashCooldown = 1f;   // ´ë½Ã ÄğÅ¸ÀÓ
+    public float dashSpeed = 20f;     // ëŒ€ì‹œ ì†ë„
+    [Range(0.1f, 2.0f)] public float dashDuration = 0.2f; // ëŒ€ì‹œ ì§€ì† ì‹œê°„
+    public float dashCooldown = 1f;   // ëŒ€ì‹œ ì¿¨íƒ€ì„
 }
 
 
