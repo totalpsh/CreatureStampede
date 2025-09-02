@@ -93,7 +93,7 @@ public class MonsterBase : MonoBehaviour
     IEnumerator MonsterAttackWithDelay(float delay)
     {
         canAttack = false;
-        animator.SetTrigger(MonsterAnimParam.IsAttacking);
+        animator.SetTrigger(MonsterAnimParam.Attack);
 
         Debug.Log($"{Name}이/가 플레이어를 공격");
         // player.TakeDamage(Damage);

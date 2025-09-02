@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,6 +136,132 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: gobu walk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f40e8dd7430514478a2d86a2c76a094
+      internalID: -7053434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e86b57d497468428716dc0891e59fb
+      internalID: 232919218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4019bc0e7adbaa74383d54b58fa48fb0
+      internalID: 1310961436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb12bb5e89ae67e4b8bf0802733009a6
+      internalID: -1059606146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fab97620a02d3047bdcbb8cde074d2a
+      internalID: 598795726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e2decb0de928e74ba2c6cb151b941b4
+      internalID: 97278991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: gobu walk_6
       rect:
         serializedVersion: 2
@@ -150,8 +276,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a829e54856f724d815de488e357df4
-      internalID: 925274393
+      spriteID: 47970fd74b259d149b4661036a23c53e
+      internalID: 789703347
       vertices: []
       indices: 
       edges: []
@@ -171,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58d708be012ae1544baf5332a3b9e7a7
-      internalID: -1388074833
+      spriteID: 026b73be7f23b28408b191ff24ea00bc
+      internalID: 2073122733
       vertices: []
       indices: 
       edges: []
@@ -192,8 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8e27486b64abc14b93c895e82a41b97
-      internalID: 1718216670
+      spriteID: 2537cca12d9a678468958bdaa0836133
+      internalID: 91842700
       vertices: []
       indices: 
       edges: []
@@ -213,8 +339,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44a8ac76f7445c340a68a7e5e7e5babc
-      internalID: 1172014877
+      spriteID: 01dc05261e1d2984786960d0ab50efe4
+      internalID: -1690426488
       vertices: []
       indices: 
       edges: []
@@ -234,8 +360,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96fdb3bbaed21a6498f001c38d56bdea
-      internalID: 2078757418
+      spriteID: c8d1a27c22548a04a9558f909e579c21
+      internalID: -119858075
       vertices: []
       indices: 
       edges: []
@@ -255,8 +381,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32973de202dac36418fa5c01ed644241
-      internalID: 2133959980
+      spriteID: 4202f25918e0ab44190421b14fd1b932
+      internalID: -1422256460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdad7f5dadb44564f93d1ebbc73b415a
+      internalID: 704297246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77cb2ec5fba419a42be2ee34e14bed16
+      internalID: 1993842176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d747d476f94c1764d85f6dd112a2c6f9
+      internalID: -78353786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e890f752995e6a64d920833de2b3b4f8
+      internalID: -1414316600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c85b6e33f3af6d45a24527579643551
+      internalID: -2059182544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gobu walk_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ef7ab455e3a3f4e82439ed110d8814
+      internalID: 1565542625
       vertices: []
       indices: 
       edges: []
@@ -272,24 +524,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      gobu walk_0: 1773111888
-      gobu walk_1: -1734492554
-      gobu walk_10: 2078757418
-      gobu walk_11: 2133959980
-      gobu walk_12: 379939189
-      gobu walk_13: -736101254
-      gobu walk_14: 917313886
-      gobu walk_15: -1576737117
-      gobu walk_16: 1877604665
-      gobu walk_17: -6121473
-      gobu walk_2: 624478876
-      gobu walk_3: -1890613427
-      gobu walk_4: -587402413
-      gobu walk_5: 743217725
-      gobu walk_6: 925274393
-      gobu walk_7: -1388074833
-      gobu walk_8: 1718216670
-      gobu walk_9: 1172014877
+      gobu walk_0: -7053434
+      gobu walk_1: 232919218
+      gobu walk_10: -119858075
+      gobu walk_11: -1422256460
+      gobu walk_12: 704297246
+      gobu walk_13: 1993842176
+      gobu walk_14: -78353786
+      gobu walk_15: -1414316600
+      gobu walk_16: -2059182544
+      gobu walk_17: 1565542625
+      gobu walk_2: 1310961436
+      gobu walk_3: -1059606146
+      gobu walk_4: 598795726
+      gobu walk_5: 97278991
+      gobu walk_6: 789703347
+      gobu walk_7: 2073122733
+      gobu walk_8: 91842700
+      gobu walk_9: -1690426488
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
