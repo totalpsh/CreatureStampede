@@ -40,6 +40,7 @@ public class UIGetItem : UIBase
         }
     }
 
+
     public bool HasItem()
     {
 

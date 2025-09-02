@@ -196,4 +196,12 @@ public class UIManager : Singleton<UIManager>
         yield return Resources.UnloadUnusedAssets();
         System.GC.Collect();
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            OpenUI<UIGetItem>();
+        }
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,8 @@ public class UICardSlot : UIBase
     [SerializeField] private Sprite skillIcon;
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
+
+    public event Action SelectClose;
 
     private void Awake()
     {
@@ -55,6 +58,8 @@ public class UICardSlot : UIBase
     public void OnClickCard()
     {
         HasAbility();
+        SelectClose?.Invoke();
+        CloseUI();
     }
 
     public bool HasAbility()

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIPause : MonoBehaviour
+public class UIPause : UIBase
 {
     [SerializeField] private Button continueButton;
     [SerializeField] private Button restartButton;
@@ -18,19 +19,19 @@ public class UIPause : MonoBehaviour
 
     public void OnContinue()
     {
-        Debug.Log("계속하기");
+        CloseUI();
+        Time.timeScale = 1.0f;
     }
 
     public void OnRestart()
     {
-        Debug.Log("다시하기");
-
-    }
+        SceneLoadManager.Instance.RestartScene();
+    } 
 
     public void OnTitle()
     {
-        Debug.Log("타이틀로");
-
+        SceneLoadManager.Instance.LoadScene(SceneType.Intro);
+        Time.timeScale = 1.0f;
     }
 
 }
