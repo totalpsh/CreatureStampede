@@ -16,11 +16,11 @@ public class PlayerTestScene : SceneBase
     public override void OnSceneEnter()
     {
         // 맵
-        //var map = ResourceManager.Instance.CreateMap<Stage>(Prefab.Stage);
+        var map = ResourceManager.Instance.CreateMap<Stage>(Prefab.Stage);
 
         // 스테이지 매니저
         _stageManager = StageManager.Instance;
-        _stageManager.InitStage(/*map*/);
+        _stageManager.InitStage(map);
 
         // 콜백 등록
         _stageManager.OnStageClear += GameClear;

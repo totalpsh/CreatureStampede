@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4084493836735216479}
   - component: {fileID: 4765741798527287094}
   m_Layer: 0
-  m_Name: Map
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

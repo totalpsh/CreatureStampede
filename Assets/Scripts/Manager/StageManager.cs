@@ -22,7 +22,7 @@ public class StageManager : Singleton<StageManager>
     public event Action OnGameOver;
     public event Action<int> OnMonsterCountChanged;
 
-    public void InitStage(/*Stage stage*/)
+    public void InitStage(Stage stage)
     {
         // ¸Ê »ý¼º
         SpawnPlayer();
