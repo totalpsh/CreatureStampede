@@ -17,7 +17,7 @@ MonoBehaviour:
     count: 3
     speed: 150
     fireRate: 0
-    isPierce: 0
+    isPierce: 1
     damageIncrease: 2
     countIncrease: 1
     speedIncrease: 0
