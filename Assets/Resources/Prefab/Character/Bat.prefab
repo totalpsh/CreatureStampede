@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4512774930829471097}
   m_Layer: 7
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 1452813515152794521}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 668f879b13fde844bb7c6af509581068, type: 2}
+  m_Controller: {fileID: 9100000, guid: 654a4cac8c24c4d47ae2006233d79c07, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 2800648478258841866}
   - component: {fileID: 2876605280456735523}
   - component: {fileID: 3855486151366245529}
-  - component: {fileID: 4721825305773722601}
+  - component: {fileID: 6987552830906076389}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Enemy
@@ -213,7 +213,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5454843, y: 0.2955437}
   m_EdgeRadius: 0
---- !u!114 &4721825305773722601
+--- !u!114 &6987552830906076389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,10 +222,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5627206991852551328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271fa3f1897757d4f9ce230e875afd10, type: 3}
+  m_Script: {fileID: 11500000, guid: ed6e58ea45d5a0049b607efd002d36d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 7ff5937b49fc7cc458d3b6c768c1ee61, type: 2}
   rb: {fileID: 2876605280456735523}
   spriteRenderer: {fileID: 7453038296457377992}
   animator: {fileID: 4512774930829471097}
+  monsterCollider: {fileID: 3855486151366245529}

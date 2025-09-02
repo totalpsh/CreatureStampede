@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 617328187317382123}
   - component: {fileID: 7358461050957877277}
   - component: {fileID: 5364303232554521544}
-  - component: {fileID: 8206256520236607562}
+  - component: {fileID: 3914841493123335862}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -107,7 +107,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.59238034, y: 0.50813913}
   m_EdgeRadius: 0
---- !u!114 &8206256520236607562
+--- !u!114 &3914841493123335862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,13 +116,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5981032248760306322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271fa3f1897757d4f9ce230e875afd10, type: 3}
+  m_Script: {fileID: 11500000, guid: dbe1d0e4c82b1d948ab26055b19710f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: f23a7cd446257ea4bbcd0994e47fba81, type: 2}
   rb: {fileID: 7358461050957877277}
   spriteRenderer: {fileID: 4923216570691801327}
   animator: {fileID: 1187860035516992239}
+  monsterCollider: {fileID: 5364303232554521544}
 --- !u!1 &6660899973372782441
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 1187860035516992239}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,7 +219,7 @@ Animator:
   m_GameObject: {fileID: 6660899973372782441}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b524a81e2909daa4a8ac6c44da6f3e6c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 20575a5ea48c83a45943f9991f6a4fd2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
