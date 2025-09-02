@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a2776e7359c784cab2fa9c38937c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanner: {fileID: 0}
   <Data>k__BackingField: {fileID: 11400000, guid: 6bee7f75e8f7d3848bcd745004e55419, type: 2}
   bulletpoolGO: {fileID: 0}
   <MaxHealth>k__BackingField: 0
@@ -260,7 +259,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
