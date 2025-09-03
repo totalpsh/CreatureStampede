@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: Slime
   grade: 0
   maxHealth: 5
-  moveSpeed: 1.5
+  moveSpeed: 2
   damage: 5
   score: 50
-  exp: 1
+  exp: 5

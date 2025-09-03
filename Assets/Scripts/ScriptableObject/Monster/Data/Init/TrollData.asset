@@ -16,6 +16,6 @@ MonoBehaviour:
   grade: 1
   maxHealth: 30
   moveSpeed: 1.5
-  damage: 10
-  score: 400
-  exp: 10
+  damage: 15
+  score: 300
+  exp: 30

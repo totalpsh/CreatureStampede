@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Goblin
   grade: 0
-  maxHealth: 7
-  moveSpeed: 2
-  damage: 5
+  maxHealth: 10
+  moveSpeed: 5
+  damage: 10
   score: 100
-  exp: 5
+  exp: 10

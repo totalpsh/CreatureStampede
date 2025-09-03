@@ -16,4 +16,4 @@ MonoBehaviour:
   slimeCount: 10
   goblinCount: 5
   trollCount: 1
-  waveDelay: 20
+  waveDelay: 12
