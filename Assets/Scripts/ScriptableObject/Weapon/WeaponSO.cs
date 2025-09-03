@@ -8,6 +8,17 @@ public class WeaponData
 {
     [Header("Weapon Settings")]
 
+    [Tooltip("이름")]
+    public string name; // 이름
+    //[SerializeField] private string skillIconPath;
+    [Tooltip("아이콘")]
+    public Sprite icon; // 무기 아이콘
+    [Tooltip("설명")] // 설명
+    public string description;
+
+    [Tooltip("레벨")]
+    public int level; // 레벨
+
     [Tooltip("공격력")]
     public float damage = 5f; // 공격력
     [Tooltip("발사 개수")]

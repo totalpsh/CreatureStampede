@@ -17,6 +17,4 @@ public class SkillData : ScriptableObject
     public Sprite SkillIcon { get { return skillIcon; } }
     public int SkillLevel { get { return skillLevel; } }
     public string SkillDescription { get { return skillDescription; } }
-
-
 }

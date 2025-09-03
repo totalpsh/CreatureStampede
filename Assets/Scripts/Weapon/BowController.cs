@@ -13,9 +13,9 @@ public class BowController : BaseWeapon
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon¿« Awake »£√‚
-        player = GetComponentInParent<Player>();
-        playerController = GetComponentInParent<PlayerController>();
-        
+        player = PlayerManager.Instance.Player;
+        playerController = PlayerManager.Instance.Player.controller;
+
     }
     private void Update()
     {
