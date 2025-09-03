@@ -75,7 +75,7 @@ public class StageManager : Singleton<StageManager>
     }
 
 
-    private void OnPlayerDie(Player player)
+    private void OnPlayerDie()
     {
         StopStage();
         OnGameOver?.Invoke();

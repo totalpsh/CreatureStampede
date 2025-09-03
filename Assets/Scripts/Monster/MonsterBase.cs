@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : MonoBehaviour, IDamagable
 {
     [SerializeField] SO_Monster monsterData;
 
@@ -76,6 +76,8 @@ public class MonsterBase : MonoBehaviour
         animator.SetBool(MonsterAnimParam.Die, false);
         canAttack = true;
 
+        OnHpZero += Die;
+
     }
 
     public void SetHealth(float health)
@@ -116,7 +118,11 @@ public class MonsterBase : MonoBehaviour
         //animator.SetTrigger(MonsterAnimParam.Attack);
 
         Debug.Log($"{Name}이/가 플레이어를 공격");
-        // player.TakeDamage(Damage);
+        IDamagable player = target as IDamagable;
+        if (player != null)
+        {
+            player.TakePhysicalDamage(Damage);
+        }
 
         yield return new WaitForSeconds(delay);
         canAttack = true;
@@ -159,5 +165,10 @@ public class MonsterBase : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         Destroy(gameObject);
+    }
+
+    public void TakePhysicalDamage(float damage)
+    {
+        SetHealth(CurrentHealth - damage);
     }
 }
