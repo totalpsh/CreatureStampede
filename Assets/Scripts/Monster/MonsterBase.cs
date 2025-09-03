@@ -118,7 +118,11 @@ public class MonsterBase : MonoBehaviour, IDamagable
         //animator.SetTrigger(MonsterAnimParam.Attack);
 
         Debug.Log($"{Name}이/가 플레이어를 공격");
-        // player.TakeDamage(Damage);
+        IDamagable player = target as IDamagable;
+        if (player != null)
+        {
+            player.TakePhysicalDamage(Damage);
+        }
 
         yield return new WaitForSeconds(delay);
         canAttack = true;
