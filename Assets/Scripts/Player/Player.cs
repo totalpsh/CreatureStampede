@@ -12,6 +12,8 @@ public interface IDamagable
 public class Player : MonoBehaviour, IDamagable
 {
     PlayerController controller;
+
+    PlayerAnimator playerAnimator;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
     public event Action<float, float> OnChangeHealth;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour, IDamagable
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
+        playerAnimator = GetComponent<PlayerAnimator>();
         bulletpoolGO = new GameObject("bulletpoolGO");
     }
 
@@ -55,6 +58,8 @@ public class Player : MonoBehaviour, IDamagable
 
     public void ChangeHealth(float damage)
     {
+        if(IsDead) return;
+
         CurrentHealth += damage;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
@@ -65,14 +70,37 @@ public class Player : MonoBehaviour, IDamagable
         {
             Death();
         }
+        else
+        {
+            playerAnimator.TriggerIsShot();
+            // 피격 애니메이션 재생동안 무적
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        yield return new WaitForSeconds(0.01f);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
+        yield return new WaitForSeconds(playerAnimator.animator.GetCurrentAnimatorStateInfo(0).length);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
     }
 
     private void Death()
     {
         if (IsDead) return;
         IsDead = true;
-        //animator.SetTrigger(DeathHash);
+        
+        playerAnimator.TriggerIsDead();
+        controller.enabled = false;
+        // 애니메이션 재생 후 이벤트 호출
+        StartCoroutine(DeathCoroutine());
+    }
 
+    private IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(playerAnimator.animator.GetCurrentAnimatorStateInfo(0).length);
         OnCharacterDie?.Invoke();
     }
 

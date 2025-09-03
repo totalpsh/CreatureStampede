@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rigidbody;
 
     SpriteRenderer spriteRenderer; // 캐릭터 스프라이트 렌더러
-
+    PlayerAnimator playerAnimator;
 
     [SerializeField] private float moveSpeed = 5f; // 이동 속도
 
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        playerAnimator = GetComponent<PlayerAnimator>();
     }
 
     public void DataInitialization(float moveSpeed,float dashSpeed, float dashDuration, float dashCooldown)
@@ -77,11 +78,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed && !isDashing)
         {
             MovementDirection = context.ReadValue<Vector2>().normalized;
-
+            playerAnimator.SetMoveAnimation(true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             MovementDirection = Vector2.zero;
+            playerAnimator.SetMoveAnimation(false);
         }
     }
 
@@ -109,7 +111,8 @@ public class PlayerController : MonoBehaviour
             // 멈춰있을 경우, 마지막 이동 방향으로 대시
             dashDirection = LastMovementDirection;
         }
-
+        // 대시 동안 무적
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         // 대시 속도 적용
         _rigidbody.velocity = dashDirection * dashSpeed;
         Debug.Log("Dash Input Received");
@@ -118,6 +121,9 @@ public class PlayerController : MonoBehaviour
         // 대시 종료
         isDashing = false;
         _rigidbody.velocity = Vector2.zero;
+
+        // 무적 해제
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
 
         // 쿨타임 적용
         yield return new WaitForSeconds(dashCooldown);
