@@ -311,6 +311,7 @@ MonoBehaviour:
   timeText: {fileID: 1161120741137034254}
   scoreText: {fileID: 1593529320286577824}
   pauseButton: {fileID: 4802046274154541626}
+  dashCooldown: 1
 --- !u!1 &1691329550939260339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2277,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class UIInGame : UIBase
 {
-    Player _player;
+    private Player _player;
 
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider expSlider;
@@ -20,6 +20,10 @@ public class UIInGame : UIBase
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
 
+    public float dashCooldown = 1.2f;
+    private float currentCooldown;
+    private bool isDash = false;
+
     private void Awake()
     {
         pauseButton.onClick.AddListener(OpenPauseUI);
@@ -28,7 +32,7 @@ public class UIInGame : UIBase
     public void SetCharacter(Player player)
     {
         _player = player;
-
+ 
         // 여기서 UI에 들어갈 값들 세팅
 
         // 업데이트
@@ -38,24 +42,47 @@ public class UIInGame : UIBase
 
     private void Update()
     {
-        float time = StageManager.Instance.StageTime;
-        UpdateTimer(time);
+        UpdateTimer(StageManager.Instance.StageTime);
+        
+        currentCooldown -= Time.deltaTime;
+        
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            isDash = true;
+        }
+        UpdateDashCool();
+    }
+
+    private void UpdateDashCool()
+    {
+        if (currentCooldown > 0 && isDash)
+        {
+            DashIcon.fillAmount = currentCooldown / dashCooldown;
+        }
+        else
+        {
+            currentCooldown = dashCooldown;
+            DashIcon.fillAmount = 1f;
+            isDash = false;
+        }
     }
 
     private void UpdateTimer(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
-        timeText.text = $"{minutes}:{seconds}";
+        timeText.text = $"{minutes:00}:{seconds:00}";
     }
 
-    void UpdateExp(float currentExp, float maxExp)
+    public void UpdateExp(float currentExp, float maxExp)
     {
         expSlider.maxValue = maxExp;
         expSlider.value = currentExp;
 
         expText.text = $"{currentExp} / {maxExp}";
     }
+
+    
 
     public void UpdateSkillIcon()
     {

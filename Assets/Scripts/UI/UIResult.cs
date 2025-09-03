@@ -17,9 +17,10 @@ public class UIResult : UIBase
         titleButton.onClick.AddListener(OnTitle);
     }
 
-    private void ScoreUpdate()
+    public void ScoreUpdate()
     {
-
+        // 점수 받아오기 -> 반영
+        //scoreText.text = 
     }
 
     private void OnRestart()

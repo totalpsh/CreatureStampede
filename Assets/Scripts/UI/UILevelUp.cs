@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class UILevelUp : UIBase
 {
+    Player _player;
+
     private UICardSlot slot;
-    [SerializeField] private SkillData[] datas;
+    [SerializeField] private SkillData[] hasItemDatas;
     [SerializeField] private Transform[] showTransform;
 
     private void OnEnable()
     {
+        _player = PlayerManager.Instance.Player;
+
         ShowSlot();
-        
+        GetItemList();
+
+
     }
 
     public void ShowSlot()
@@ -39,5 +45,10 @@ public class UILevelUp : UIBase
 
             slot.selectEvent += CloseUI;
         }
+    }
+
+    public void GetItemList()
+    {
+        //hasItemDatas = _player.
     }
 }
