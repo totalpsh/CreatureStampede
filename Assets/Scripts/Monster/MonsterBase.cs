@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class MonsterBase : MonoBehaviour, IDamagable
 {
@@ -11,6 +12,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Collider2D monsterCollider;
+    
 
     public string Name { get; private set; }
     public MonsterGrade Grade { get; private set; }
@@ -27,6 +29,9 @@ public class MonsterBase : MonoBehaviour, IDamagable
     protected Player target;
     protected Vector2 dir;
     protected bool canAttack;
+    protected bool canMove;
+
+    Coroutine monsterStopCoroutine;
 
     protected virtual void Awake()
     {
@@ -43,7 +48,11 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void FixedUpdate()
     {
-        ChaseTarget();
+        if (canMove)
+        {
+            ChaseTarget();
+
+        }
     }
 
     private void LateUpdate()
@@ -65,7 +74,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         Grade = monsterData.Grade;
         MaxHealth = monsterData.MaxHealth;
         CurrentHealth = MaxHealth;
-        MoveSpeed = monsterData.MoveSpeed;
+        MoveSpeed = 30f;
         Damage = monsterData.Damage;
         Score = monsterData.Score;
         Exp = monsterData.Exp;
@@ -75,6 +84,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         animator.SetBool(MonsterAnimParam.IsMoving, target != null);
         animator.SetBool(MonsterAnimParam.Die, false);
         canAttack = true;
+        canMove = true;
 
         OnHpZero += Die;
 
@@ -155,6 +165,28 @@ public class MonsterBase : MonoBehaviour, IDamagable
         StartCoroutine(DestroyAfterDelay(0.5f));
     }
 
+    public void StopForDuration(float duration)
+    {
+        if (monsterStopCoroutine != null)
+        {
+            StopCoroutine(monsterStopCoroutine);
+
+        }
+        monsterStopCoroutine = StartCoroutine(StopMonster(duration));
+
+        
+    }
+
+    IEnumerator StopMonster(float duration)
+    {
+        animator.SetBool(MonsterAnimParam.IsMoving, false);
+        canMove = false;
+
+        yield return new WaitForSeconds(duration);
+        canMove = true;
+        animator.SetBool(MonsterAnimParam.IsMoving, true);
+    }
+
     protected void HitReaction()
     {
         animator.SetTrigger(MonsterAnimParam.Hit);
@@ -163,12 +195,22 @@ public class MonsterBase : MonoBehaviour, IDamagable
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
+        
         Destroy(gameObject);
     }
 
     public void TakePhysicalDamage(float damage)
     {
         SetHealth(CurrentHealth - damage);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("BulletBoundary"))
+        {
+            return;
+        }
+        MoveSpeed = monsterData.MoveSpeed;
+
     }
 }

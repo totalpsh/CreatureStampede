@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class StageManager : Singleton<StageManager>
 {
     private Stage _stage;
+    public Stage Stage {  get { return _stage; } }
     private Player _player;
 
     private int _monsterCount;
