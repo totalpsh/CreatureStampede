@@ -15,16 +15,16 @@ MonoBehaviour:
   <WeaponData>k__BackingField:
     damage: 3
     count: 3
-    speed: 20
+    speed: 15
     fireRate: 3
-    abilityValue: 10
+    abilityValue: 1
     isPierce: 1
     damageIncrease: 1
     countIncrease: 0
     speedIncrease: 0
     fireRateDecrease: 0
-    abilityValueIncrease: 10
+    abilityValueIncrease: 0.5
     projectilePrefab: {fileID: 6164056080916582720, guid: 7d789975ce7319746ae71004bc7a9a9a, type: 3}
     projectileLifetime: 5
-    spreadAngle: 100
+    spreadAngle: 50
     shootSound: {fileID: 0}

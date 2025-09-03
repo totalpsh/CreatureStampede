@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SwordSkill
   m_EditorClassIdentifier: 
   skillName: "\uCE7C"
-  skillIcon: {fileID: 21300000, guid: af94b7cb02b6d144d95f128aede4e9a5, type: 3}
+  skillIcon: {fileID: 1031450964, guid: af94b7cb02b6d144d95f128aede4e9a5, type: 3}
   skillLevel: 1
-  skillDescription: "\uCE7C\uB0A0\uC774 \uD68C\uC804\uD569\uB2C8\uB2E4."
+  skillDescription: "\uCE7C\uB0A0\uC774 \uC8FC\uBCC0\uC5D0\uC11C \uD68C\uC804\uD569\uB2C8\uB2E4."
