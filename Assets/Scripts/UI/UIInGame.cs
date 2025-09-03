@@ -14,8 +14,8 @@ public class UIInGame : UIBase
     [SerializeField] private Slider expSlider;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Image DashIcon;
-    [SerializeField] private Image skillIcon;
-    [SerializeField] private TextMeshProUGUI skillLevel;
+    [SerializeField] private Image[] skillIcon = new Image[3];
+    [SerializeField] private TextMeshProUGUI[] skillLevel = new TextMeshProUGUI[3];
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
@@ -59,7 +59,10 @@ public class UIInGame : UIBase
 
     public void UpdateSkillIcon()
     {
-
+        // 플레이어 보유 스킬 리스트 가져오기
+        // 플레이어 리스트 가져오고
+        // 반복문 -> 요소가 null이 아니라면
+        // 인덱스 0부터 이미지, 텍스트 반영해주기
     }
 
     private void OpenPauseUI()

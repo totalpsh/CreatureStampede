@@ -10,8 +10,7 @@ public class UIGetItem : UIBase
     [SerializeField] private SkillData[] datas;
     [SerializeField] private Transform[] showTransform;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         ShowSlot();
     }
@@ -37,6 +36,7 @@ public class UIGetItem : UIBase
             skillList.Add(data);
 
             slot.InSlot(data);
+            slot.selectEvent += CloseUI;
         }
     }
 

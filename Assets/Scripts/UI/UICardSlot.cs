@@ -19,7 +19,7 @@ public class UICardSlot : UIBase
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
 
-    public event Action SelectClose;
+    public event Action selectEvent;
 
     private void Awake()
     {
@@ -58,8 +58,9 @@ public class UICardSlot : UIBase
     public void OnClickCard()
     {
         HasAbility();
-        SelectClose?.Invoke();
+        selectEvent?.Invoke();
         CloseUI();
+        Time.timeScale = 1.0f;
     }
 
     public bool HasAbility()

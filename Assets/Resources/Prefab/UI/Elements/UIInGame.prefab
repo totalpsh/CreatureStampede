@@ -300,8 +300,14 @@ MonoBehaviour:
   expSlider: {fileID: 2645506515220456468}
   expText: {fileID: 6718801070651770482}
   DashIcon: {fileID: 2555421883395473631}
-  skillIcon: {fileID: 0}
-  skillLevel: {fileID: 0}
+  skillIcon:
+  - {fileID: 2616860643395699178}
+  - {fileID: 4961973104354204712}
+  - {fileID: 7510943794139631668}
+  skillLevel:
+  - {fileID: 3825313215643586057}
+  - {fileID: 8383591245489981223}
+  - {fileID: 7602470542101137117}
   timeText: {fileID: 1161120741137034254}
   scoreText: {fileID: 1593529320286577824}
   pauseButton: {fileID: 4802046274154541626}

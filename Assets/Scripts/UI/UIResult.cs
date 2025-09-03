@@ -24,12 +24,14 @@ public class UIResult : UIBase
 
     private void OnRestart()
     {
-
+        SceneLoadManager.Instance.RestartScene();
+        Time.timeScale = 1.0f;
     }
 
     private void OnTitle()
     {
-
+        SceneLoadManager.Instance.LoadScene(SceneType.Intro);
+        Time.timeScale = 1.0f;
     }
 
 

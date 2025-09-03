@@ -197,11 +197,25 @@ public class UIManager : Singleton<UIManager>
         System.GC.Collect();
     }
 
+    // 테스트용 코드
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Z))
         {
             OpenUI<UIGetItem>();
+            Time.timeScale = 0f;
+        }
+
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            OpenUI<UILevelUp>();
+            Time.timeScale = 0f;
+        }
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            OpenUI<UIResult>();
+            Time.timeScale = 0f;
         }
     }
 }
