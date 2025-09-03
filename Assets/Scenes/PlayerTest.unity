@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 388472735}
   m_Layer: 9
   m_Name: 9-Sliced
-  m_TagString: Bullet
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

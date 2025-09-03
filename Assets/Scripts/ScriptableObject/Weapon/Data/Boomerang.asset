@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField:
     damage: 1
-    count: 2
+    count: 4
     speed: 10
     fireRate: 3
-    abilityValue: 2
+    abilityValue: 1
     isPierce: 1
     damageIncrease: 1
     countIncrease: 2

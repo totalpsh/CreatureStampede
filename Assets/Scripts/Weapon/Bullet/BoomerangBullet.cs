@@ -15,9 +15,10 @@ public class BoomerangBullet : Bullet
     {
         base.Awake();
         circleCollider2D = GetComponent<CircleCollider2D>();
-        circleCollider2D.enabled = true;
         player = PlayerManager.Instance.Player;
         isBulletBoundary = false; // 경계 체크 비활성화
+        isReturning = false;
+        circleCollider2D.enabled = true;
     }
 
     protected void OnEnable()
@@ -34,9 +35,7 @@ public class BoomerangBullet : Bullet
     {
         isReturning = false;
 
-        // abilityValue는 왕복 시간이므로, 절반의 시간만큼 직진합니다.
-        float outwardTime = abilityValue / 2f;
-        yield return new WaitForSeconds(outwardTime);
+        yield return new WaitForSeconds(abilityValue);
 
         circleCollider2D.enabled = false;
         yield return new WaitForSeconds(0.01f);
@@ -77,11 +76,5 @@ public class BoomerangBullet : Bullet
             boomerangCoroutine = null;
         }
         base.BulletSetActive();
-    }
-
-    // 총알 능력    
-    protected override void Ability(MonsterBase target)
-    {
-        // 자식 클래스에서 구현
     }
 }
