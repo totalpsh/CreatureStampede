@@ -40,4 +40,5 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         return Create<T>(Path.UI, prefName, parent);
     }
+
 }

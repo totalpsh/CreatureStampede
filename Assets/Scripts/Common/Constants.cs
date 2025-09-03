@@ -15,6 +15,7 @@ public static class Path
     public const string Character = Prefab + "Character/";
     public const string Map = Prefab + "Map/";
     public const string Camera = Prefab + "Camera/";
+    public const string Data = "Data/";
 }
     
 public static class Prefab
