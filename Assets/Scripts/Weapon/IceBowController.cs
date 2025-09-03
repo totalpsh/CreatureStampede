@@ -17,7 +17,7 @@ public class IceBowController : BaseWeapon
     {
         base.Awake(); // BaseWeapon¿« Awake »£√‚
         movingWeaponPool = new List<Scanner>();
-        player = GetComponentInParent<Player>();
+        player = PlayerManager.Instance.Player;
     }
 
     private void Start()

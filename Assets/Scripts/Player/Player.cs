@@ -24,11 +24,14 @@ public class Player : MonoBehaviour, IDamagable
     [field: SerializeField] public float CurrentHealth { get; private set; }
     [field: SerializeField] public float Damage { get; private set; }
     public bool IsDead { get; private set; } = false;
+    // 가지고 있는 무기들
+    public BaseWeapon[] baseWeapons;
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
         playerAnimator = GetComponent<PlayerAnimator>();
         bulletpoolGO = new GameObject("bulletpoolGO");
+        baseWeapons = new BaseWeapon[3];
     }
 
     public void Init()
