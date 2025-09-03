@@ -7,8 +7,9 @@ public class SwordController : BaseWeapon
     // 생성 위치
     [SerializeField] private float radius = 1.5f;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start(); // BaseWeapon의 Start 호출
         BulletSetting();
     }
 

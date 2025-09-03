@@ -5,7 +5,7 @@ using UnityEngine;
 public class BowController : BaseWeapon
 {
     float timer;
-    Player player;
+
     PlayerController playerController;
 
     
@@ -13,9 +13,13 @@ public class BowController : BaseWeapon
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon의 Awake 호출
-        player = PlayerManager.Instance.Player;
-        playerController = PlayerManager.Instance.Player.controller;
+        
+    }
 
+    protected override void Start()
+    {
+        base.Start(); // BaseWeapon의 Start 호출
+        playerController = player.GetComponent<PlayerController>();
     }
     private void Update()
     {
