@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public interface IDamagalbe
+public interface IDamagable
 {
     void TakePhysicalDamage(float damage);
 }
 
-public class Player : MonoBehaviour, IDamagalbe
+public class Player : MonoBehaviour, IDamagable
 {
     PlayerController controller;
     [field: SerializeField] public PlayerSO Data { get; private set; }
