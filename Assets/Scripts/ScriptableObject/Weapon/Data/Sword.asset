@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField:
+    name: "\uCE7C"
+    icon: {fileID: 1031450964, guid: af94b7cb02b6d144d95f128aede4e9a5, type: 3}
+    description: "\uCE7C\uB0A0\uC774 \uC8FC\uBCC0\uC5D0\uC11C \uD68C\uC804\uD569\uB2C8\uB2E4."
+    level: 1
     damage: 5
     count: 3
     speed: 150

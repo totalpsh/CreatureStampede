@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Ice
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField:
+    name: "\uC5BC\uC74C\uD654\uC0B4"
+    icon: {fileID: 1365263182, guid: c19636b73a9c53e4fb49bfd05322dbd1, type: 3}
+    description: "\uC801\uC744 \uBA48\uCD94\uAC8C \uB9CC\uB4DC\uB294 \uC5BC\uC74C\uD654\uC0B4\uC744
+      \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+    level: 1
     damage: 3
     count: 3
     speed: 15

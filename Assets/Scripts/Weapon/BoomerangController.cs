@@ -12,7 +12,7 @@ public class BoomerangController : BaseWeapon
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon¿« Awake »£√‚
-        player = GetComponentInParent<Player>();
+        player = PlayerManager.Instance.Player;
 
     }
     private void Update()
