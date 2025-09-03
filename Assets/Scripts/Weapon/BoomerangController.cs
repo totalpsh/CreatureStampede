@@ -5,15 +5,12 @@ using UnityEngine;
 public class BoomerangController : BaseWeapon
 {
     float timer;
-    Player player;
 
 
 
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon¿« Awake »£√‚
-        player = PlayerManager.Instance.Player;
-
     }
     private void Update()
     {
