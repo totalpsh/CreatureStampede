@@ -11,7 +11,7 @@ public interface IDamagable
 
 public class Player : MonoBehaviour, IDamagable
 {
-    PlayerController controller;
+    public PlayerController controller;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
     public event Action<float, float> OnChangeHealth;
