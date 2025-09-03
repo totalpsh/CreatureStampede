@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIResult : MonoBehaviour
+public class UIResult : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Button titleButton;
+    [SerializeField] private Button restartButton;
+
+    private void Awake()
     {
-        
+        restartButton.onClick.AddListener(OnRestart);
+        titleButton.onClick.AddListener(OnTitle);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ScoreUpdate()
     {
-        
+
     }
+
+    private void OnRestart()
+    {
+
+    }
+
+    private void OnTitle()
+    {
+
+    }
+
+
 }

@@ -39,12 +39,12 @@ public class PlayerTestScene : SceneBase
 
     void GameClear()
     {
-        //UIManager.Instance.GetUI<UIGameClear>();
+        UIManager.Instance.GetUI<UIResult>();
     }
 
     void GameOver()
     {
-        //UIManager.Instance.GetUI<UIGameOver>();
+        UIManager.Instance.GetUI<UIResult>();
     }
 
 }
