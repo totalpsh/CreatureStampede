@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d021ab0e475aa249b3e2ca883eed124, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  <WeaponData>k__BackingField:
+    damage: 5
+    count: 1
+    speed: 5
+    fireRate: 5
+    abilityValue: 5
+    isPierce: 0
+    damageIncrease: 5
+    countIncrease: 0
+    speedIncrease: 0
+    fireRateDecrease: 0.5
+    abilityValueIncrease: 1
+    projectilePrefab: {fileID: 5907668890890235922, guid: 1484c55d88f67044ea0031d974c371c9, type: 3}
+    projectileLifetime: 0
+    spreadAngle: 0
+    shootSound: {fileID: 0}

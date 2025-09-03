@@ -4,21 +4,20 @@ using UnityEngine;
 public class IceBowController : BaseWeapon
 {
     float timer;
-    Player player;
-    PlayerController playerController;
 
+    Player player;
     List<Scanner> movingWeaponPool;
      
     [SerializeField] GameObject movingWeaponPrefab;
-    // 생성 위치
-    [SerializeField] private float radius = 1f;
+
+
+    [SerializeField] private float radius = 1f; // 움직이는 무기 생성 위치
 
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon의 Awake 호출
-        player = GetComponentInParent<Player>();
-        playerController = GetComponentInParent<PlayerController>();
         movingWeaponPool = new List<Scanner>();
+        player = GetComponentInParent<Player>();
     }
 
     private void Start()
@@ -50,10 +49,11 @@ public class IceBowController : BaseWeapon
             Vector3 targetPos = go.nearestTarget.position;
             Vector3 dir = (targetPos - go.transform.position).normalized;
 
-            Transform serveBullet = GetBullet().transform;
-            serveBullet.position = go.transform.position; // 발사 위치 초기화
-            serveBullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 발사 방향 설정
-            serveBullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, dir, Data.WeaponData.speed);
+            Transform bullet = GetBullet().transform;
+            bullet.SetParent(player.bulletpoolGO.transform);
+            bullet.position = go.transform.position; // 발사 위치 초기화
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 발사 방향 설정
+            bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, dir, Data.WeaponData.speed, Data.WeaponData.abilityValue);
         }
 
     }
@@ -91,6 +91,7 @@ public class IceBowController : BaseWeapon
         }
     }
 
+    // 움직이는 무기 풀에서 사용 가능한 무기 가져오기
     Scanner GetMovingWeapon()
     {
         Scanner select = null;

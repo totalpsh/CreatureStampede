@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float damage;
-    [SerializeField] bool isPierce;
-    [SerializeField] float speed;
+    [SerializeField] protected float damage;
+    [SerializeField] protected bool isPierce;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float abilityValue;
+    [SerializeField] protected bool isBulletBoundary = true;
 
-    Rigidbody2D _rigidbody;
 
-    private void Awake()
+    protected Rigidbody2D _rigidbody;
+
+    
+
+    protected virtual void Awake()
     {
        _rigidbody = GetComponent<Rigidbody2D>();
+        isBulletBoundary = true;
     }
 
 
-    public void Init(float damage, bool isPierce, Vector3 dir, float speed = 0)
+    // 데미지, 관통 여부, 방향, 속도, 능력치 초기화
+    public void Init(float damage, bool isPierce, Vector3 dir, float speed = 0, float abilityValue = 0)
     {
         this.damage = damage;
         this.isPierce = isPierce;
         this.speed = speed;
+        this.abilityValue = abilityValue;
 
         if (_rigidbody != null)
         {
@@ -28,10 +36,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
+            Debug.Log($"Hit Enemy {damage}");
             collision.GetComponent<IDamagable>()?.TakePhysicalDamage(damage);
             Ability(collision.GetComponent<MonsterBase>());
             if (!isPierce)
@@ -43,16 +52,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("BulletBoundary"))
+        if(collision.CompareTag("BulletBoundary") && isBulletBoundary)
         {
             BulletSetActive();
         }
     }
 
     // 총알 비활성화 및 속도 초기화
-    protected void BulletSetActive()
+    protected virtual void BulletSetActive()
     {
-        _rigidbody.velocity = Vector2.zero;
+        if (_rigidbody != null)
+            _rigidbody.velocity = Vector2.zero;
+
         gameObject.SetActive(false);
     }
 
