@@ -20,19 +20,22 @@ public class UIInGame : UIBase
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
 
-    public float dashCooldown = 1.2f;
+    public float dashCooldown;
     private float currentCooldown;
-    private bool isDash = false;
+    private bool dashEnd = false;
 
     private void Awake()
     {
+        
         pauseButton.onClick.AddListener(OpenPauseUI);
     }
 
     public void SetCharacter(Player player)
     {
         _player = player;
- 
+        _player.controller.dashAction += DashEndEvent; 
+        dashCooldown = _player.controller.dashCooldown;
+
         // 여기서 UI에 들어갈 값들 세팅
 
         // 업데이트
@@ -43,27 +46,30 @@ public class UIInGame : UIBase
     private void Update()
     {
         UpdateTimer(StageManager.Instance.StageTime);
-        
-        currentCooldown -= Time.deltaTime;
-        
-        if(Input.GetKeyDown(KeyCode.V))
+
+        if (dashEnd)
         {
-            isDash = true;
+            currentCooldown += Time.deltaTime;
         }
-        UpdateDashCool();
+            UpdateDashIcon();
     }
 
-    private void UpdateDashCool()
+    public void DashEndEvent()
     {
-        if (currentCooldown > 0 && isDash)
+        dashEnd = true;
+    }
+
+    private void UpdateDashIcon()
+    {
+        if (currentCooldown < 1 && dashEnd)
         {
             DashIcon.fillAmount = currentCooldown / dashCooldown;
         }
         else
         {
-            currentCooldown = dashCooldown;
+            currentCooldown = 0;
             DashIcon.fillAmount = 1f;
-            isDash = false;
+            dashEnd = false;
         }
     }
 
@@ -72,6 +78,12 @@ public class UIInGame : UIBase
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
         timeText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    // 몬스터가 사망시 할 시에 이벤트로 호출
+    public void GetExpEvent()
+    {
+
     }
 
     public void UpdateExp(float currentExp, float maxExp)

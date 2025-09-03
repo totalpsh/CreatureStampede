@@ -66,8 +66,10 @@ public class StageManager : Singleton<StageManager>
         _player.SetPosition(playerPos);
         _player.Init();
 
+        var playerHp = UIManager.Instance.GetUI<HpBar>();
+        playerHp.transform.SetParent(_player.transform, true);
         var playerInfo = UIManager.Instance.GetUI<UIInGame>();
-        //playerInfo.SetCharacter(_player);
+        playerInfo.SetCharacter(_player);
     }
 
     private void SpawnVirtualCamera()

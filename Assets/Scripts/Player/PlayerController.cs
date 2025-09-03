@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    // 대시 쿨타입 연결할 이벤트 액션
+    public event Action dashAction;
 
     private void Awake()
     {
@@ -118,6 +122,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Dash Input Received");
         // 대시 지속 시간만큼 대기
         yield return new WaitForSeconds(dashDuration);
+        // 대시 실행 후 쿨타입UI 반영을 위한 이벤트 실행
+        dashAction?.Invoke();
         // 대시 종료
         isDashing = false;
         _rigidbody.velocity = Vector2.zero;
