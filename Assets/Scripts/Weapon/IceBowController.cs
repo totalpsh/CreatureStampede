@@ -5,7 +5,6 @@ public class IceBowController : BaseWeapon
 {
     float timer;
 
-    Player player;
     List<Scanner> movingWeaponPool;
      
     [SerializeField] GameObject movingWeaponPrefab;
@@ -17,12 +16,11 @@ public class IceBowController : BaseWeapon
     {
         base.Awake(); // BaseWeapon의 Awake 호출
         movingWeaponPool = new List<Scanner>();
-        player = PlayerManager.Instance.Player;
     }
 
-    private void Start()
+    protected override void Start()
     {
-
+        base.Start(); // BaseWeapon의 Start 호출
         MovingWeaponSetting();
     }
     private void Update()
