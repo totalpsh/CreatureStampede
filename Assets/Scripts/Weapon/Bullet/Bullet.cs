@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<IDamagalbe>()?.TakePhysicalDamage(damage);
+            collision.GetComponent<IDamagable>()?.TakePhysicalDamage(damage);
             Ability(collision.GetComponent<MonsterBase>());
             if (!isPierce)
             {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : MonoBehaviour, IDamagable
 {
     [SerializeField] SO_Monster monsterData;
 
@@ -75,6 +75,8 @@ public class MonsterBase : MonoBehaviour
         animator.SetBool(MonsterAnimParam.IsMoving, target != null);
         animator.SetBool(MonsterAnimParam.Die, false);
         canAttack = true;
+
+        OnHpZero += Die;
 
     }
 
@@ -159,5 +161,10 @@ public class MonsterBase : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         Destroy(gameObject);
+    }
+
+    public void TakePhysicalDamage(float damage)
+    {
+        SetHealth(CurrentHealth - damage);
     }
 }
