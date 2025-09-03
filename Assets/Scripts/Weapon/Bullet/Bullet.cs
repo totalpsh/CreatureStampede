@@ -26,18 +26,19 @@ public class Bullet : MonoBehaviour
         {
             _rigidbody.velocity = dir * this.speed;
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if(collision.CompareTag("Enemy"))
-        //{
-        //    if(!isPierce)
-        //    {
-        //        BulletSetActive();
-        //    }
-        //}
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<IDamagalbe>()?.TakePhysicalDamage(damage);
+            Ability(collision.GetComponent<MonsterBase>());
+            if (!isPierce)
+            {
+                BulletSetActive();
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -48,9 +49,16 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void BulletSetActive()
+    // 총알 비활성화 및 속도 초기화
+    protected void BulletSetActive()
     {
         _rigidbody.velocity = Vector2.zero;
         gameObject.SetActive(false);
+    }
+
+    // 총알 능력    
+    protected virtual void Ability(MonsterBase target)
+    {
+        // 자식 클래스에서 구현
     }
 }

@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class Player : MonoBehaviour
+public interface IDamagalbe
+{
+    void TakePhysicalDamage(float damage);
+}
+
+public class Player : MonoBehaviour, IDamagalbe
 {
     PlayerController controller;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
     public event Action<float, float> OnChangeHealth;
-    public event Action<Player> OnCharacterDie;
+    public event Action OnCharacterDie;
 
     public GameObject bulletpoolGO;
     [field: SerializeField] public float MaxHealth { get; private set; }
@@ -50,24 +55,29 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(float damage)
     {
-        //CurrentHealth += damage;
-        //CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
-        //CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
+        CurrentHealth += damage;
+        CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
+        CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
 
-        //OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
+        OnChangeHealth?.Invoke(CurrentHealth, MaxHealth);
 
-        //if (CurrentHealth <= 0f)
-        //{
-        //    Death();
-        //}
+        if (CurrentHealth <= 0f)
+        {
+            Death();
+        }
     }
 
     private void Death()
     {
-        //if (IsDead) return;
-        //IsDead = true;
+        if (IsDead) return;
+        IsDead = true;
         //animator.SetTrigger(DeathHash);
 
-        //OnCharacterDie?.Invoke(this);
+        OnCharacterDie?.Invoke();
+    }
+
+    public void TakePhysicalDamage(float damage)
+    {
+        ChangeHealth(-damage);
     }
 }
