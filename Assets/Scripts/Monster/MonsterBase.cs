@@ -40,10 +40,16 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void Update()
     {
-        dir = target.transform.position - transform.position;
-        dir = dir.normalized;
-        
-       
+        dir = GetDirectionToTarget(target.transform);
+
+    }
+
+    protected Vector2 GetDirectionToTarget(Transform target)
+    {
+        Vector2 ret;
+        ret = target.transform.position - transform.position;
+        ret = ret.normalized;
+        return ret;
     }
 
     protected virtual void FixedUpdate()
@@ -204,7 +210,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         SetHealth(CurrentHealth - damage);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag("BulletBoundary"))
         {

@@ -1,9 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bat : MonsterBase
 {
+    bool isChasing = true;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        dir = GetDirectionToTarget(target.transform);
+
+    }
+    protected override void Update()
+    {
+        if (isChasing)
+        {
+            dir = GetDirectionToTarget(target.transform);
+        }
+    }
+
     protected override void SetCharacterDirection()
     {
         if (dir.x < 0)
@@ -22,5 +40,12 @@ public class Bat : MonsterBase
         base.Attack(player, delay);
 
         animator.SetTrigger(MonsterAnimParam.Attack);
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+
+        isChasing = false;
     }
 }

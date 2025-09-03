@@ -5,9 +5,17 @@ using UnityEngine;
 public class Stage : MonoBehaviour
 {
     Dictionary<int, SO_MonsterWave> waveData = new();
+    float lastWaveSpawnTime;
+    float currentWaveDelay;
+
+    float lastBatsSpawnTime;
+    float batsSpawnDelay = 20f;
+
+    int playerLevel;
 
     Transform playerTransform;
-    
+    SO_MonsterWave currentWaveData;
+
     private void Awake()
     {
         SO_MonsterWave[] monsterWaves = Resources.LoadAll<SO_MonsterWave>(Path.Data + "MonsterWave");
@@ -23,31 +31,52 @@ public class Stage : MonoBehaviour
     private void Start()
     {
         playerTransform = PlayerManager.Instance.Player.transform;
+        currentWaveData = waveData[1];
+        currentWaveDelay = currentWaveData.WaveDelay;
+
+        SpawnMonsterWave(currentWaveData);
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Time.time - lastWaveSpawnTime > currentWaveDelay)
         {
-            SpawnMonsterWave(waveData[1]);
+            SpawnMonsterWave(currentWaveData);
         }
+        if (Time.time - lastBatsSpawnTime > batsSpawnDelay)
+        {
+            SpawnBats();
+        }
+    }
+
+    // playerLevelUp 할때 호출
+    public void OnPlayerLevelUp(int playerLevel)
+    {
+        if (waveData.ContainsKey(playerLevel))
+        {
+            currentWaveData = waveData[playerLevel];
+        }
+        currentWaveDelay = currentWaveData.WaveDelay;
     }
 
     private void SpawnMonsterWave(SO_MonsterWave monsterWave)
     {
+        lastWaveSpawnTime = Time.time;
+
         for (int i = 0; i < monsterWave.SlimeCount; ++i)
         {
-            SpawnMonster<Slime>();
+            SpawnMonsterRandomPos<Slime>();
         }
 
         for (int i = 0; i < monsterWave.GoblinCount; ++i)
         {
-            SpawnMonster<Goblin>();
+            SpawnMonsterRandomPos<Goblin>();
         }
 
         for (int i = 0; i < monsterWave.TrollCount; ++i)
         {
-            SpawnMonster<Troll>();
+            SpawnMonsterRandomPos<Troll>();
         }
     }
 
@@ -76,10 +105,30 @@ public class Stage : MonoBehaviour
         return new Vector2(posX, posY);
     }
 
-    private T SpawnMonster<T>() where T : MonsterBase
+    public void SpawnBats()
+    {
+        lastBatsSpawnTime = Time.time;
+
+        Vector2 pos = GetRandomSpawnPos();
+        int batCount = 5;
+        for (int i = 0; i < batCount; ++i)
+        {
+            Bat bat = SpawnMonster<Bat>();
+            bat.transform.position = pos;
+        }
+    }
+
+    private T SpawnMonsterRandomPos<T>() where T : MonsterBase
     {
         T monster = ResourceManager.Instance.CreateCharacter<T>(typeof(T).Name);
         monster.transform.position = GetRandomSpawnPos();
+
+        return monster;
+    }
+
+    private T SpawnMonster<T>() where T : MonsterBase
+    {
+        T monster = ResourceManager.Instance.CreateCharacter<T>(typeof(T).Name);
 
         return monster;
     }
