@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e92956062bd27fa4ea0590987fb3e879, type: 3}
-  m_Name: SwordSkill
+  m_Name: IceArrowSkill
   m_EditorClassIdentifier: 
-  skillName: "\uCE7C"
-  skillIcon: {fileID: 1031450964, guid: af94b7cb02b6d144d95f128aede4e9a5, type: 3}
+  skillName: "\uC5BC\uC74C\uD654\uC0B4"
+  skillIcon: {fileID: 1365263182, guid: c19636b73a9c53e4fb49bfd05322dbd1, type: 3}
   skillLevel: 1
-  skillDescription: "\uCE7C\uB0A0\uC774 \uC8FC\uBCC0\uC5D0\uC11C \uD68C\uC804\uD569\uB2C8\uB2E4."
+  skillDescription: "\uC801\uC744 \uB290\uB824\uC9C0\uAC8C \uB9CC\uB4DC\uB294 \uC5BC\uC74C\uD654\uC0B4\uC744
+    \uBC1C\uC0AC\uD569\uB2C8\uB2E4."

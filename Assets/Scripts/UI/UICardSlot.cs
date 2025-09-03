@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 
 public class UICardSlot : UIBase
 {
+    [SerializeField] private Button selectButton;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI levelText;
@@ -17,6 +19,12 @@ public class UICardSlot : UIBase
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
 
+    public event Action selectEvent;
+
+    private void Awake()
+    {
+        selectButton.onClick.AddListener(OnClickCard);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +40,7 @@ public class UICardSlot : UIBase
 
     public void InSlot(SkillData skill)
     {
-        skillName = skill.name;
+        skillName = skill.SkillName;
         skillIcon = skill.SkillIcon;
         skillLevel = skill.SkillLevel;
         skillDescription = skill.SkillDescription;
@@ -43,7 +51,20 @@ public class UICardSlot : UIBase
     {
         nameText.text = skillName;
         icon.sprite = skillIcon;
-        levelText.text = skillLevel.ToString();
+        levelText.text = $"Lv. {skillLevel.ToString()}";
         descriptionText.text = skillDescription;
+    }
+
+    public void OnClickCard()
+    {
+        HasAbility();
+        selectEvent?.Invoke();
+        CloseUI();
+        Time.timeScale = 1.0f;
+    }
+
+    public bool HasAbility()
+    {
+        return false;
     }
 }

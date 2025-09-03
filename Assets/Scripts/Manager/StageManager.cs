@@ -17,10 +17,31 @@ public class StageManager : Singleton<StageManager>
             OnMonsterCountChanged?.Invoke(_monsterCount);
         }
     }
+
+    private float stageTime = 600f;
+    public float StageTime { get { return stageTime; } }
+    private bool isRunning = false;
     
     public event Action OnStageClear;
     public event Action OnGameOver;
     public event Action<int> OnMonsterCountChanged;
+
+    private void Update()
+    {
+        if (!isRunning) return;
+
+        if(stageTime > 0f)
+        {
+            stageTime -= Time.deltaTime;
+        }
+        else
+        {
+            stageTime = 0;
+            isRunning = false;
+            // 게임 클리어
+            OnStageClear?.Invoke();
+        }
+    }
 
     public void InitStage(Stage stage)
     {
@@ -28,6 +49,7 @@ public class StageManager : Singleton<StageManager>
         _stage = stage;
         SpawnPlayer();
         SpawnVirtualCamera();
+        isRunning = true;
     }
 
     public void StopStage()
@@ -58,5 +80,10 @@ public class StageManager : Singleton<StageManager>
     {
         StopStage();
         OnGameOver?.Invoke();
+    }
+
+    private void StageTimeOut()
+    {
+
     }
 }
