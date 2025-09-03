@@ -475,6 +475,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICardSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c74eb6bcee6493469a0d12d366b2240, type: 2}
     - target: {fileID: 8220438951918757705, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -581,6 +585,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4743e281892e8a84e95fbeb092ec31e1, type: 2}
     - target: {fileID: 8220438951918757705, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -683,6 +691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICardSlot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3611982f65f33f244af97d5b4e57bb81, type: 2}
     - target: {fileID: 8220438951918757705, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -789,6 +801,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 72cb7fb19c2d3de4190fa4617b0eb5dd, type: 2}
     - target: {fileID: 8220438951918757705, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -891,6 +907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICardSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 29bfdcd865a883b45a5248b53c198537, type: 2}
     - target: {fileID: 8220438951918757705, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

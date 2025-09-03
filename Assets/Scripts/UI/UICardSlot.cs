@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UICardSlot : UIBase
 {
+    [SerializeField] WeaponSO weaponData;
+
     [SerializeField] private Button selectButton;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image icon;
