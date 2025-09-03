@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Boomerang
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField:
+    name: "\uBD80\uBA54\uB791"
+    icon: {fileID: -957914066, guid: 261a8902f48f54042932dab75a9e14b8, type: 3}
+    description: "\uB3CC\uC544\uC624\uB294 \uBD80\uBA54\uB791\uC744 \uB358\uC9D1\uB2C8\uB2E4."
+    level: 1
     damage: 1
     count: 4
     speed: 10
