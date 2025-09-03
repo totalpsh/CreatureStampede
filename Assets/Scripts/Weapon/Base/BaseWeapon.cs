@@ -14,7 +14,7 @@ public abstract class BaseWeapon : MonoBehaviour
     protected float fireRate; // 발사 속도 (초당 발사 횟수)
     protected float abilityValue; // 능력 값
 
-
+    protected Player player;
     protected virtual void Awake()
     {
         bulletPool = new List<Bullet>();
@@ -23,6 +23,11 @@ public abstract class BaseWeapon : MonoBehaviour
         speed = Data.WeaponData.speed;
         fireRate = Data.WeaponData.fireRate;
         abilityValue = Data.WeaponData.abilityValue;
+    }
+
+    protected virtual void Start()
+    {
+        player = PlayerManager.Instance.Player;
     }
 
     [SerializeField] protected Transform firePoint; // 발사 위치

@@ -5,15 +5,13 @@ using UnityEngine;
 public class FireController : BaseWeapon
 {
     float timer;
-    Player player;
+    
 
 
 
     protected override void Awake()
     {
         base.Awake(); // BaseWeapon¿« Awake »£√‚
-        player = PlayerManager.Instance.Player;
-
     }
     private void Update()
     {
