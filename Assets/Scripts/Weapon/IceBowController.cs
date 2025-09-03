@@ -49,11 +49,11 @@ public class IceBowController : BaseWeapon
             Vector3 targetPos = go.nearestTarget.position;
             Vector3 dir = (targetPos - go.transform.position).normalized;
 
-            Transform serveBullet = GetBullet().transform;
-            serveBullet.SetParent(player.bulletpoolGO.transform);
-            serveBullet.position = go.transform.position; // 발사 위치 초기화
-            serveBullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 발사 방향 설정
-            serveBullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, dir, Data.WeaponData.speed, Data.WeaponData.abilityValue);
+            Transform bullet = GetBullet().transform;
+            bullet.SetParent(player.bulletpoolGO.transform);
+            bullet.position = go.transform.position; // 발사 위치 초기화
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 발사 방향 설정
+            bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, dir, Data.WeaponData.speed, Data.WeaponData.abilityValue);
         }
 
     }

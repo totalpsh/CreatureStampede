@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireController : BaseWeapon
+public class BoomerangController : BaseWeapon
 {
     float timer;
     Player player;
@@ -25,25 +25,26 @@ public class FireController : BaseWeapon
         }
     }
 
+
     protected override void BulletSetting()
     {
-        //랜덤 방향으로 발사
+        // 기첫 번째 랜덤 방향을 설정
+        Vector2 initialDirection = Random.insideUnitCircle.normalized;
+
         for (int i = 0; i < count; i++)
         {
             Transform bullet = GetBullet().transform;
             bullet.SetParent(player.bulletpoolGO.transform);
             bullet.position = player.transform.position;
 
-            // 랜덤 방향 생성
-            Vector2 randomDir = Random.insideUnitCircle.normalized;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, randomDir); // 발사 방향 설정
-            // 총알 초기화
-            bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, randomDir, speed, abilityValue);
-        }
-    }
+            // 각 부메랑이 발사될 각도 계산
+            float angle = 360f * i / count;
 
-    public override void LevelUp()
-    {
-        base.LevelUp();
+            // 초기 랜덤 방향에서 계산된 각도만큼 회전시킨 최종 방향 구함
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+            Vector2 fireDirection = rotation * initialDirection;
+            
+            bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, fireDirection, speed, abilityValue);
+        }
     }
 }
