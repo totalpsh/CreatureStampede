@@ -6,7 +6,8 @@ public class IceBullet : Bullet
 {
     protected override void Ability(MonsterBase target)
     {
-        // 빙결 상태 적용
+        if (target == null) return;
 
+        target.StopForDuration(abilityValue);
     }
 }

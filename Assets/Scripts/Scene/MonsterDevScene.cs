@@ -27,8 +27,8 @@ public class MonsterDevScene : SceneBase
 
     public override void OnSceneExit()
     {
-        _stageManager.OnStageClear += GameClear;
-        _stageManager.OnGameOver += GameOver;
+        _stageManager.OnStageClear -= GameClear;
+        _stageManager.OnGameOver -= GameOver;
 
         _stageManager.Release();
     }
@@ -36,12 +36,12 @@ public class MonsterDevScene : SceneBase
 
     void GameClear()
     {
-        //UIManager.Instance.GetUI<UIGameClear>();
+        UIResult clear = UIManager.Instance.GetUI<UIResult>();
     }
 
     void GameOver()
     {
-        //UIManager.Instance.GetUI<UIGameOver>();
+        UIResult fail = UIManager.Instance.GetUI<UIResult>();
     }
 
 }
