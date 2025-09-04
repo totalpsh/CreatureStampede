@@ -17,8 +17,6 @@ public class PlayerAnimator : MonoBehaviour
     public void SetMoveAnimation(bool isMoving)
     {
         if(isDead) return;
-
-        Debug.Log("SetMoveAnimation: " + isMoving);
         animator.SetBool("IsMove", isMoving);
     }
 
@@ -31,7 +29,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void TriggerIsDead()
     {
-        animator.SetTrigger("IsDead");
         isDead = true;
+        animator.SetTrigger("IsDead");
     }
 }

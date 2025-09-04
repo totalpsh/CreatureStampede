@@ -63,7 +63,6 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         if(Level >= Data.WeaponData.maxLevel) return;
 
-        Debug.Log($"{Data.name} ·¹º§¾÷!");
         count += Data.WeaponData.countIncrease;
         damage += Data.WeaponData.damageIncrease;
         speed += Data.WeaponData.speedIncrease;
