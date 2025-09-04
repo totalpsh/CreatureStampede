@@ -16,7 +16,6 @@ public class UICardSlot : UIBase
     [SerializeField] private WeaponSO weaponData;
     public WeaponSO Weapon { get { return weaponData; } }
 
-    public WeaponSO playerHasWeapon;
 
     [SerializeField] private ButtonMode mode;
     [SerializeField] private Button selectButton;
@@ -34,6 +33,19 @@ public class UICardSlot : UIBase
     public event Action<BaseWeapon[]> weaponSelect;
     public event Action selectEvent;
 
+    private Player player;
+
+
+    private void Start()
+    {
+        selectButton.onClick.AddListener(OnClickButton);
+    }
+
+    private void OnEnable()
+    {
+        player = PlayerManager.Instance.Player;
+    }
+    
     // Start is called before the first frame update
     protected override void OnOpen()
     {
@@ -43,15 +55,19 @@ public class UICardSlot : UIBase
 
     public void UpdateUI()
     {
-        selectButton.onClick.AddListener(OnClickButton);
+        
         nameText.text = weaponData.WeaponData.name;
         icon.sprite = weaponData.WeaponData.icon;
-        levelText.text = $"Lv. {weaponData.WeaponData.level.ToString()}";
         descriptionText.text = weaponData.WeaponData.description;
+
+        int level = player.GetWeaponLevel(weaponData);
+
+        levelText.text = $"Lv. {level.ToString()}";
     }
 
     public void OnClickButton()
     {
+        Debug.Log($"{weaponData.name} 선택됨");
         switch (mode)
         {
             case ButtonMode.Upgrade:
@@ -71,14 +87,13 @@ public class UICardSlot : UIBase
     private void AcquireWeapon()
     {
         Debug.Log("장비상자 획득");
+        player.EquipWeapons(Weapon);
     }
 
     private void UpgradeItem()
     {
         Debug.Log("레벨업 무기 업그레이드");
-
-        playerHasWeapon.WeaponData.level++;
-
+        player.LevelUpWeapon(Weapon);
     }
 
     public bool HasAbility()

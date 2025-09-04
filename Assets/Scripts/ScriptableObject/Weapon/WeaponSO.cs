@@ -19,6 +19,9 @@ public class WeaponData
     [Tooltip("레벨")]
     public int level; // 레벨
 
+    [Tooltip("최대 레벨")]
+    public int maxLevel = 5; // 최대 레벨
+
     [Tooltip("공격력")]
     public float damage = 5f; // 공격력
     [Tooltip("발사 개수")]

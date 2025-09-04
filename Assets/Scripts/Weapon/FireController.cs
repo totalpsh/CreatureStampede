@@ -40,8 +40,4 @@ public class FireController : BaseWeapon
         }
     }
 
-    public override void LevelUp()
-    {
-        base.LevelUp();
-    }
 }

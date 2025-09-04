@@ -10,14 +10,22 @@ public class UIGetItem : UIBase
 {
     Player _player;
 
-    [SerializeField] private WeaponSO[] playerWeapons;
+    [SerializeField] private List<BaseWeapon> weapons;
+     [SerializeField] private List<WeaponSO> playerWeapons;
 
     [SerializeField] private UICardSlot[] slots;
-    [SerializeField] private SkillData[] hasItemDatas;
 
     private void OnEnable()
     {
+        playerWeapons = new List<WeaponSO>();
+
         _player = PlayerManager.Instance.Player;
+        weapons = _player.Weapons;
+
+        foreach(var weapon in weapons)
+        {
+            playerWeapons.Add(weapon.Data);
+        }
 
         for (int i = 0; i < slots.Length; i++)
         {
