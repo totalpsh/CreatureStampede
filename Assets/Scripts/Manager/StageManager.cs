@@ -144,20 +144,22 @@ public class StageManager : Singleton<StageManager>
             Level++;
             CurrentExp = 0;
             MaxExp = MaxExp + (Level * 10);
+            
             UIManager.Instance.GetUI<UIInGame>().UpdateLevel();
-            UIManager.Instance.GetUI<UIInGame>().UpdateExp();
         }
     }
 
     public void AddExp(int expValue)
     {
         CurrentExp += expValue;
+        UIManager.Instance.GetUI<UIInGame>().UpdateExp();
         LevelUp();
     }
 
     public void AddScore(int scoreValue)
     {
         Score += scoreValue;
+        UIManager.Instance.GetUI<UIInGame>().UpdateExp();
     }
 
     private void OnPlayerDie()

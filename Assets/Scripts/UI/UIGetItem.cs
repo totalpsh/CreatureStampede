@@ -11,9 +11,11 @@ public class UIGetItem : UIBase
     Player _player;
 
     [SerializeField] private List<BaseWeapon> weapons;
-     [SerializeField] private List<WeaponSO> playerWeapons;
+    [SerializeField] private List<WeaponSO> playerWeapons;
 
     [SerializeField] private UICardSlot[] slots;
+    [SerializeField] private UICardSlot scoreSlot;
+
 
     private void OnEnable()
     {
@@ -33,16 +35,31 @@ public class UIGetItem : UIBase
             slots[i].selectEvent += CloseUI;
         }
 
+        scoreSlot.selectEvent += CloseUI;
+        scoreSlot.CloseUI();
+
         ShowSlot();
+
     }
 
     public void ShowSlot()
     {
+        if(weapons.Count >= _player.Data.PlayerData.maxWeaponCount)
+        {
+            scoreSlot.OpenUI();
+            return;
+        }
+
         List<UICardSlot> openCardList = new List<UICardSlot>();
         for(int i = 0; i < slots.Length; i++)
         {
             bool hasWeapon = playerWeapons.Contains(slots[i].Weapon);
             if(!hasWeapon) openCardList.Add(slots[i]);
+        }
+
+        for(int i = 0; i < playerWeapons.Count; i++)
+        {
+            Debug.Log(playerWeapons[i].name);
         }
 
         Debug.Log(openCardList.Count);

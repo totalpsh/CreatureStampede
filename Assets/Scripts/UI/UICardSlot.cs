@@ -11,7 +11,8 @@ public class UICardSlot : UIBase
     {
         Upgrade,
         GetWeapon,
-        GetScore
+        GetScoreChest,
+        GetScoreLevelUp
     }
 
     [SerializeField] private WeaponSO weaponData;
@@ -59,19 +60,42 @@ public class UICardSlot : UIBase
 
     public void UpdateUI()
     {
-        
-        nameText.text = weaponData.WeaponData.name;
-        icon.sprite = weaponData.WeaponData.icon;
-        descriptionText.text = weaponData.WeaponData.description;
+        switch (mode)
+        {
+            case ButtonMode.Upgrade: 
+            case ButtonMode.GetWeapon:
 
-        int level = player.GetWeaponLevel(weaponData);
+                nameText.text = weaponData.WeaponData.name;
+                icon.sprite = weaponData.WeaponData.icon;
+                descriptionText.text = weaponData.WeaponData.description;
 
-        levelText.text = $"Lv. {level.ToString()}";
+                int level = player.GetWeaponLevel(weaponData);
+
+                levelText.text = $"Lv. {level.ToString()}";
+
+                break;
+            case ButtonMode.GetScoreChest:
+
+                nameText.text = "추가 점수";
+                levelText.text = " ";
+                icon.sprite = skillIcon;
+                descriptionText.text = "점수 +1000";
+
+                break;
+            case ButtonMode.GetScoreLevelUp:
+
+                nameText.text = "추가 점수";
+                levelText.text = " ";
+                icon.sprite = skillIcon;
+                descriptionText.text = "점수 +500";
+
+                break;
+        }
+
     }
 
     public void OnClickButton()
     {
-        Debug.Log($"{weaponData.name} 선택됨");
         switch (mode)
         {
             case ButtonMode.Upgrade:
@@ -80,7 +104,10 @@ public class UICardSlot : UIBase
             case ButtonMode.GetWeapon:
                 AcquireWeapon();
                 break;
-            case ButtonMode.GetScore:
+            case ButtonMode.GetScoreChest:
+                AcquireScore();
+                break;
+            case ButtonMode.GetScoreLevelUp:
                 AcquireScore();
                 break;
         }
@@ -92,7 +119,15 @@ public class UICardSlot : UIBase
 
     private void AcquireScore()
     {
-        StageManager.Instance.AddScore(1000);
+        switch (mode)
+        {
+            case ButtonMode.GetScoreChest:
+                StageManager.Instance.AddScore(1000);
+                break;
+            case ButtonMode.GetScoreLevelUp:
+                StageManager.Instance.AddScore(500);
+                break;
+        }
     }
 
     private void AcquireWeapon()

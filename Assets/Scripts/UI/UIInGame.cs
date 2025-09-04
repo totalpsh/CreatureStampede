@@ -156,7 +156,7 @@ public class UIInGame : UIBase
 
         expText.text = $"{curExp} / {maxExp}";
 
-        scoreText.text = score.ToString();
+        scoreText.text = $"score {score.ToString()}";
     }
 
     public void UpdateWeaponIcon()
