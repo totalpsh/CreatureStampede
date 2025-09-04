@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UILevelUp : UIBase
 {
     Player _player;
 
-    private UICardSlot slot;
+    [SerializeField] private WeaponSO[] playerWeapons;
+
+    [SerializeField] private UICardSlot[] slots;
     [SerializeField] private SkillData[] hasItemDatas;
     //[SerializeField] private Transform[] showTransform;
 
@@ -14,39 +17,31 @@ public class UILevelUp : UIBase
     {
         _player = PlayerManager.Instance.Player;
 
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].CloseUI();
+            slots[i].selectEvent += CloseUI;
+        }
+
         ShowSlot();
-        GetItemList();
     }
 
     public void ShowSlot()
     {
-        List<SkillData> skillList = new List<SkillData>();
-
-        for (int i = 0; i < 3; i++)
+        for(int i = 0; i < slots.Length; i++)
         {
-            slot = UIManager.Instance.CreateSlotUI<UICardSlot>();
-            //slot.transform.SetParent(showTransform[i], false);
-
-            // 플레이어 보유 스킬 리스트 가져와서 반영해주기
-            //SkillData data;
-
-            //do
-            //{
-            //    data = datas[Random.Range(0, datas.Length)];
-            //} while (skillList.Contains(data));
-
-            //if (skillList.Contains(data)) return;
-
-            //skillList.Add(data);
-
-            //slot.InSlot(data);
-
-            slot.selectEvent += CloseUI;
+            for(int j = 0; j < playerWeapons.Length; j++)
+            {
+                if (slots[i].Weapon == playerWeapons[j])
+                {
+                    if (playerWeapons[j].WeaponData.level == 5) slots[i].CloseUI();
+                    else
+                    {
+                        slots[i].OpenUI();
+                        slots[i].playerHasWeapon = playerWeapons[j];
+                    }
+                }
+            }
         }
-    }
-
-    public void GetItemList()
-    {
-        //hasItemDatas = _player.
     }
 }

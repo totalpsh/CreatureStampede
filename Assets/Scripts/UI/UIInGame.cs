@@ -58,7 +58,25 @@ public class UIInGame : UIBase
         {
             currentCooldown += Time.deltaTime;
         }
-            UpdateDashIcon();
+        UpdateDashIcon();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            UIManager.Instance.OpenUI<UIGetItem>();
+            Time.timeScale = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            UIManager.Instance.OpenUI<UILevelUp>();
+            Time.timeScale = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UIManager.Instance.OpenUI<UIResult>();
+            Time.timeScale = 0f;
+        }
     }
 
     public void DashEndEvent()
