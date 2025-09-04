@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UIInGame : UIBase
 {
     private Player _player;
-    private List<SkillData> _skills;   // 플레이어가 가진 스킬 받아올 필드
+    private List<BaseWeapon> weapons;   // 플레이어가 가진 스킬 받아올 필드
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider expSlider;
     [SerializeField] private TextMeshProUGUI expText;
@@ -20,13 +20,15 @@ public class UIInGame : UIBase
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
-
+    
     public float dashCooldown;
     private float currentCooldown;
     private bool dashEnd = false;
-
+     
     private void Awake()
     {
+        _player = PlayerManager.Instance.Player;
+
         pauseButton.onClick.AddListener(OpenPauseUI);
 
         for(int i = 0; i < skillIcon.Length; i++)
@@ -35,6 +37,12 @@ public class UIInGame : UIBase
             skillLevelBG[i].color = new Color(255, 255, 255, 0);
             skillLevelText[i].gameObject.SetActive(false);
         }
+    }
+
+    private void OnEnable()
+    {
+        weapons = _player.Weapons;
+        UpdateWeaponIcon();
     }
 
     public void SetCharacter(Player player)
@@ -47,7 +55,6 @@ public class UIInGame : UIBase
 
         // 업데이트
         //UpdateExp(_player.currentExp, _player.maxExp);
-        //UpdateSkillIcon();
     }
 
     private void Update()
@@ -120,19 +127,23 @@ public class UIInGame : UIBase
         expText.text = $"{currentExp} / {maxExp}";
     }
 
-    
-
-    public void UpdateSkillIcon()
+    public void UpdateWeaponIcon()
     {
-        if(_skills == null)
+        if(weapons == null)
         {
-            
+            Debug.Log("버그 : 장비 없음");
         }
 
-        // 플레이어 보유 스킬 리스트 가져오기
-        // 플레이어 리스트 가져오고
-        // 반복문 -> 요소가 null이 아니라면
-        // 인덱스 0부터 이미지, 텍스트 반영해주기
+        for(int i = 0; i < weapons.Count; i++)
+        {
+            if (weapons[i] == null) continue;
+
+            skillIcon[i].sprite = weapons[i].Data.WeaponData.icon;
+            skillIcon[i].color = new Color(255, 255, 255, 255);
+            skillLevelBG[i].color = new Color(255, 255, 255, 255);
+            skillLevelText[i].gameObject.SetActive(true);
+            skillLevelText[i].text = $"Lv. {_player.GetWeaponLevel(weapons[i].Data)}";
+        }
     }
 
     private void OpenPauseUI()

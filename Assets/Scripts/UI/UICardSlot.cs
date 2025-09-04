@@ -30,7 +30,7 @@ public class UICardSlot : UIBase
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
 
-    public event Action<BaseWeapon[]> weaponSelect;
+    public event Action weaponSelect;
     public event Action selectEvent;
 
     private Player player;
@@ -39,6 +39,8 @@ public class UICardSlot : UIBase
     private void Start()
     {
         selectButton.onClick.AddListener(OnClickButton);
+        var ui = UIManager.Instance.GetUI<UIInGame>();
+        selectEvent += ui.UpdateWeaponIcon;
     }
 
     private void OnEnable()
@@ -78,7 +80,6 @@ public class UICardSlot : UIBase
                 break;
         }
 
-        HasAbility();
         // 플레이어가 가지고 있는 무기 배열 혹은 리스트에 넣어주기
         selectEvent?.Invoke();
         Time.timeScale = 1.0f;
@@ -95,10 +96,4 @@ public class UICardSlot : UIBase
         Debug.Log("레벨업 무기 업그레이드");
         player.LevelUpWeapon(Weapon);
     }
-
-    public bool HasAbility()
-    {
-        return false;
-    }
-
 }
