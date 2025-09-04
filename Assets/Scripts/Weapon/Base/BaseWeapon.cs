@@ -68,6 +68,7 @@ public abstract class BaseWeapon : MonoBehaviour
         damage += Data.WeaponData.damageIncrease;
         speed += Data.WeaponData.speedIncrease;
         fireRate = Mathf.Max(0.1f, fireRate - Data.WeaponData.fireRateDecrease); // 최소 발사 속도 제한
+        abilityValue += Data.WeaponData.abilityValueIncrease;
         Level++;
     }
 }
