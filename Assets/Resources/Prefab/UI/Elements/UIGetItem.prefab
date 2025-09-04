@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc22739e71a168b458269991cce797f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapons:
-  - {fileID: 11400000, guid: 72cb7fb19c2d3de4190fa4617b0eb5dd, type: 2}
+  weapons: []
+  playerWeapons: []
   slots:
   - {fileID: 4063367297133685947}
   - {fileID: 6024896612344560384}

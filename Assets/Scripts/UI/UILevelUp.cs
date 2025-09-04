@@ -7,10 +7,10 @@ public class UILevelUp : UIBase
 {
     Player _player;
 
-    [SerializeField] private WeaponSO[] playerWeapons;
+    // [SerializeField] private WeaponSO[] playerWeapons;
+    [SerializeField] private List<BaseWeapon> playerWeapons;
 
     [SerializeField] private UICardSlot[] slots;
-    [SerializeField] private SkillData[] hasItemDatas;
     //[SerializeField] private Transform[] showTransform;
 
     private void OnEnable()
@@ -28,17 +28,19 @@ public class UILevelUp : UIBase
 
     public void ShowSlot()
     {
-        for(int i = 0; i < slots.Length; i++)
+        playerWeapons = _player.Weapons;
+        for (int i = 0; i < slots.Length; i++)
         {
-            for(int j = 0; j < playerWeapons.Length; j++)
+            foreach(var weapon in playerWeapons)
             {
-                if (slots[i].Weapon == playerWeapons[j])
+                if (slots[i].Weapon == weapon.Data)
                 {
-                    if (playerWeapons[j].WeaponData.level == 5) slots[i].CloseUI();
+                    if (weapon.Level == weapon.Data.WeaponData.maxLevel) 
+                        slots[i].CloseUI();
                     else
                     {
                         slots[i].OpenUI();
-                        slots[i].playerHasWeapon = playerWeapons[j];
+                        // slots[i].playerHasWeapon = playerWeapons[j];
                     }
                 }
             }

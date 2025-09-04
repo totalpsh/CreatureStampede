@@ -63,8 +63,5 @@ public class BowController : BaseWeapon
         }
     }
 
-    public override void LevelUp()
-    {
-        base.LevelUp();
-    }
+
 }
