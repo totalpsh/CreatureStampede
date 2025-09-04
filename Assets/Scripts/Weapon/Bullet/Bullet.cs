@@ -34,6 +34,13 @@ public class Bullet : MonoBehaviour
         {
             _rigidbody.velocity = dir * this.speed;
         }
+        InitAfter();
+    }
+
+    // init로 초기화 후 발동
+    protected virtual void InitAfter()
+    {
+        // 자식 클래스에서 구현
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
