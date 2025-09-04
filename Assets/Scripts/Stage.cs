@@ -15,8 +15,6 @@ public class Stage : MonoBehaviour
     float lastBatsSpawnTime;
     float batsSpawnDelay = 20f;
 
-    int playerLevel;
-
     Transform poolRoot;
     Transform playerTransform;
     SO_MonsterWave currentWaveData;
@@ -61,6 +59,8 @@ public class Stage : MonoBehaviour
         playerTransform = PlayerManager.Instance.Player.transform;
         currentWaveData = waveData[1];
         currentWaveDelay = currentWaveData.WaveDelay;
+
+        StageManager.Instance.OnLevelChanged += OnPlayerLevelUp;
 
         SpawnMonsterWave(currentWaveData);
 

@@ -6,7 +6,7 @@ public class RepositionMap : MonoBehaviour
 {
     PlayerController playerController;
 
-    bool isAvailable = false;
+    bool isAvailable = true;
 
     private void Start()
     {
