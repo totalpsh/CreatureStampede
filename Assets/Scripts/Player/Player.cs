@@ -138,6 +138,12 @@ public class Player : MonoBehaviour, IDamagable
         ChangeHealth(-damage);
     }
 
+    public void Heal(float healAmount)
+    {
+        if (IsDead) return;
+        ChangeHealth(healAmount);
+    }
+
     // ¹«±â ÀåÂø
     public void EquipWeapons(WeaponSO data)
     {

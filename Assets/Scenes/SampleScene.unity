@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InitTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 2084059659834601894, guid: bac5d49a684d35d4a936c95a0339268f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7983867000422790011, guid: bac5d49a684d35d4a936c95a0339268f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.15
@@ -394,6 +398,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 210625082067743813, guid: ceed4d40380346240b6622723cbafe08, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 210625082067743813, guid: ceed4d40380346240b6622723cbafe08, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1633997401917476487, guid: ceed4d40380346240b6622723cbafe08, type: 3}
       propertyPath: m_Name
       value: Player
@@ -404,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880806182352714440, guid: ceed4d40380346240b6622723cbafe08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5880806182352714440, guid: ceed4d40380346240b6622723cbafe08, type: 3}
       propertyPath: m_LocalPosition.y
