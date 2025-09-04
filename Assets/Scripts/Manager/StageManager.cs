@@ -8,10 +8,32 @@ public class StageManager : Singleton<StageManager>
     public Stage Stage {  get { return _stage; } }
     private Player _player;
 
-    public int Level { get; private set; } = 1;
-    public int MaxExp { get; private set; } = 10;
-    public int CurrentExp { get; set; } = 0;
-    public int Score { get; set; } = 0;
+    private int level;
+    public int Level { get => level; set { level = value; OnLevelChanged?.Invoke(level); } }
+    private int maxExp;
+    public int MaxExp { get => maxExp; set { maxExp = value; OnMaxExpChange?.Invoke(maxExp); } }
+    private int currentExp;
+    public int CurrentExp 
+    { 
+        get => currentExp; 
+        set 
+        { 
+            currentExp = value;
+            if (currentExp >= maxExp)
+            {
+                PlayerLevelUp();
+            }
+            OnExpChange?.Invoke(currentExp);
+            
+        } 
+    }
+    private int score;
+    public int Score { get => score; set { score = value; OnScoreChange?.Invoke(score); } }
+
+    public event Action<int /*level*/> OnLevelChanged;
+    public event Action<int /*exp*/> OnExpChange;
+    public event Action<int /*maxExp*/> OnMaxExpChange;
+    public event Action<int /*score*/> OnScoreChange;
 
     private int _monsterCount;
     public int MonsterCount {
@@ -58,6 +80,15 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
+    private void PlayerLevelUp()
+    {
+        Level++;
+        currentExp -= maxExp;
+
+        MaxExp = MaxExp + (Level * 10);
+
+    }
+
     public void InitStage(Stage stage)
     {
         // ¸Ê »ý¼º
@@ -65,6 +96,11 @@ public class StageManager : Singleton<StageManager>
         SpawnPlayer();
         SpawnVirtualCamera();
         isRunning = true;
+
+        level = 1;
+        currentExp = 0;
+        score = 0;
+        maxExp = 10;
     }
 
     public void StopStage()
@@ -94,7 +130,7 @@ public class StageManager : Singleton<StageManager>
 
     private void LevelUp()
     {
-        if(CurrentExp == MaxExp)
+        if(CurrentExp >= MaxExp)
         {
             Level++;
             CurrentExp = 0;

@@ -52,6 +52,12 @@ public class UIInGame : UIBase
         weapons = _player.Weapons;
         UpdateWeaponIcon();
         UpdateExp();
+
+        StageManager.Instance.OnExpChange += OnExpChanged;
+        StageManager.Instance.OnMaxExpChange += OnMaxExpChanged;
+        StageManager.Instance.OnScoreChange += OnScoreChanged;
+        StageManager.Instance.OnLevelChanged += OnPlayerLevelUp;
+
     }
 
     public void SetCharacter(Player player)
@@ -128,6 +134,8 @@ public class UIInGame : UIBase
         Time.timeScale = 0f;
     }
 
+    
+
     public void UpdateExp()
     {
         int maxExp = StageManager.Instance.MaxExp;
@@ -173,4 +181,28 @@ public class UIInGame : UIBase
         Time.timeScale = 0;
     }
 
+    public void OnPlayerLevelUp(int level)
+    {
+        levelText.text = level.ToString();
+
+        UIManager.Instance.OpenUI<UILevelUp>();
+        Time.timeScale = 0f;
+    }
+
+    public void OnExpChanged(int currentExp)
+    {
+        expText.text = $"{currentExp} / {StageManager.Instance.MaxExp}";
+        expSlider.value = currentExp;
+    }
+
+    public void OnMaxExpChanged(int maxExp)
+    {
+        expText.text = $"{StageManager.Instance.CurrentExp} / {maxExp}";
+        expSlider.maxValue = maxExp;
+    }
+
+    public void OnScoreChanged(int score)
+    {
+        scoreText.text = score.ToString();
+    }
 }
