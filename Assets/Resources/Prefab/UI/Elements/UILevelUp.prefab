@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 5352139610074689701}
   - {fileID: 5816738299636757596}
   - {fileID: 585735558641708278}
-  ScoreSlot: {fileID: 1854973723056459225}
+  scoreSlot: {fileID: 1854973723056459225}
 --- !u!1 &5627894870072674765
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,13 @@ public class UILevelUp : UIBase
 
     // [SerializeField] private WeaponSO[] playerWeapons;
     [SerializeField] private List<BaseWeapon> playerWeapons;
-
+    [SerializeField] private List<BaseWeapon> hasWeapons;
     [SerializeField] private UICardSlot[] slots;
-    [SerializeField] private UICardSlot ScoreSlot;
+    [SerializeField] private UICardSlot scoreSlot;
     //[SerializeField] private Transform[] showTransform;
 
-    int maxLevelCnt = 0;
+    [SerializeField] private bool openScoreCard = false;
+
     private void OnEnable()
     {
         _player = PlayerManager.Instance.Player;
@@ -24,16 +25,29 @@ public class UILevelUp : UIBase
             slots[i].CloseUI();
             slots[i].selectEvent += CloseUI;
         }
+        scoreSlot.CloseUI();
+        scoreSlot.selectEvent += CloseUI;
 
+        //if(!openScoreCard)
+        //{
+        //    ShowSlot();
+        //}
+        //else
+        //{
+
+        //}
         ShowSlot();
+
     }
 
     public void ShowSlot()
     {
+        int maxLevelCnt = 0;
         playerWeapons = _player.Weapons;
+        hasWeapons.Clear();
         for (int i = 0; i < slots.Length; i++)
         {
-            foreach(var weapon in playerWeapons)
+            foreach (var weapon in playerWeapons)
             {
                 if (slots[i].Weapon == weapon.Data)
                 {
@@ -46,13 +60,23 @@ public class UILevelUp : UIBase
                     {
                         slots[i].OpenUI();
                     }
+                    hasWeapons.Add(weapon);
                 }
             }
-
-            if(maxLevelCnt == 3)
-            {
-                ScoreSlot.OpenUI();
-            }
         }
+
+        if (maxLevelCnt == hasWeapons.Count)
+        {
+            scoreSlot.OpenUI();
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].selectEvent -= CloseUI;
+        }
+        scoreSlot.selectEvent -= CloseUI;
     }
 }

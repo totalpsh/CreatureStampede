@@ -337,7 +337,7 @@ MonoBehaviour:
   - {fileID: 5829443735682541829}
   - {fileID: 488806171612506565}
   - {fileID: 802749224498646425}
-  - {fileID: 6009458298590425867}
+  scoreSlot: {fileID: 6009458298590425867}
 --- !u!1 &8640707079473578515
 GameObject:
   m_ObjectHideFlags: 0

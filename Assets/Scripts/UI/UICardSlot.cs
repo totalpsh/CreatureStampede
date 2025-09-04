@@ -59,19 +59,28 @@ public class UICardSlot : UIBase
 
     public void UpdateUI()
     {
-        
-        nameText.text = weaponData.WeaponData.name;
-        icon.sprite = weaponData.WeaponData.icon;
-        descriptionText.text = weaponData.WeaponData.description;
+        if (mode != ButtonMode.GetScore)
+        {
+            nameText.text = weaponData.WeaponData.name;
+            icon.sprite = weaponData.WeaponData.icon;
+            descriptionText.text = weaponData.WeaponData.description;
 
-        int level = player.GetWeaponLevel(weaponData);
+            int level = player.GetWeaponLevel(weaponData);
 
-        levelText.text = $"Lv. {level.ToString()}";
+            levelText.text = $"Lv. {level.ToString()}";
+        }
+        else
+        {
+            nameText.text = "추가 점수";
+            levelText.text = " ";
+            //icon.sprite =
+            descriptionText.text = "점수 +500";
+        }
+
     }
 
     public void OnClickButton()
     {
-        Debug.Log($"{weaponData.name} 선택됨");
         switch (mode)
         {
             case ButtonMode.Upgrade:
