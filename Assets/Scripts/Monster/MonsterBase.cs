@@ -105,6 +105,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         if (CurrentHealth == 0)
         {
             Die();
+            
             OnHpZero?.Invoke(this);
         }
     }
@@ -167,9 +168,33 @@ public class MonsterBase : MonoBehaviour, IDamagable
     protected void DropItem()
     {
         float randomValue = UnityEngine.Random.value;
-
         if (Grade == MonsterGrade.Normal)
         {
+            float cumulativeValue = 0f;
+
+            cumulativeValue += 0.05f;
+            if (randomValue < cumulativeValue)
+            {
+                Debug.Log("HP 포션");
+                return;
+            }
+            cumulativeValue += 0.1f;
+            if (randomValue < cumulativeValue)
+            {
+                Debug.Log("신속 포션");
+                return;
+
+            }
+
+        }
+        else if (Grade == MonsterGrade.Elite)
+        {
+            if (randomValue < 0.5f)
+            {
+                Debug.Log("장비 상자");
+                return;
+
+            }
         }
     }
 
@@ -179,6 +204,12 @@ public class MonsterBase : MonoBehaviour, IDamagable
         monsterCollider.enabled = false;
         rb.simulated = false;
 
+        // 플레이어에게 경험치 주기
+
+        // 점수 더하기
+
+        // 드롭하기
+        DropItem();
         StartCoroutine(DestroyAfterDelay(0.5f));
     }
 
@@ -198,9 +229,12 @@ public class MonsterBase : MonoBehaviour, IDamagable
     {
         animator.SetBool(MonsterAnimParam.IsMoving, false);
         canMove = false;
+        rb.simulated = false;
 
         yield return new WaitForSeconds(duration);
         canMove = true;
+        rb.simulated = true;
+
         animator.SetBool(MonsterAnimParam.IsMoving, true);
     }
 
