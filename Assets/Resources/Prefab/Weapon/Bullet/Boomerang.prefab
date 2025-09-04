@@ -219,3 +219,4 @@ MonoBehaviour:
   isPierce: 0
   speed: 0
   abilityValue: 0
+  isBulletBoundary: 0

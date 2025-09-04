@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
 public interface IDamagable
@@ -42,8 +43,6 @@ public class Player : MonoBehaviour, IDamagable
         controller = GetComponent<PlayerController>();
         playerAnimator = GetComponent<PlayerAnimator>();
         bulletpoolGO = new GameObject("bulletpoolGO");
-
-        
     }
 
     public void Init()
@@ -116,6 +115,7 @@ public class Player : MonoBehaviour, IDamagable
         IsDead = true;
         
         playerAnimator.TriggerIsDead();
+        DisableAll();
         controller.enabled = false;
         // 애니메이션 재생 후 이벤트 호출
         StartCoroutine(DeathCoroutine());
@@ -179,5 +179,16 @@ public class Player : MonoBehaviour, IDamagable
             }
         }
         return 0;
+    }
+
+    // 죽었을때 무기 비활성화
+    public void DisableAll()
+    { 
+        foreach (var weapon in Weapons)
+        {
+            weapon.gameObject.SetActive(false);
+        }
+        GetComponent<PlayerInput>().gameObject.SetActive(false);
+        bulletpoolGO.SetActive(false);
     }
 }

@@ -37,8 +37,6 @@ public class IceBowController : BaseWeapon
 
     protected override void BulletSetting()
     {
-        
-
         foreach (var go in movingWeaponPool)
         {
             if (!go.nearestTarget)
@@ -80,7 +78,8 @@ public class IceBowController : BaseWeapon
                 iceWeapon.SetParent(transform);
             }
 
-
+            iceWeapon.localPosition = Vector3.zero; // 발사 위치 초기화
+            iceWeapon.localRotation = Quaternion.identity; // 발사 방향 초기화
 
 
             Vector3 rotVec = Vector3.forward * 360 * i / (count);

@@ -18,18 +18,32 @@ public class BoomerangBullet : Bullet
         player = PlayerManager.Instance.Player;
         isBulletBoundary = false; // 경계 체크 비활성화
         isReturning = false;
-        circleCollider2D.enabled = true;
     }
 
     protected void OnEnable()
+    {
+        isReturning = false;
+        circleCollider2D.enabled = true;
+
+        if (abilityValue != 0)
+        {
+            if (boomerangCoroutine != null)
+            {
+                StopCoroutine(boomerangCoroutine);
+            }
+            boomerangCoroutine = StartCoroutine(BoomerangRoundTrip());
+        }
+    }
+
+    protected override void InitAfter()
     {
         if (boomerangCoroutine != null)
         {
             StopCoroutine(boomerangCoroutine);
         }
         boomerangCoroutine = StartCoroutine(BoomerangRoundTrip());
-    }
 
+    }
     // 왕복 운동을 처리하는 코루틴
     private IEnumerator BoomerangRoundTrip()
     {
