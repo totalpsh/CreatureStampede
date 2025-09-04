@@ -6,12 +6,17 @@ public class RepositionMap : MonoBehaviour
 {
     PlayerController playerController;
 
+    bool isAvailable = false;
+
     private void Start()
     {
         playerController = PlayerManager.Instance.Player.GetComponent<PlayerController>();
+        PlayerManager.Instance.Player.OnCharacterDie += OnPlayerDie;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!isAvailable)
+            return;
         if (!collision.gameObject.CompareTag("Area"))
             return;
 
@@ -34,5 +39,10 @@ public class RepositionMap : MonoBehaviour
             transform.Translate(Vector3.up * dirY * 80);
 
         }
+    }
+
+    public void OnPlayerDie()
+    {
+        isAvailable = false;
     }
 }
