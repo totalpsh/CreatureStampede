@@ -8,6 +8,11 @@ public class StageManager : Singleton<StageManager>
     private Stage _stage;
     private Player _player;
 
+    public int Level { get; private set; } = 1;
+    public int MaxExp { get; private set; } = 10;
+    public int CurrentExp { get; set; } = 0;
+    public int Score { get; set; } = 0;
+
     private int _monsterCount;
     public int MonsterCount {
         get => _monsterCount;
@@ -21,7 +26,8 @@ public class StageManager : Singleton<StageManager>
     private float stageTime = 600f;
     public float StageTime { get { return stageTime; } }
     private bool isRunning = false;
-    
+
+    public event Action OnLevelExp;
     public event Action OnStageClear;
     public event Action OnGameOver;
     public event Action<int> OnMonsterCountChanged;
@@ -40,6 +46,13 @@ public class StageManager : Singleton<StageManager>
             isRunning = false;
             // 게임 클리어
             OnStageClear?.Invoke();
+        }
+
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            GetExp(10);
+            GetScore(100);
+            OnLevelExp?.Invoke();
         }
     }
 
@@ -77,6 +90,27 @@ public class StageManager : Singleton<StageManager>
         ResourceManager.Instance.Create<GameObject>(Path.Camera, Prefab.VirtualCamera);
     }
 
+    private void LevelUp()
+    {
+        if(CurrentExp == MaxExp)
+        {
+            Level++;
+            CurrentExp = 0;
+            MaxExp = MaxExp + (Level * 10);
+            UIManager.Instance.GetUI<UIInGame>().UpdateLevel();
+        }
+    }
+
+    public void GetExp(int expValue)
+    {
+        CurrentExp += expValue;
+        LevelUp();
+    }
+
+    public void GetScore(int scoreValue)
+    {
+        Score += scoreValue;
+    }
 
     private void OnPlayerDie()
     {

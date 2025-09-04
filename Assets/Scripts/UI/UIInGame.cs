@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class UIInGame : UIBase
 {
-    private Player _player;
-    private List<BaseWeapon> weapons;   // 플레이어가 가진 스킬 받아올 필드
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider expSlider;
     [SerializeField] private TextMeshProUGUI expText;
@@ -21,15 +19,25 @@ public class UIInGame : UIBase
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
     
+    private Player _player;
+    private List<BaseWeapon> weapons;   // 플레이어가 가진 스킬 받아올 필드
+
     public float dashCooldown;
     private float currentCooldown;
     private bool dashEnd = false;
+
+    private int level;
+    private int maxExp;
+    private int curExp;
+    private int score;
      
     private void Awake()
     {
         _player = PlayerManager.Instance.Player;
 
         pauseButton.onClick.AddListener(OpenPauseUI);
+
+        StageManager.Instance.OnLevelExp += UpdateExp;
 
         for(int i = 0; i < skillIcon.Length; i++)
         {
@@ -43,6 +51,7 @@ public class UIInGame : UIBase
     {
         weapons = _player.Weapons;
         UpdateWeaponIcon();
+        UpdateExp();
     }
 
     public void SetCharacter(Player player)
@@ -54,7 +63,7 @@ public class UIInGame : UIBase
         // 여기서 UI에 들어갈 값들 세팅
 
         // 업데이트
-        //UpdateExp(_player.currentExp, _player.maxExp);
+        //
     }
 
     private void Update()
@@ -113,18 +122,25 @@ public class UIInGame : UIBase
         timeText.text = $"{minutes:00}:{seconds:00}";
     }
 
-    // 몬스터가 사망시 할 시에 이벤트로 호출
-    public void GetExpEvent()
+    public void UpdateLevel()
     {
-
+        UIManager.Instance.OpenUI<UILevelUp>();
+        Time.timeScale = 0f;
     }
 
-    public void UpdateExp(float currentExp, float maxExp)
+    public void UpdateExp()
     {
-        expSlider.maxValue = maxExp;
-        expSlider.value = currentExp;
+        int maxExp = StageManager.Instance.MaxExp;
+        int curExp = StageManager.Instance.CurrentExp;
+        int score = StageManager.Instance.Score;
 
-        expText.text = $"{currentExp} / {maxExp}";
+        levelText.text = StageManager.Instance.Level.ToString();
+        expSlider.maxValue = StageManager.Instance.MaxExp;
+        expSlider.value = StageManager.Instance.CurrentExp;
+
+        expText.text = $"{curExp} / {maxExp}";
+
+        scoreText.text = score.ToString();
     }
 
     public void UpdateWeaponIcon()
@@ -142,7 +158,11 @@ public class UIInGame : UIBase
             skillIcon[i].color = new Color(255, 255, 255, 255);
             skillLevelBG[i].color = new Color(255, 255, 255, 255);
             skillLevelText[i].gameObject.SetActive(true);
-            skillLevelText[i].text = $"Lv. {_player.GetWeaponLevel(weapons[i].Data)}";
+
+            if(_player.GetWeaponLevel(weapons[i].Data) < weapons[i].Data.WeaponData.maxLevel)
+                skillLevelText[i].text = $"Lv. {_player.GetWeaponLevel(weapons[i].Data)}";
+            else
+                skillLevelText[i].text = $"Max";
         }
     }
 
