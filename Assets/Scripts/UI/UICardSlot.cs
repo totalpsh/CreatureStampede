@@ -10,7 +10,8 @@ public class UICardSlot : UIBase
     public enum ButtonMode
     {
         Upgrade,
-        GetWeapon
+        GetWeapon,
+        GetScore
     }
 
     [SerializeField] private WeaponSO weaponData;
@@ -32,6 +33,7 @@ public class UICardSlot : UIBase
 
     public event Action weaponSelect;
     public event Action selectEvent;
+    public event Action<int> SetScore;
 
     private Player player;
 
@@ -78,11 +80,19 @@ public class UICardSlot : UIBase
             case ButtonMode.GetWeapon:
                 AcquireWeapon();
                 break;
+            case ButtonMode.GetScore:
+                AcquireScore();
+                break;
         }
 
         // 플레이어가 가지고 있는 무기 배열 혹은 리스트에 넣어주기
         selectEvent?.Invoke();
         Time.timeScale = 1.0f;
+    }
+
+    private void AcquireScore()
+    {
+        StageManager.Instance.GetScore(1000);
     }
 
     private void AcquireWeapon()

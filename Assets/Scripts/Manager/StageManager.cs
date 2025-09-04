@@ -45,14 +45,13 @@ public class StageManager : Singleton<StageManager>
             stageTime = 0;
             isRunning = false;
             // 게임 클리어
+            StageClear();
             OnStageClear?.Invoke();
         }
 
         if(Input.GetKeyDown(KeyCode.V))
         {
-            GetExp(10);
-            GetScore(100);
-            OnLevelExp?.Invoke();
+            stageTime -= 100;
         }
     }
 
@@ -98,6 +97,7 @@ public class StageManager : Singleton<StageManager>
             CurrentExp = 0;
             MaxExp = MaxExp + (Level * 10);
             UIManager.Instance.GetUI<UIInGame>().UpdateLevel();
+            UIManager.Instance.GetUI<UIInGame>().UpdateExp();
         }
     }
 
@@ -118,9 +118,11 @@ public class StageManager : Singleton<StageManager>
         OnGameOver?.Invoke();
     }
 
-    private void StageTimeOut()
+    private void StageClear()
     {
-        StopStage();
-        OnStageClear?.Invoke();
+        UIResult ui = UIManager.Instance.GetUI<UIResult>();
+        ui.ClearUI();
+        Time.timeScale = 0;
+
     }
 }

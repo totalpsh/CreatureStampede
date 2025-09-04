@@ -11,8 +11,10 @@ public class UILevelUp : UIBase
     [SerializeField] private List<BaseWeapon> playerWeapons;
 
     [SerializeField] private UICardSlot[] slots;
+    [SerializeField] private UICardSlot ScoreSlot;
     //[SerializeField] private Transform[] showTransform;
 
+    int maxLevelCnt = 0;
     private void OnEnable()
     {
         _player = PlayerManager.Instance.Player;
@@ -35,14 +37,21 @@ public class UILevelUp : UIBase
             {
                 if (slots[i].Weapon == weapon.Data)
                 {
-                    if (weapon.Level == weapon.Data.WeaponData.maxLevel) 
+                    if (weapon.Level == weapon.Data.WeaponData.maxLevel)
+                    {   
                         slots[i].CloseUI();
+                        maxLevelCnt++;
+                    }
                     else
                     {
                         slots[i].OpenUI();
-                        // slots[i].playerHasWeapon = playerWeapons[j];
                     }
                 }
+            }
+
+            if(maxLevelCnt == 3)
+            {
+                ScoreSlot.OpenUI();
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.PlayerLoop.EarlyUpdate;
 
 public class UIResult : UIBase
 {
@@ -24,6 +25,7 @@ public class UIResult : UIBase
     public void ClearUI()
     {
         OpenUI();
+        SetScore();
         failedText.enabled = false;
         successText.enabled = true;
     }
@@ -31,14 +33,14 @@ public class UIResult : UIBase
     public void GameOverUI()
     {
         OpenUI();
+        SetScore();
         successText.enabled = false;
         failedText.enabled = true;
     }
 
-    public void ScoreUpdate()
+    public void SetScore()
     {
-        // 점수 받아오기 -> 반영
-        //scoreText.text = 
+        scoreText.text = StageManager.Instance.Score.ToString();
     }
 
     private void OnRestart()
