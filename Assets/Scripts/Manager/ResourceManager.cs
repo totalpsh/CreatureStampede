@@ -30,7 +30,12 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         return Create<T>(Path.Character, prefName, parent);
     }
-    
+
+    public T CreateMonster<T>(string prefName, Transform parent = null) where T : Object
+    {
+        return Create<T>(Path.Monster, prefName, parent);
+    }
+
     public T CreateMap<T>(string prefName, Transform parent = null)  where T : Object
     {
         return Create<T>(Path.Map, prefName, parent);

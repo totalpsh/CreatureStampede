@@ -12,7 +12,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Collider2D monsterCollider;
-    
+
 
     public string Name { get; private set; }
     public MonsterGrade Grade { get; private set; }
@@ -36,6 +36,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
     protected virtual void Awake()
     {
         InitializeMonster();
+        
     }
 
     protected virtual void Update()
@@ -80,20 +81,33 @@ public class MonsterBase : MonoBehaviour, IDamagable
         Grade = monsterData.Grade;
         MaxHealth = monsterData.MaxHealth;
         CurrentHealth = MaxHealth;
-        MoveSpeed = 30f;
         Damage = monsterData.Damage;
         Score = monsterData.Score;
         Exp = monsterData.Exp;
 
         target = PlayerManager.Instance.Player;
 
-        animator.SetBool(MonsterAnimParam.IsMoving, target != null);
-        animator.SetBool(MonsterAnimParam.Die, false);
-        canAttack = true;
-        canMove = true;
+
+    }
+
+    protected virtual void OnEnable()
+    {
+        MoveSpeed = 30f;
 
         OnHpZero += Die;
 
+
+        animator.SetBool(MonsterAnimParam.IsMoving, target != null);
+        canAttack = true;
+        canMove = true;
+
+        monsterCollider.enabled = true;
+        rb.simulated = true;
+    }
+
+    private void OnDisable()
+    {
+        OnHpZero -= Die;
     }
 
     public void SetHealth(float health)
@@ -201,8 +215,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        
-        Destroy(gameObject);
+
+        StageManager.Instance.Stage.pools[Name].Release(gameObject);
     }
 
     public void TakePhysicalDamage(float damage)

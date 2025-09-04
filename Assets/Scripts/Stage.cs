@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Stage : MonoBehaviour
 {
     Dictionary<int, SO_MonsterWave> waveData = new();
+
+    public Dictionary<string, ObjectPool<GameObject>> pools { get; private set; } = new();
+    
     float lastWaveSpawnTime;
     float currentWaveDelay;
 
@@ -13,19 +17,43 @@ public class Stage : MonoBehaviour
 
     int playerLevel;
 
+    Transform poolRoot;
     Transform playerTransform;
     SO_MonsterWave currentWaveData;
 
     private void Awake()
     {
+        poolRoot = new GameObject("@MonsterPoolRoot").transform;
         SO_MonsterWave[] monsterWaves = Resources.LoadAll<SO_MonsterWave>(Path.Data + "MonsterWave");
-
-        Debug.Log(monsterWaves.Length);
 
         for (int i = 0; i < monsterWaves.Length; i++)
         {
             waveData.Add(monsterWaves[i].PlayerLevel, monsterWaves[i]);
         }
+
+        GameObject[] monsterPrefabs = Resources.LoadAll<GameObject>(Path.Monster);
+
+        for (int i = 0; i < monsterPrefabs.Length; ++i)
+        {
+            string monsterName = monsterPrefabs[i].name;
+
+            ObjectPool<GameObject> pool = new ObjectPool<GameObject>(
+                createFunc: () =>
+                {
+                    GameObject obj = ResourceManager.Instance.CreateMonster<GameObject>(monsterName, poolRoot);
+                    return obj;
+                },
+                actionOnGet: (obj) => obj.SetActive(true),
+                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnDestroy: (obj) => Destroy(obj),
+                maxSize: 100
+                );
+
+            pools.TryAdd(monsterName, pool);
+        }
+
+       
+
     }
 
     private void Start()
@@ -45,6 +73,11 @@ public class Stage : MonoBehaviour
             SpawnMonsterWave(currentWaveData);
         }
         if (Time.time - lastBatsSpawnTime > batsSpawnDelay)
+        {
+            SpawnBats();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             SpawnBats();
         }
@@ -120,17 +153,21 @@ public class Stage : MonoBehaviour
 
     private T SpawnMonsterRandomPos<T>() where T : MonsterBase
     {
-        T monster = ResourceManager.Instance.CreateCharacter<T>(typeof(T).Name);
+        //T monster = ResourceManager.Instance.CreateMonster<T>(typeof(T).Name);
+        string monsterName = typeof(T).Name;
+        var monster = pools[monsterName].Get();
         monster.transform.position = GetRandomSpawnPos();
 
-        return monster;
+        return monster.GetComponent<T>();
     }
 
     private T SpawnMonster<T>() where T : MonsterBase
     {
-        T monster = ResourceManager.Instance.CreateCharacter<T>(typeof(T).Name);
+        // T monster = ResourceManager.Instance.CreateMonster<T>(typeof(T).Name);
+        string monsterName = typeof(T).Name;
+        var monster = pools[monsterName].Get();
+        return monster.GetComponent<T>();
 
-        return monster;
     }
 
     IEnumerator SpawnMonsterDelay<T>(float delay) where T : MonsterBase
