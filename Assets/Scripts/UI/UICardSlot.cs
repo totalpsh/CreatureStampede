@@ -7,6 +7,18 @@ using UnityEngine.UI;
 
 public class UICardSlot : UIBase
 {
+    public enum ButtonMode
+    {
+        Upgrade,
+        GetWeapon
+    }
+
+    [SerializeField] private WeaponSO weaponData;
+    public WeaponSO Weapon { get { return weaponData; } }
+
+    public WeaponSO playerHasWeapon;
+
+    [SerializeField] private ButtonMode mode;
     [SerializeField] private Button selectButton;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image icon;
@@ -19,52 +31,59 @@ public class UICardSlot : UIBase
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
 
+    public event Action<BaseWeapon[]> weaponSelect;
     public event Action selectEvent;
 
-    private void Awake()
-    {
-        selectButton.onClick.AddListener(OnClickCard);
-    }
-
     // Start is called before the first frame update
-    void Start()
+    protected override void OnOpen()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void InSlot(SkillData skill)
-    {
-        skillName = skill.SkillName;
-        skillIcon = skill.SkillIcon;
-        skillLevel = skill.SkillLevel;
-        skillDescription = skill.SkillDescription;
+        base.OnOpen();
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        nameText.text = skillName;
-        icon.sprite = skillIcon;
-        levelText.text = $"Lv. {skillLevel.ToString()}";
-        descriptionText.text = skillDescription;
+        selectButton.onClick.AddListener(OnClickButton);
+        nameText.text = weaponData.WeaponData.name;
+        icon.sprite = weaponData.WeaponData.icon;
+        levelText.text = $"Lv. {weaponData.WeaponData.level.ToString()}";
+        descriptionText.text = weaponData.WeaponData.description;
     }
 
-    public void OnClickCard()
+    public void OnClickButton()
     {
+        switch (mode)
+        {
+            case ButtonMode.Upgrade:
+                UpgradeItem();
+                break;
+            case ButtonMode.GetWeapon:
+                AcquireWeapon();
+                break;
+        }
+
         HasAbility();
+        // 플레이어가 가지고 있는 무기 배열 혹은 리스트에 넣어주기
         selectEvent?.Invoke();
-        CloseUI();
         Time.timeScale = 1.0f;
+    }
+
+    private void AcquireWeapon()
+    {
+        Debug.Log("장비상자 획득");
+    }
+
+    private void UpgradeItem()
+    {
+        Debug.Log("레벨업 무기 업그레이드");
+
+        playerHasWeapon.WeaponData.level++;
+
     }
 
     public bool HasAbility()
     {
         return false;
     }
+
 }

@@ -9,13 +9,14 @@ using UnityEngine.UI;
 public class UIInGame : UIBase
 {
     private Player _player;
-
+    private List<SkillData> _skills;   // 플레이어가 가진 스킬 받아올 필드
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider expSlider;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Image DashIcon;
     [SerializeField] private Image[] skillIcon = new Image[3];
-    [SerializeField] private TextMeshProUGUI[] skillLevel = new TextMeshProUGUI[3];
+    [SerializeField] private Image[] skillLevelBG = new Image[3];
+    [SerializeField] private TextMeshProUGUI[] skillLevelText = new TextMeshProUGUI[3];
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button pauseButton;
@@ -26,8 +27,14 @@ public class UIInGame : UIBase
 
     private void Awake()
     {
-        
         pauseButton.onClick.AddListener(OpenPauseUI);
+
+        for(int i = 0; i < skillIcon.Length; i++)
+        {
+            skillIcon[i].color = new Color(255, 255, 255, 0);
+            skillLevelBG[i].color = new Color(255, 255, 255, 0);
+            skillLevelText[i].gameObject.SetActive(false);
+        }
     }
 
     public void SetCharacter(Player player)
@@ -51,7 +58,25 @@ public class UIInGame : UIBase
         {
             currentCooldown += Time.deltaTime;
         }
-            UpdateDashIcon();
+        UpdateDashIcon();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            UIManager.Instance.OpenUI<UIGetItem>();
+            Time.timeScale = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            UIManager.Instance.OpenUI<UILevelUp>();
+            Time.timeScale = 0f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UIManager.Instance.OpenUI<UIResult>();
+            Time.timeScale = 0f;
+        }
     }
 
     public void DashEndEvent()
@@ -98,6 +123,11 @@ public class UIInGame : UIBase
 
     public void UpdateSkillIcon()
     {
+        if(_skills == null)
+        {
+            
+        }
+
         // 플레이어 보유 스킬 리스트 가져오기
         // 플레이어 리스트 가져오고
         // 반복문 -> 요소가 null이 아니라면

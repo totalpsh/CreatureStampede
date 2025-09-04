@@ -337,7 +337,11 @@ MonoBehaviour:
   - {fileID: 2616860643395699178}
   - {fileID: 4961973104354204712}
   - {fileID: 7510943794139631668}
-  skillLevel:
+  skillLevelBG:
+  - {fileID: 3282258525023695126}
+  - {fileID: 8056585557330186768}
+  - {fileID: 8127818859358857283}
+  skillLevelText:
   - {fileID: 3825313215643586057}
   - {fileID: 8383591245489981223}
   - {fileID: 7602470542101137117}
@@ -1911,7 +1915,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 0
+  m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

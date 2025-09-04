@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,51 +10,55 @@ public class UIGetItem : UIBase
 {
     Player _player;
 
-    private UICardSlot slot;
-    [SerializeField] private SkillData[] datas;
-    [SerializeField] private Transform[] showTransform;
+    [SerializeField] private WeaponSO[] playerWeapons;
+
+    [SerializeField] private UICardSlot[] slots;
+    [SerializeField] private SkillData[] hasItemDatas;
 
     private void OnEnable()
     {
         _player = PlayerManager.Instance.Player;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].CloseUI();
+            slots[i].selectEvent += CloseUI;
+        }
 
         ShowSlot();
     }
 
     public void ShowSlot()
     {
-        List<SkillData> skillList = new List<SkillData>();
-
-        for (int i = 0; i < 3; i++)
+        List<UICardSlot> openCardList = new List<UICardSlot>();
+        for(int i = 0; i < slots.Length; i++)
         {
-            slot = UIManager.Instance.CreateSlotUI<UICardSlot>();
-            slot.transform.SetParent(showTransform[i], false);
+            bool hasWeapon = playerWeapons.Contains(slots[i].Weapon);
+            if(!hasWeapon) openCardList.Add(slots[i]);
+        }
 
-            SkillData data;
+        Debug.Log(openCardList.Count);
+        
+        int[] ran = new int[2];
+        ran[0] = Random.Range(0, openCardList.Count);
+        do
+        {
+            ran[1] = Random.Range(0, openCardList.Count);
+        } while (ran[0] == ran[1]);
 
-            do
-            {
-                data = datas[Random.Range(0, datas.Length)];
-            }while (skillList.Contains(data));
-
-            if (skillList.Contains(data)) return;
-
-            skillList.Add(data);
-
-            slot.InSlot(data);
-            slot.selectEvent += CloseUI;
+        for(int i= 0; i < ran.Length; i++)
+        {
+            openCardList[ran[i]].OpenUI();
         }
     }
 
 
-    public bool GetHasItem(/*SkillData data*/)
+    protected override void OnClose()
     {
-        // 플레이어 리스트 가져온후
-        // 인자로 들어온 데이터가 플레이어 아이템 리스트에 포함되어 있다면 false를 반환
-
-        // -> ShowSlot 내부 SkillList에 추가 하지 않는다.
-
-
-        return false;
+        base.OnClose();
+        foreach(UICardSlot slot in slots)
+        {
+            slot.CloseUI();
+        }
     }
 }
