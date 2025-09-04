@@ -16,6 +16,7 @@ public class UIGetItem : UIBase
     [SerializeField] private UICardSlot[] slots;
     [SerializeField] private UICardSlot scoreSlot;
 
+
     private void OnEnable()
     {
         playerWeapons = new List<WeaponSO>();
@@ -38,10 +39,17 @@ public class UIGetItem : UIBase
         scoreSlot.CloseUI();
 
         ShowSlot();
+
     }
 
     public void ShowSlot()
     {
+        if(weapons.Count >= _player.Data.PlayerData.maxWeaponCount)
+        {
+            scoreSlot.OpenUI();
+            return;
+        }
+
         List<UICardSlot> openCardList = new List<UICardSlot>();
         for(int i = 0; i < slots.Length; i++)
         {

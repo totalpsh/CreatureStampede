@@ -493,6 +493,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: skillIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 42951f0b2ef23a54589177d5742c7654, type: 3}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: skillLevel
       value: 0
       objectReference: {fileID: 0}

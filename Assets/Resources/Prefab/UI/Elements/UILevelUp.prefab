@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  hasWeapons: []
   slots:
   - {fileID: 5986886296104080306}
   - {fileID: 3958773758972249217}
@@ -60,6 +61,7 @@ MonoBehaviour:
   - {fileID: 5816738299636757596}
   - {fileID: 585735558641708278}
   scoreSlot: {fileID: 1854973723056459225}
+  openScoreCard: 0
 --- !u!1 &5627894870072674765
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,8 +849,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: mode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
+      propertyPath: skillIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 42951f0b2ef23a54589177d5742c7654, type: 3}
     - target: {fileID: 6289738391007899881, guid: f85a3e83440c132489e13b6d7dcdc148, type: 3}
       propertyPath: weaponData
       value: 
