@@ -28,6 +28,7 @@ public class UIResult : UIBase
         SetScore();
         failedText.enabled = false;
         successText.enabled = true;
+        Time.timeScale = 0f;
     }
 
     public void GameOverUI()
@@ -36,6 +37,7 @@ public class UIResult : UIBase
         SetScore();
         successText.enabled = false;
         failedText.enabled = true;
+        Time.timeScale = 0f;
     }
 
     public void SetScore()
