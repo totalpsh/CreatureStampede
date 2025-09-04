@@ -92,7 +92,7 @@ public class UICardSlot : UIBase
 
     private void AcquireScore()
     {
-        StageManager.Instance.GetScore(1000);
+        StageManager.Instance.AddScore(1000);
     }
 
     private void AcquireWeapon()
