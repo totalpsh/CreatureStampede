@@ -86,6 +86,7 @@ public class StageManager : Singleton<StageManager>
 
     private void StageTimeOut()
     {
-
+        StopStage();
+        OnStageClear?.Invoke();
     }
 }

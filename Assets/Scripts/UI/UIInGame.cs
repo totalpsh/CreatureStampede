@@ -74,7 +74,8 @@ public class UIInGame : UIBase
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            UIManager.Instance.OpenUI<UIResult>();
+            UIResult ui = UIManager.Instance.GetUI<UIResult>();
+            ui.ClearUI();
             Time.timeScale = 0f;
         }
     }

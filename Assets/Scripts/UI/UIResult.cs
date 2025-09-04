@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class UIResult : UIBase
 {
-
+    [SerializeField] private TextMeshProUGUI successText;
+    [SerializeField] private TextMeshProUGUI failedText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button titleButton;
     [SerializeField] private Button restartButton;
@@ -15,6 +16,23 @@ public class UIResult : UIBase
     {
         restartButton.onClick.AddListener(OnRestart);
         titleButton.onClick.AddListener(OnTitle);
+
+        StageManager.Instance.OnStageClear += ClearUI;
+        StageManager.Instance.OnGameOver += GameOverUI;
+    }
+
+    public void ClearUI()
+    {
+        OpenUI();
+        failedText.enabled = false;
+        successText.enabled = true;
+    }
+
+    public void GameOverUI()
+    {
+        OpenUI();
+        successText.enabled = false;
+        failedText.enabled = true;
     }
 
     public void ScoreUpdate()
