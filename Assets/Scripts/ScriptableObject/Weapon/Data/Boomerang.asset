@@ -18,7 +18,7 @@ MonoBehaviour:
     description: "\uB3CC\uC544\uC624\uB294 \uBD80\uBA54\uB791\uC744 \uB358\uC9D1\uB2C8\uB2E4."
     level: 1
     damage: 1
-    count: 4
+    count: 2
     speed: 10
     fireRate: 3
     abilityValue: 1
