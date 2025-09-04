@@ -60,6 +60,14 @@ public class UIInGame : UIBase
 
     }
 
+    private void OnDisable()
+    {
+        StageManager.Instance.OnExpChange -= OnExpChanged;
+        StageManager.Instance.OnMaxExpChange -= OnMaxExpChanged;
+        StageManager.Instance.OnScoreChange -= OnScoreChanged;
+        StageManager.Instance.OnLevelChanged -= OnPlayerLevelUp;
+    }
+
     public void SetCharacter(Player player)
     {
         _player = player;

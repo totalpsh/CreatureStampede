@@ -204,12 +204,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         monsterCollider.enabled = false;
         rb.simulated = false;
 
-        // 플레이어에게 경험치 주기
-        StageManager.Instance.AddExp(Exp);
-        // 점수 더하기
-        StageManager.Instance.AddScore(Score);
-        // 드롭하기
-        DropItem();
+        
         StartCoroutine(DestroyAfterDelay(0.5f));
     }
 
@@ -255,6 +250,15 @@ public class MonsterBase : MonoBehaviour, IDamagable
     {
         HitReaction();
         SetHealth(CurrentHealth - damage);
+        if (CurrentHealth == 0)
+        {
+            // 플레이어에게 경험치 주기
+            StageManager.Instance.AddExp(Exp);
+            // 점수 더하기
+            StageManager.Instance.AddScore(Score);
+            // 드롭하기
+            DropItem();
+        }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
