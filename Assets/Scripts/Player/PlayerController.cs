@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         // 대시 속도 적용
         _rigidbody.velocity = dashDirection * dashSpeed;
-        Debug.Log("Dash Input Received");
+
         // 대시 지속 시간만큼 대기
         yield return new WaitForSeconds(dashDuration);
         // 대시 실행 후 쿨타입UI 반영을 위한 이벤트 실행
@@ -134,6 +134,13 @@ public class PlayerController : MonoBehaviour
         // 쿨타임 적용
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    // 리기드바디 속도 0으로
+    public void StopMovement()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        MovementDirection = Vector2.zero;
     }
 }
 

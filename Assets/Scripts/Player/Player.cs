@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,7 +28,8 @@ public class Player : MonoBehaviour, IDamagable
     [field: SerializeField] public float Damage { get; private set; }
     public bool IsDead { get; private set; } = false;
 
-
+    // 피격중
+    private bool isHit = false;
 
     // 사용 가능한 무기들
     [SerializeField] private BaseWeapon[] baseWeapons;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour, IDamagable
         controller = GetComponent<PlayerController>();
         playerAnimator = GetComponent<PlayerAnimator>();
         bulletpoolGO = new GameObject("bulletpoolGO");
+        isHit = false;
     }
 
     public void Init()
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public void ChangeHealth(float damage)
     {
-        if(IsDead) return;
+        if(IsDead || isHit) return;
 
         CurrentHealth += damage;
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
@@ -95,6 +98,7 @@ public class Player : MonoBehaviour, IDamagable
         }
         else
         {
+            isHit = true;
             playerAnimator.TriggerIsShot();
             // 피격 애니메이션 재생동안 무적
             StartCoroutine(InvincibilityCoroutine());
@@ -107,6 +111,7 @@ public class Player : MonoBehaviour, IDamagable
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
         yield return new WaitForSeconds(playerAnimator.animator.GetCurrentAnimatorStateInfo(0).length);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
+        isHit = false;
     }
 
     private void Death()
@@ -114,16 +119,16 @@ public class Player : MonoBehaviour, IDamagable
         if (IsDead) return;
         IsDead = true;
         
-        playerAnimator.TriggerIsDead();
         DisableAll();
-        controller.enabled = false;
+        
+        playerAnimator.TriggerIsDead();
         // 애니메이션 재생 후 이벤트 호출
         StartCoroutine(DeathCoroutine());
     }
 
     private IEnumerator DeathCoroutine()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
         yield return new WaitForSeconds(playerAnimator.animator.GetCurrentAnimatorStateInfo(0).length);
         OnCharacterDie?.Invoke();
     }
@@ -188,7 +193,9 @@ public class Player : MonoBehaviour, IDamagable
         {
             weapon.gameObject.SetActive(false);
         }
-        GetComponent<PlayerInput>().gameObject.SetActive(false);
+        GetComponent<PlayerInput>().enabled = false;
         bulletpoolGO.SetActive(false);
+        controller.StopMovement();
+        controller.enabled = false;
     }
 }
