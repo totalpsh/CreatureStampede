@@ -80,6 +80,15 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
+    private void Start()
+    {
+        Level = 1;
+        MaxExp = 10;
+        CurrentExp = 0;
+        Score = 0;
+        
+    }
+
     private void PlayerLevelUp()
     {
         Level++;
