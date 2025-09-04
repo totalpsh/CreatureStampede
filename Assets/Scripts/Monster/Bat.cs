@@ -61,8 +61,17 @@ public class Bat : MonsterBase
     {
         base.OnTriggerEnter2D(collision);
 
-        isChasing = false;
+        if (collision.gameObject.CompareTag("BulletBoundary"))
+        {
+            isChasing = false;
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Attack(target, 0.5f);
+        }
+
     }
 
-    
+
 }

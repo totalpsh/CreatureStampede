@@ -142,12 +142,18 @@ public class Stage : MonoBehaviour
     {
         lastBatsSpawnTime = Time.time;
 
+        StartCoroutine(SpawnBatsCoroutine(0.1f));
+    }
+
+    IEnumerator SpawnBatsCoroutine(float delay)
+    {
         Vector2 pos = GetRandomSpawnPos();
         int batCount = 5;
         for (int i = 0; i < batCount; ++i)
         {
             Bat bat = SpawnMonster<Bat>();
             bat.transform.position = pos;
+            yield return new WaitForSeconds(delay);
         }
     }
 

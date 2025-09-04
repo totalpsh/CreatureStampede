@@ -23,7 +23,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
     public int Score { get; private set; }
     public int Exp { get; private set; }
 
-    public event Action OnHpZero;
+    public event Action<MonsterBase> OnHpZero;
     public event Action OnHpChanged;
 
     protected Player target;
@@ -64,15 +64,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Die();
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            HitReaction();
-        }
+        
     }
 
     private void InitializeMonster()
@@ -94,9 +86,6 @@ public class MonsterBase : MonoBehaviour, IDamagable
     {
         MoveSpeed = 30f;
 
-        OnHpZero += Die;
-
-
         animator.SetBool(MonsterAnimParam.IsMoving, target != null);
         canAttack = true;
         canMove = true;
@@ -105,10 +94,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         rb.simulated = true;
     }
 
-    private void OnDisable()
-    {
-        OnHpZero -= Die;
-    }
+ 
 
     public void SetHealth(float health)
     {
@@ -118,7 +104,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
         if (CurrentHealth == 0)
         {
-            OnHpZero?.Invoke();
+            Die();
+            OnHpZero?.Invoke(this);
         }
     }
 
@@ -147,7 +134,6 @@ public class MonsterBase : MonoBehaviour, IDamagable
         canAttack = false;
         //animator.SetTrigger(MonsterAnimParam.Attack);
 
-        Debug.Log($"{Name}이/가 플레이어를 공격");
         IDamagable player = target as IDamagable;
         if (player != null)
         {
@@ -174,6 +160,17 @@ public class MonsterBase : MonoBehaviour, IDamagable
             return;
 
         Attack(target, 0.5f);
+    }
+
+
+
+    protected void DropItem()
+    {
+        float randomValue = UnityEngine.Random.value;
+
+        if (Grade == MonsterGrade.Normal)
+        {
+        }
     }
 
     protected void Die()
@@ -209,6 +206,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     protected void HitReaction()
     {
+        StopForDuration(0.5f);
         animator.SetTrigger(MonsterAnimParam.Hit);
     }
 
@@ -221,16 +219,17 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     public void TakePhysicalDamage(float damage)
     {
+        HitReaction();
         SetHealth(CurrentHealth - damage);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("BulletBoundary"))
+        if (collision.gameObject.CompareTag("BulletBoundary"))
         {
-            return;
+            MoveSpeed = monsterData.MoveSpeed;
         }
-        MoveSpeed = monsterData.MoveSpeed;
+        
 
     }
 }
