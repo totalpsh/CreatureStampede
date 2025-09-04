@@ -175,23 +175,26 @@ public class MonsterBase : MonoBehaviour, IDamagable
             cumulativeValue += 0.05f;
             if (randomValue < cumulativeValue)
             {
-                Debug.Log("HP 포션");
+                var potion = ResourceManager.Instance.CreateItem<RecoveryPotion>("RecoveryPotion");
+                potion.transform.position = transform.position;
                 return;
             }
-            cumulativeValue += 0.1f;
-            if (randomValue < cumulativeValue)
-            {
-                Debug.Log("신속 포션");
-                return;
+            //cumulativeValue += 0.1f;
+            //if (randomValue < cumulativeValue)
+            //{
+            //    var potion = ResourceManager.Instance.CreateItem<RecoveryPotion>("RecoveryPotion");
+            //    potion.transform.position = transform.position;
+            //    return;
 
-            }
+            //}
 
         }
         else if (Grade == MonsterGrade.Elite)
         {
             if (randomValue < 0.5f)
             {
-                Debug.Log("장비 상자");
+                var weaponBox = ResourceManager.Instance.CreateItem<WeaponBox>("WeaponBox");
+                weaponBox.transform.position = transform.position;
                 return;
 
             }
