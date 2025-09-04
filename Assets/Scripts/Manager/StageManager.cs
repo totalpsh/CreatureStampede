@@ -51,6 +51,9 @@ public class StageManager : Singleton<StageManager>
 
         if(Input.GetKeyDown(KeyCode.V))
         {
+            AddExp(10);
+            AddScore(100);
+            OnLevelExp?.Invoke();
             stageTime -= 100;
         }
     }
@@ -101,13 +104,13 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
-    public void GetExp(int expValue)
+    public void AddExp(int expValue)
     {
         CurrentExp += expValue;
         LevelUp();
     }
 
-    public void GetScore(int scoreValue)
+    public void AddScore(int scoreValue)
     {
         Score += scoreValue;
     }
