@@ -175,7 +175,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
             cumulativeValue += 0.05f;
             if (randomValue < cumulativeValue)
             {
-                var potion = ResourceManager.Instance.CreateItem<RecoveryPotion>("RecoveryPotion");
+                var potion = StageManager.Instance.Stage.itemPools["RecoveryPotion"].Get();
                 potion.transform.position = transform.position;
                 return;
             }
@@ -193,7 +193,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
         {
             if (randomValue < 0.5f)
             {
-                var weaponBox = ResourceManager.Instance.CreateItem<WeaponBox>("WeaponBox");
+                var weaponBox = StageManager.Instance.Stage.itemPools["WeaponBox"].Get();
+
                 weaponBox.transform.position = transform.position;
                 return;
 

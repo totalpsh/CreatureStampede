@@ -10,7 +10,11 @@ public abstract class Item : MonoBehaviour
         {
             Debug.Log("Item Collected!");
             ApplyEffect(collision.gameObject);
-            Destroy(gameObject);
+
+            string itemName = gameObject.name;
+            itemName = itemName.Remove(itemName.IndexOf("(Clone)"));
+            StageManager.Instance.Stage.itemPools[itemName].Release(gameObject);
+            // Destroy(gameObject);
         }
     }
 
