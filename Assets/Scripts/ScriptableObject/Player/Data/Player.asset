@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   <PlayerData>k__BackingField:
-    maxHealth: 1000
+    maxHealth: 100
     moveSpeed: 3
     damage: 5
     dashSpeed: 20
     dashDuration: 0.2
     dashCooldown: 1
+    maxWeaponCount: 3
