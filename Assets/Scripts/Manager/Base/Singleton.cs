@@ -39,7 +39,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         if (IsCreatedInstance())
         {
-            Destroy(_instance);
+            Destroy(_instance.gameObject);
             _instance = null;
         }
     }

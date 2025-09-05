@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d021ab0e475aa249b3e2ca883eed124, type: 3}
+  m_Name: Boomerang
+  m_EditorClassIdentifier: 
+  <WeaponData>k__BackingField:
+    name: "\uBD80\uBA54\uB791"
+    icon: {fileID: -957914066, guid: 261a8902f48f54042932dab75a9e14b8, type: 3}
+    description: "\uB3CC\uC544\uC624\uB294 \uBD80\uBA54\uB791\uC744 \uB358\uC9D1\uB2C8\uB2E4."
+    level: 1
+    maxLevel: 5
+    damage: 3
+    count: 1
+    speed: 8
+    fireRate: 4
+    abilityValue: 1
+    isPierce: 1
+    damageIncrease: 0.6
+    countIncrease: 2
+    speedIncrease: 0.5
+    fireRateDecrease: 0.25
+    abilityValueIncrease: 0
+    projectilePrefab: {fileID: 3252985484265609931, guid: 3ff03e76f7c2a15408958a8604934c0e, type: 3}
+    projectileLifetime: 0
+    spreadAngle: 0
+    shootSound: {fileID: 0}

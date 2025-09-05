@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : MonoBehaviour, IDamagable
 {
     [SerializeField] SO_Monster monsterData;
 
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Collider2D monsterCollider;
+
 
     public string Name { get; private set; }
     public MonsterGrade Grade { get; private set; }
@@ -20,28 +23,48 @@ public class MonsterBase : MonoBehaviour
     public int Score { get; private set; }
     public int Exp { get; private set; }
 
-    public event Action OnHpZero;
+    public event Action<MonsterBase> OnHpZero;
     public event Action OnHpChanged;
 
-    private Player target;
-    private Vector2 dir;
-    private bool canAttack;
+    protected Player target;
+    protected Vector2 dir;
+    protected bool canAttack;
+    protected bool canMove;
 
-    private void Awake()
+    Coroutine monsterStopCoroutine;
+
+    protected virtual void Awake()
     {
         InitializeMonster();
-    }
-
-    private void Update()
-    {
-        dir = target.transform.position - transform.position;
-        dir = dir.normalized;
         
     }
 
-    private void FixedUpdate()
+    protected virtual void Update()
     {
-        ChaseTarget();
+        dir = GetDirectionToTarget(target.transform);
+
+    }
+
+    protected Vector2 GetDirectionToTarget(Transform target)
+    {
+        Vector2 ret;
+        ret = target.transform.position - transform.position;
+        ret = ret.normalized;
+        return ret;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (canMove)
+        {
+            ChaseTarget();
+
+        }
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     private void InitializeMonster()
@@ -49,19 +72,30 @@ public class MonsterBase : MonoBehaviour
         Name = monsterData.MonsterName;
         Grade = monsterData.Grade;
         MaxHealth = monsterData.MaxHealth;
-        CurrentHealth = MaxHealth;
-        MoveSpeed = monsterData.MoveSpeed;
         Damage = monsterData.Damage;
         Score = monsterData.Score;
         Exp = monsterData.Exp;
 
         target = PlayerManager.Instance.Player;
 
-        animator.SetBool(MonsterAnimParam.IsChasing, target != null);
-        animator.SetBool(MonsterAnimParam.IsDead, false);
-        canAttack = true;
 
     }
+
+    protected virtual void OnEnable()
+    {
+        MoveSpeed = 30f;
+        CurrentHealth = MaxHealth;
+
+
+        animator.SetBool(MonsterAnimParam.IsMoving, target != null);
+        canAttack = true;
+        canMove = true;
+
+        monsterCollider.enabled = true;
+        rb.simulated = true;
+    }
+
+ 
 
     public void SetHealth(float health)
     {
@@ -71,21 +105,28 @@ public class MonsterBase : MonoBehaviour
 
         if (CurrentHealth == 0)
         {
-            OnHpZero?.Invoke();
+            Die();
+            
+            OnHpZero?.Invoke(this);
+        }
+    }
+
+    protected virtual void SetCharacterDirection()
+    {
+        if (dir.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (dir.x > 0)
+        {
+            spriteRenderer.flipX = true;
+
         }
     }
 
     private void ChaseTarget()
     {
-        if (dir.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (dir.x > 0)
-        {
-            spriteRenderer.flipX = false;
-
-        }
+        SetCharacterDirection();
 
         rb.MovePosition(rb.position + dir * MoveSpeed * Time.fixedDeltaTime);
     }
@@ -93,17 +134,20 @@ public class MonsterBase : MonoBehaviour
     IEnumerator MonsterAttackWithDelay(float delay)
     {
         canAttack = false;
-        animator.SetTrigger(MonsterAnimParam.Attack);
+        //animator.SetTrigger(MonsterAnimParam.Attack);
 
-        Debug.Log($"{Name}이/가 플레이어를 공격");
-        // player.TakeDamage(Damage);
+        IDamagable player = target as IDamagable;
+        if (player != null)
+        {
+            player.TakePhysicalDamage(Damage);
+        }
 
         yield return new WaitForSeconds(delay);
         canAttack = true;
 
     }
 
-    private void Attack(Player player, float delay = 0.5f)
+    protected virtual void Attack(Player player, float delay = 0.5f)
     {
         if (!canAttack)
             return;
@@ -118,5 +162,117 @@ public class MonsterBase : MonoBehaviour
             return;
 
         Attack(target, 0.5f);
+    }
+
+
+
+    protected void DropItem()
+    {
+        float randomValue = UnityEngine.Random.value;
+        if (Grade == MonsterGrade.Normal)
+        {
+            float cumulativeValue = 0f;
+
+            cumulativeValue += 0.05f;
+            if (randomValue < cumulativeValue)
+            {
+                var potion = StageManager.Instance.Stage.itemPools["RecoveryPotion"].Get();
+                potion.transform.position = transform.position;
+                return;
+            }
+            //cumulativeValue += 0.1f;
+            //if (randomValue < cumulativeValue)
+            //{
+            //    var potion = ResourceManager.Instance.CreateItem<RecoveryPotion>("RecoveryPotion");
+            //    potion.transform.position = transform.position;
+            //    return;
+
+            //}
+
+        }
+        else if (Grade == MonsterGrade.Elite)
+        {
+            if (randomValue < 0.5f)
+            {
+                var weaponBox = StageManager.Instance.Stage.itemPools["WeaponBox"].Get();
+
+                weaponBox.transform.position = transform.position;
+                return;
+
+            }
+        }
+    }
+
+    protected void Die()
+    {
+        animator.SetTrigger(MonsterAnimParam.Die);
+        monsterCollider.enabled = false;
+        rb.simulated = false;
+
+        
+        StartCoroutine(DestroyAfterDelay(0.5f));
+    }
+
+    public void StopForDuration(float duration)
+    {
+        if (monsterStopCoroutine != null)
+        {
+            StopCoroutine(monsterStopCoroutine);
+
+        }
+        monsterStopCoroutine = StartCoroutine(StopMonster(duration));
+
+        
+    }
+
+    IEnumerator StopMonster(float duration)
+    {
+        animator.SetBool(MonsterAnimParam.IsMoving, false);
+        canMove = false;
+        rb.simulated = false;
+
+        yield return new WaitForSeconds(duration);
+        canMove = true;
+        rb.simulated = true;
+
+        animator.SetBool(MonsterAnimParam.IsMoving, true);
+    }
+
+    protected void HitReaction()
+    {
+        StopForDuration(0.5f);
+        animator.SetTrigger(MonsterAnimParam.Hit);
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        StageManager.Instance.Stage.pools[Name].Release(gameObject);
+    }
+
+    public void TakePhysicalDamage(float damage)
+    {
+        HitReaction();
+        SetHealth(CurrentHealth - damage);
+        if (CurrentHealth == 0)
+        {
+            // 플레이어에게 경험치 주기
+            StageManager.Instance.AddExp(Exp);
+            // 점수 더하기
+            StageManager.Instance.AddScore(Score);
+            // 드롭하기
+            DropItem();
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BulletBoundary"))
+        {
+            MoveSpeed = monsterData.MoveSpeed;
+        }
+        
+
     }
 }

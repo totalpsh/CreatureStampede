@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // 테스트 스크립트 (삭제 예정)
@@ -39,12 +40,12 @@ public class PlayerTestScene : SceneBase
 
     void GameClear()
     {
-        //UIManager.Instance.GetUI<UIGameClear>();
+        UIResult clear = UIManager.Instance.GetUI<UIResult>();
     }
 
     void GameOver()
     {
-        //UIManager.Instance.GetUI<UIGameOver>();
+        UIResult fail = UIManager.Instance.GetUI<UIResult>();
     }
 
 }

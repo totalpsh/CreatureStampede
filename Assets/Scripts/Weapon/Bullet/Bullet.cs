@@ -1,0 +1,81 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Bullet : MonoBehaviour
+{
+    [SerializeField] protected float damage;
+    [SerializeField] protected bool isPierce;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float abilityValue;
+    [SerializeField] protected bool isBulletBoundary = true;
+
+
+    protected Rigidbody2D _rigidbody;
+
+    
+
+    protected virtual void Awake()
+    {
+       _rigidbody = GetComponent<Rigidbody2D>();
+        isBulletBoundary = true;
+    }
+
+
+    // 데미지, 관통 여부, 방향, 속도, 능력치 초기화
+    public void Init(float damage, bool isPierce, Vector3 dir, float speed = 0, float abilityValue = 0)
+    {
+        this.damage = damage;
+        this.isPierce = isPierce;
+        this.speed = speed;
+        this.abilityValue = abilityValue;
+
+        if (_rigidbody != null)
+        {
+            _rigidbody.velocity = dir * this.speed;
+        }
+        InitAfter();
+    }
+
+    // init로 초기화 후 발동
+    protected virtual void InitAfter()
+    {
+        // 자식 클래스에서 구현
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<IDamagable>()?.TakePhysicalDamage(damage);
+            Ability(collision.GetComponent<MonsterBase>());
+            if (!isPierce)
+            {
+                BulletSetActive();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("BulletBoundary") && isBulletBoundary)
+        {
+            BulletSetActive();
+        }
+    }
+
+    // 총알 비활성화 및 속도 초기화
+    protected virtual void BulletSetActive()
+    {
+        if (_rigidbody != null)
+            _rigidbody.velocity = Vector2.zero;
+
+        gameObject.SetActive(false);
+    }
+
+    // 총알 능력    
+    protected virtual void Ability(MonsterBase target)
+    {
+        // 자식 클래스에서 구현
+    }
+}

@@ -1,44 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIGetItem : UIBase
 {
-    private UICardSlot slot;
-    [SerializeField] private SkillData[] datas;
-    [SerializeField] private Transform[] showTransform;
+    Player _player;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<BaseWeapon> weapons;
+    [SerializeField] private List<WeaponSO> playerWeapons;
+
+    [SerializeField] private UICardSlot[] slots;
+    [SerializeField] private UICardSlot scoreSlot;
+
+
+    private void OnEnable()
     {
+        playerWeapons = new List<WeaponSO>();
+
+        _player = PlayerManager.Instance.Player;
+        weapons = _player.Weapons;
+
+        foreach(var weapon in weapons)
+        {
+            playerWeapons.Add(weapon.Data);
+        }
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].CloseUI();
+            slots[i].selectEvent += CloseUI;
+        }
+
+        scoreSlot.selectEvent += CloseUI;
+        scoreSlot.CloseUI();
+
         ShowSlot();
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
-
 
     public void ShowSlot()
     {
-        List<SkillData> skillList = new List<SkillData>();
-
-        for (int i = 0; i < 3; i++)
+        if(weapons.Count >= _player.Data.PlayerData.maxWeaponCount)
         {
-            slot = UIManager.Instance.CreateSlotUI<UICardSlot>();
-            slot.transform.SetParent(showTransform[i], false);
+            scoreSlot.OpenUI();
+            return;
+        }
 
-            SkillData data = datas[Random.Range(0, datas.Length)];
+        List<UICardSlot> openCardList = new List<UICardSlot>();
+        for(int i = 0; i < slots.Length; i++)
+        {
+            bool hasWeapon = playerWeapons.Contains(slots[i].Weapon);
+            if(!hasWeapon) openCardList.Add(slots[i]);
+        }
 
-            if (skillList.Contains(data)) return;
-            skillList.Add(data);
+        for(int i = 0; i < playerWeapons.Count; i++)
+        {
+            Debug.Log(playerWeapons[i].name);
+        }
 
-            slot.InSlot(data);
+        Debug.Log(openCardList.Count);
+        
+        int[] ran = new int[2];
+        ran[0] = Random.Range(0, openCardList.Count);
+        do
+        {
+            ran[1] = Random.Range(0, openCardList.Count);
+        } while (ran[0] == ran[1]);
+
+        for(int i= 0; i < ran.Length; i++)
+        {
+            openCardList[ran[i]].OpenUI();
+        }
+    }
+
+
+    protected override void OnClose()
+    {
+        base.OnClose();
+        foreach(UICardSlot slot in slots)
+        {
+            slot.CloseUI();
         }
     }
 }

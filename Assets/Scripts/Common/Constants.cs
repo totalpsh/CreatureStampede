@@ -13,8 +13,11 @@ public static class Path
     public const string Prefab = "Prefab/";
     public const string UI = Prefab + "UI/";
     public const string Character = Prefab + "Character/";
+    public const string Monster = Prefab + "Monster/";
+    public const string Item = Prefab + "Item/";
     public const string Map = Prefab + "Map/";
     public const string Camera = Prefab + "Camera/";
+    public const string Data = "Data/";
 }
     
 public static class Prefab
@@ -43,10 +46,15 @@ public static class PrefKey
 
 public static class MonsterAnimParam
 {
-    public const string IsChasing = "IsChasing";
-    public const string IsDead = "IsDead";
+    public const string MoveX = "MoveX";
+    public const string MoveY = "MoveY";
+
+    public const string IsMoving = "IsMoving";
     public const string IsHit = "IsHit";
 
     public const string Attack = "Attack";
+    public const string Die = "Die";
+    public const string Hit = "Hit";
+
 
 }

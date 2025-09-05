@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,20 @@ using UnityEngine.UI;
 
 public class UICardSlot : UIBase
 {
+    public enum ButtonMode
+    {
+        Upgrade,
+        GetWeapon,
+        GetScoreChest,
+        GetScoreLevelUp
+    }
+
+    [SerializeField] private WeaponSO weaponData;
+    public WeaponSO Weapon { get { return weaponData; } }
+
+
+    [SerializeField] private ButtonMode mode;
+    [SerializeField] private Button selectButton;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI levelText;
@@ -17,33 +32,113 @@ public class UICardSlot : UIBase
     [SerializeField] private int skillLevel;
     [SerializeField] private string skillDescription;
 
+    public event Action weaponSelect;
+    public event Action selectEvent;
+    public event Action<int> SetScore;
 
+    private Player player;
+
+
+    private void Start()
+    {
+        selectButton.onClick.AddListener(OnClickButton);
+        var ui = UIManager.Instance.GetUI<UIInGame>();
+        selectEvent += ui.UpdateWeaponIcon;
+    }
+
+    private void OnEnable()
+    {
+        player = PlayerManager.Instance.Player;
+    }
+    
     // Start is called before the first frame update
-    void Start()
+    protected override void OnOpen()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void InSlot(SkillData skill)
-    {
-        skillName = skill.name;
-        skillIcon = skill.SkillIcon;
-        skillLevel = skill.SkillLevel;
-        skillDescription = skill.SkillDescription;
+        base.OnOpen();
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        nameText.text = skillName;
-        icon.sprite = skillIcon;
-        levelText.text = skillLevel.ToString();
-        descriptionText.text = skillDescription;
+        switch (mode)
+        {
+            case ButtonMode.Upgrade: 
+            case ButtonMode.GetWeapon:
+
+                nameText.text = weaponData.WeaponData.name;
+                icon.sprite = weaponData.WeaponData.icon;
+                descriptionText.text = weaponData.WeaponData.description;
+
+                int level = player.GetWeaponLevel(weaponData);
+
+                levelText.text = $"Lv. {level.ToString()}";
+
+                break;
+            case ButtonMode.GetScoreChest:
+
+                nameText.text = "추가 점수";
+                levelText.text = " ";
+                icon.sprite = skillIcon;
+                descriptionText.text = "점수 +1000";
+
+                break;
+            case ButtonMode.GetScoreLevelUp:
+
+                nameText.text = "추가 점수";
+                levelText.text = " ";
+                icon.sprite = skillIcon;
+                descriptionText.text = "점수 +500";
+
+                break;
+        }
+
+    }
+
+    public void OnClickButton()
+    {
+        switch (mode)
+        {
+            case ButtonMode.Upgrade:
+                UpgradeItem();
+                break;
+            case ButtonMode.GetWeapon:
+                AcquireWeapon();
+                break;
+            case ButtonMode.GetScoreChest:
+                AcquireScore();
+                break;
+            case ButtonMode.GetScoreLevelUp:
+                AcquireScore();
+                break;
+        }
+
+        // 플레이어가 가지고 있는 무기 배열 혹은 리스트에 넣어주기
+        selectEvent?.Invoke();
+        Time.timeScale = 1.0f;
+    }
+
+    private void AcquireScore()
+    {
+        switch (mode)
+        {
+            case ButtonMode.GetScoreChest:
+                StageManager.Instance.AddScore(1000);
+                break;
+            case ButtonMode.GetScoreLevelUp:
+                StageManager.Instance.AddScore(500);
+                break;
+        }
+    }
+
+    private void AcquireWeapon()
+    {
+        Debug.Log("장비상자 획득");
+        player.EquipWeapons(Weapon);
+    }
+
+    private void UpgradeItem()
+    {
+        Debug.Log("레벨업 무기 업그레이드");
+        player.LevelUpWeapon(Weapon);
     }
 }
