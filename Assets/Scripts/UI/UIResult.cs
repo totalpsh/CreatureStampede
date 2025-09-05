@@ -17,9 +17,11 @@ public class UIResult : UIBase
     {
         restartButton.onClick.AddListener(OnRestart);
         titleButton.onClick.AddListener(OnTitle);
+    }
 
-        StageManager.Instance.OnStageClear += ClearUI;
-        StageManager.Instance.OnGameOver += GameOverUI;
+    private void OnEnable()
+    {
+        
     }
 
     public void ClearUI()
@@ -28,6 +30,7 @@ public class UIResult : UIBase
         SetScore();
         failedText.enabled = false;
         successText.enabled = true;
+        Time.timeScale = 0f;
     }
 
     public void GameOverUI()
@@ -36,11 +39,12 @@ public class UIResult : UIBase
         SetScore();
         successText.enabled = false;
         failedText.enabled = true;
+        Time.timeScale = 0f;
     }
 
     public void SetScore()
     {
-        scoreText.text = StageManager.Instance.Score.ToString();
+        scoreText.text = $"{StageManager.Instance.Score.ToString()}Á¡";
     }
 
     private void OnRestart()

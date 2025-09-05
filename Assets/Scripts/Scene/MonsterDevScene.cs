@@ -37,11 +37,13 @@ public class MonsterDevScene : SceneBase
     void GameClear()
     {
         UIResult clear = UIManager.Instance.GetUI<UIResult>();
+        clear.ClearUI();
     }
 
     void GameOver()
     {
         UIResult fail = UIManager.Instance.GetUI<UIResult>();
+        fail.GameOverUI();
     }
 
 }

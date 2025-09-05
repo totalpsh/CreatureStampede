@@ -90,24 +90,24 @@ public class UIInGame : UIBase
         }
         UpdateDashIcon();
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            UIManager.Instance.OpenUI<UIGetItem>();
-            Time.timeScale = 0f;
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    UIManager.Instance.OpenUI<UIGetItem>();
+        //    Time.timeScale = 0f;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            UIManager.Instance.OpenUI<UILevelUp>();
-            Time.timeScale = 0f;
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    UIManager.Instance.OpenUI<UILevelUp>();
+        //    Time.timeScale = 0f;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            UIResult ui = UIManager.Instance.GetUI<UIResult>();
-            ui.ClearUI();
-            Time.timeScale = 0f;
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    UIResult ui = UIManager.Instance.GetUI<UIResult>();
+        //    ui.ClearUI();
+        //    Time.timeScale = 0f;
+        //}
     }
 
     public void DashEndEvent()
@@ -138,7 +138,7 @@ public class UIInGame : UIBase
 
     public void UpdateLevel()
     {
-        UIManager.Instance.OpenUI<UILevelUp>();
+        UILevelUp levelup = UIManager.Instance.GetUI<UILevelUp>();
         Time.timeScale = 0f;
     }
 
@@ -156,7 +156,7 @@ public class UIInGame : UIBase
 
         expText.text = $"{curExp} / {maxExp}";
 
-        scoreText.text = $"score {score.ToString()}";
+        scoreText.text = $"{score.ToString()}";
     }
 
     public void UpdateWeaponIcon()
