@@ -72,7 +72,6 @@ public class MonsterBase : MonoBehaviour, IDamagable
         Name = monsterData.MonsterName;
         Grade = monsterData.Grade;
         MaxHealth = monsterData.MaxHealth;
-        CurrentHealth = MaxHealth;
         Damage = monsterData.Damage;
         Score = monsterData.Score;
         Exp = monsterData.Exp;
@@ -85,6 +84,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
     protected virtual void OnEnable()
     {
         MoveSpeed = 30f;
+        CurrentHealth = MaxHealth;
+
 
         animator.SetBool(MonsterAnimParam.IsMoving, target != null);
         canAttack = true;
@@ -175,7 +176,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
             cumulativeValue += 0.05f;
             if (randomValue < cumulativeValue)
             {
-                var potion = ResourceManager.Instance.CreateItem<RecoveryPotion>("RecoveryPotion");
+                var potion = StageManager.Instance.Stage.itemPools["RecoveryPotion"].Get();
                 potion.transform.position = transform.position;
                 return;
             }
@@ -193,7 +194,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
         {
             if (randomValue < 0.5f)
             {
-                var weaponBox = ResourceManager.Instance.CreateItem<WeaponBox>("WeaponBox");
+                var weaponBox = StageManager.Instance.Stage.itemPools["WeaponBox"].Get();
+
                 weaponBox.transform.position = transform.position;
                 return;
 

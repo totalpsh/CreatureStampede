@@ -8,7 +8,8 @@ public class Stage : MonoBehaviour
     Dictionary<int, SO_MonsterWave> waveData = new();
 
     public Dictionary<string, ObjectPool<GameObject>> pools { get; private set; } = new();
-    
+    public Dictionary<string, ObjectPool<GameObject>> itemPools { get; private set; } = new();
+
     float lastWaveSpawnTime;
     float currentWaveDelay;
 
@@ -16,12 +17,16 @@ public class Stage : MonoBehaviour
     float batsSpawnDelay = 20f;
 
     Transform poolRoot;
+    Transform itemPoolRoot;
+
     Transform playerTransform;
     SO_MonsterWave currentWaveData;
 
     private void Awake()
     {
         poolRoot = new GameObject("@MonsterPoolRoot").transform;
+        itemPoolRoot = new GameObject("@ItemPoolRoot").transform;
+
         SO_MonsterWave[] monsterWaves = Resources.LoadAll<SO_MonsterWave>(Path.Data + "MonsterWave");
 
         for (int i = 0; i < monsterWaves.Length; i++)
@@ -50,12 +55,35 @@ public class Stage : MonoBehaviour
             pools.TryAdd(monsterName, pool);
         }
 
-       
+        GameObject[] itemPrefabs = Resources.LoadAll<GameObject>(Path.Item);
+
+        for (int i = 0; i < itemPrefabs.Length; ++i)
+        {
+            string itemName = itemPrefabs[i].name;
+
+            ObjectPool<GameObject> pool = new ObjectPool<GameObject>(
+                createFunc: () =>
+                {
+                    GameObject obj = ResourceManager.Instance.CreateItem<GameObject>(itemName, itemPoolRoot);
+                    return obj;
+                },
+                actionOnGet: (obj) => obj.SetActive(true),
+                actionOnRelease: (obj) => obj.SetActive(false),
+                actionOnDestroy: (obj) => Destroy(obj),
+                maxSize: 100
+                );
+
+            itemPools.TryAdd(itemName, pool);
+        }
+
 
     }
 
     private void Start()
     {
+        lastWaveSpawnTime = Time.time;
+        lastBatsSpawnTime = Time.time;
+
         playerTransform = PlayerManager.Instance.Player.transform;
         currentWaveData = waveData[1];
         currentWaveDelay = currentWaveData.WaveDelay;
