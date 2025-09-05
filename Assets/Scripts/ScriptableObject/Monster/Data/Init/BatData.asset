@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: Bat
   grade: 0
   maxHealth: 1
-  moveSpeed: 15
+  moveSpeed: 8
   damage: 3
-  score: 20
+  score: 10
   exp: 2
