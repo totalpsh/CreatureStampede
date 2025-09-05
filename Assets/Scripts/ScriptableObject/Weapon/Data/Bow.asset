@@ -32,4 +32,4 @@ MonoBehaviour:
     projectilePrefab: {fileID: 6164056080916582720, guid: e5aa5ff44d5baf247b931a62237259e3, type: 3}
     projectileLifetime: 5
     spreadAngle: 20
-    shootSound: {fileID: 0}
+    shootSound: {fileID: 8300000, guid: 15efa1f949aa08249b723437b0660e2d, type: 3}

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TrollData
   m_EditorClassIdentifier: 
   monsterName: Troll
-  grade: 1
+  grade: 0
   maxHealth: 30
   moveSpeed: 1
   damage: 20
   score: 150
   exp: 15
+  hitSound: {fileID: 8300000, guid: 2f909aa653562cd40b02406933bba3c2, type: 3}
