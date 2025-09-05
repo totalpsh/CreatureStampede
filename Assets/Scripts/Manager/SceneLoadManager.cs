@@ -17,10 +17,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     {
         // 씬 클래스와 enum 매핑
         _scenes.Add(SceneType.Intro, new IntroScene());
-        _scenes.Add(SceneType.Town, new TownScene());
-        _scenes.Add(SceneType.Battle, new BattleScene());
-        _scenes.Add(SceneType.PlayerTest, new PlayerTestScene());
-        _scenes.Add(SceneType.MonsterDev, new MonsterDevScene());
+        _scenes.Add(SceneType.Dungeon, new DungeonScene());
 
     }
 

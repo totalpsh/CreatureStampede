@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterDevScene : SceneBase
+public class DungeonScene : SceneBase
 {
     StageManager _stageManager;
     public override void SceneLoading()
@@ -47,3 +47,6 @@ public class MonsterDevScene : SceneBase
     }
 
 }
+
+
+
