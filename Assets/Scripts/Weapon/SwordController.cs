@@ -44,6 +44,7 @@ public class SwordController : BaseWeapon
             bullet.Translate(Vector3.up * radius, Space.Self); // 발사 위치 설정
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, Vector3.zero);
         }
+        ShootSound();
     }
 
     public override void LevelUp()

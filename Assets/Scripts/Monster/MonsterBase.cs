@@ -247,8 +247,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
         if (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash(MonsterAnimParam.Hit))
         {
             animator.SetTrigger(MonsterAnimParam.Hit);
-
         }
+        AudioManager.Instance.PlaySfx(monsterData.HitSound);
     }
 
     IEnumerator DestroyAfterDelay(float delay)

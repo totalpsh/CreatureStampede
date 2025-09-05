@@ -18,6 +18,7 @@ public static class Path
     public const string Map = Prefab + "Map/";
     public const string Camera = Prefab + "Camera/";
     public const string Data = "Data/";
+    public const string Sound = "Sound/";
 }
     
 public static class Prefab
@@ -55,6 +56,4 @@ public static class MonsterAnimParam
     public const string Attack = "Attack";
     public const string Die = "Die";
     public const string Hit = "Hit";
-
-
 }

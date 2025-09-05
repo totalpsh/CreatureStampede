@@ -191,6 +191,8 @@ MonoBehaviour:
   isPierce: 0
   speed: 0
   abilityValue: 0
+  isBulletBoundary: 1
+  explosionSfx: {fileID: 8300000, guid: 5ca5a059054b47140b188f11ae93f835, type: 3}
 --- !u!1 &8774316223148046976
 GameObject:
   m_ObjectHideFlags: 0

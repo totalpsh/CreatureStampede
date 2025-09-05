@@ -51,7 +51,7 @@ public class IceBowController : BaseWeapon
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 발사 방향 설정
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, dir, Data.WeaponData.speed, Data.WeaponData.abilityValue);
         }
-
+        ShootSound();
     }
 
     public override void LevelUp()

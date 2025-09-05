@@ -7,6 +7,7 @@ public class FireBullet : Bullet
     Animator animator;
     CircleCollider2D circleCollider2D;
     BoxCollider2D boxCollider2D;
+    [SerializeField] AudioClip explosionSfx;
 
     // 터지는 중인지 여부
     bool isExploding = false;
@@ -56,7 +57,7 @@ public class FireBullet : Bullet
     {
         // 0.1초 대기
         yield return new WaitForSeconds(0.1f);
-
+        AudioManager.Instance.PlaySfx(explosionSfx);
         // 크기 조절
         Vector3 scale = transform.localScale;
         scale *= abilityValue;
