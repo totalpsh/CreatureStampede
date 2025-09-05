@@ -83,6 +83,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     protected virtual void OnEnable()
     {
+        spriteRenderer.color = Color.white;
         MoveSpeed = 30f;
         CurrentHealth = MaxHealth;
 

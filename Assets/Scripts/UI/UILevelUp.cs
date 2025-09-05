@@ -16,6 +16,8 @@ public class UILevelUp : UIBase
 
     [SerializeField] private bool openScoreCard = false;
 
+    List<UICardSlot> openCards = new List<UICardSlot>();
+
     private void OnEnable()
     {
         _player = PlayerManager.Instance.Player;
@@ -40,8 +42,31 @@ public class UILevelUp : UIBase
         AudioManager.Instance.EffectBgm(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            openCards[0]?.OnClickButton();
+            
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            openCards[1]?.OnClickButton();
+
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            openCards[2]?.OnClickButton();
+
+
+        }
+    }
+
     public void ShowSlot()
     {
+        openCards.Clear();
         int maxLevelCnt = 0;
         playerWeapons = _player.Weapons;
         hasWeapons.Clear();
@@ -59,6 +84,7 @@ public class UILevelUp : UIBase
                     else
                     {
                         slots[i].OpenUI();
+                        openCards.Add(slots[i]);
                     }
                     hasWeapons.Add(weapon);
                 }
@@ -68,6 +94,8 @@ public class UILevelUp : UIBase
         if (maxLevelCnt == hasWeapons.Count)
         {
             scoreSlot.OpenUI();
+            openCards.Add(scoreSlot);
+
         }
     }
 

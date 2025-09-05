@@ -16,6 +16,7 @@ public class UIGetItem : UIBase
     [SerializeField] private UICardSlot[] slots;
     [SerializeField] private UICardSlot scoreSlot;
 
+    List<UICardSlot> openCards = new List<UICardSlot>();
 
     private void OnEnable()
     {
@@ -42,11 +43,28 @@ public class UIGetItem : UIBase
         AudioManager.Instance.EffectBgm(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            openCards[0]?.OnClickButton();
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            openCards[1]?.OnClickButton();
+
+        }
+        
+    }
+
     public void ShowSlot()
     {
-        if(weapons.Count >= _player.Data.PlayerData.maxWeaponCount)
+        openCards.Clear();
+        if (weapons.Count >= _player.Data.PlayerData.maxWeaponCount)
         {
             scoreSlot.OpenUI();
+            openCards.Add(scoreSlot);
             return;
         }
 
@@ -71,8 +89,16 @@ public class UIGetItem : UIBase
             ran[1] = Random.Range(0, openCardList.Count);
         } while (ran[0] == ran[1]);
 
+        if (ran[0] > ran[1])
+        {
+            int temp = ran[0];
+            ran[0] = ran[1];
+            ran[1] = temp;
+        }
+
         for(int i= 0; i < ran.Length; i++)
         {
+            openCards.Add(openCardList[ran[i]]);
             openCardList[ran[i]].OpenUI();
         }
     }
