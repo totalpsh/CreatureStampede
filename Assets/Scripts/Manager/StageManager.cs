@@ -66,8 +66,6 @@ public class StageManager : Singleton<StageManager>
         {
             stageTime = 0;
             isRunning = false;
-            // 게임 클리어
-            StageClear();
             OnStageClear?.Invoke();
         }
 
@@ -166,13 +164,5 @@ public class StageManager : Singleton<StageManager>
     {
         StopStage();
         OnGameOver?.Invoke();
-    }
-
-    private void StageClear()
-    {
-        UIResult ui = UIManager.Instance.GetUI<UIResult>();
-        ui.ClearUI();
-        Time.timeScale = 0;
-
     }
 }
