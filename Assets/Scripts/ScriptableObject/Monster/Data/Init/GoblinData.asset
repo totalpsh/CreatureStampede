@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterName: Goblin
   grade: 0
   maxHealth: 10
-  moveSpeed: 5
+  moveSpeed: 2.5
   damage: 10
-  score: 100
-  exp: 10
+  score: 50
+  exp: 5

@@ -15,5 +15,5 @@ MonoBehaviour:
   playerLevel: 9
   slimeCount: 30
   goblinCount: 15
-  trollCount: 1
+  trollCount: 3
   waveDelay: 8
