@@ -7,14 +7,38 @@ public class AudioManager : Singleton<AudioManager>
 
     [Header("BGM")]
     public AudioClip bgmClip;
-    public float bgmVolume = 1;
     AudioSource bgmPlayer;
+    private float bgmVolume = 1;
+    public float BgmVolume
+    {
+        get { return bgmVolume; }
+        set
+        {
+            bgmVolume = value;
+            bgmPlayer.volume = bgmVolume;
+        }
+    }
+
 
     [Header("SFX")]
     public AudioClip[] sfxClips;
-    public float sfxVolume = 1;
     public int channels = 16;
     AudioSource[] sfxPlayers;
+    private float sfxVolume = 1;
+    public float SfxVolume
+    {
+        get { return sfxVolume; }
+        set
+        {
+            sfxVolume = value;
+            foreach (var player in sfxPlayers)
+            {
+                player.volume = sfxVolume;
+            }
+        }
+    }
+
+
     int channelIndex;
 
     private void Awake()
