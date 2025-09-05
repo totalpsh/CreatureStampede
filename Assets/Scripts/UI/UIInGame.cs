@@ -192,6 +192,10 @@ public class UIInGame : UIBase
     public void OnPlayerLevelUp(int level)
     {
         levelText.text = level.ToString();
+        if (level == 1)
+        {
+            return;
+        }
 
         UIManager.Instance.OpenUI<UILevelUp>();
         Time.timeScale = 0f;
