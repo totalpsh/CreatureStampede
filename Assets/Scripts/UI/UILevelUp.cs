@@ -37,7 +37,7 @@ public class UILevelUp : UIBase
 
         //}
         ShowSlot();
-
+        AudioManager.Instance.EffectBgm(true);
     }
 
     public void ShowSlot()
@@ -78,5 +78,7 @@ public class UILevelUp : UIBase
             slots[i].selectEvent -= CloseUI;
         }
         scoreSlot.selectEvent -= CloseUI;
+
+        AudioManager.Instance.EffectBgm(false);
     }
 }

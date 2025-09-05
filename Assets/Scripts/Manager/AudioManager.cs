@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
@@ -8,7 +6,7 @@ public class AudioManager : Singleton<AudioManager>
     [Header("BGM")]
     public AudioClip bgmClip;
     AudioSource bgmPlayer;
-    private float bgmVolume = 1;
+    private float bgmVolume = 0.5f;
     public float BgmVolume
     {
         get { return bgmVolume; }
@@ -19,12 +17,13 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
+    [SerializeField]AudioHighPassFilter bgmEffect;
 
     [Header("SFX")]
     public AudioClip[] sfxClips;
     public int channels = 16;
     AudioSource[] sfxPlayers;
-    private float sfxVolume = 1;
+    private float sfxVolume = 0.5f;
     public float SfxVolume
     {
         get { return sfxVolume; }
@@ -40,6 +39,8 @@ public class AudioManager : Singleton<AudioManager>
 
 
     int channelIndex;
+
+
 
     private void Awake()
     {
@@ -58,33 +59,48 @@ public class AudioManager : Singleton<AudioManager>
         bgmPlayer.clip = bgmClip;
         bgmPlayer.Play();
 
+
         // 효과음 플레이어 생성
         GameObject sfxObjcet = new GameObject("SFX Player");
         sfxObjcet.transform.parent = this.transform;
         sfxPlayers = new AudioSource[channels];
 
-        for(int i = 0; i < sfxPlayers.Length;i++)
+        for (int i = 0; i < sfxPlayers.Length; i++)
         {
             sfxPlayers[i] = sfxObjcet.AddComponent<AudioSource>();
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].loop = false;
+            sfxPlayers[i].bypassListenerEffects = true;
             sfxPlayers[i].volume = sfxVolume;
         }
 
     }
 
+    public void EffectBgm(bool isPlay)
+    {
+        if(bgmEffect == null) return;
+
+        bgmEffect.enabled = isPlay;
+    }
     public void PlaySfx(AudioClip clip)
     {
-        for(int i = 0; i < sfxPlayers.Length; i++)
+        for (int i = 0; i < sfxPlayers.Length; i++)
         {
             int loopIndex = (i + channelIndex) % sfxPlayers.Length;
 
-            if(!sfxPlayers[loopIndex].isPlaying )
+            if (!sfxPlayers[loopIndex].isPlaying)
             {
                 sfxPlayers[loopIndex].clip = clip;
                 sfxPlayers[loopIndex].Play();
                 break;
             }
         }
+    }
+
+    public void StartScene()
+    {
+        bgmEffect = Camera.main.gameObject.AddComponent<AudioHighPassFilter>();
+        bgmEffect.cutoffFrequency = 2500;
+        EffectBgm(false);
     }
 }

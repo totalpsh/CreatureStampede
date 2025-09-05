@@ -19,6 +19,8 @@ public class DungeonScene : SceneBase
         _stageManager = StageManager.Instance;
         _stageManager.InitStage(map);
 
+        AudioManager.Instance.StartScene();
+
         // 콜백 등록
         _stageManager.OnStageClear += GameClear;
         _stageManager.OnGameOver += GameOver;

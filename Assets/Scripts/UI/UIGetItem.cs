@@ -39,7 +39,7 @@ public class UIGetItem : UIBase
         scoreSlot.CloseUI();
 
         ShowSlot();
-
+        AudioManager.Instance.EffectBgm(true);
     }
 
     public void ShowSlot()
@@ -85,5 +85,6 @@ public class UIGetItem : UIBase
         {
             slot.CloseUI();
         }
+        AudioManager.Instance.EffectBgm(false);
     }
 }

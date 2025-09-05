@@ -45,7 +45,7 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
-    private float stageTime = 600f;
+    private float stageTime = 300f;
     public float StageTime { get { return stageTime; } }
     private bool isRunning = false;
 
