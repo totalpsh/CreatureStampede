@@ -72,7 +72,6 @@ public class MonsterBase : MonoBehaviour, IDamagable
         Name = monsterData.MonsterName;
         Grade = monsterData.Grade;
         MaxHealth = monsterData.MaxHealth;
-        CurrentHealth = MaxHealth;
         Damage = monsterData.Damage;
         Score = monsterData.Score;
         Exp = monsterData.Exp;
@@ -85,6 +84,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
     protected virtual void OnEnable()
     {
         MoveSpeed = 30f;
+        CurrentHealth = MaxHealth;
+
 
         animator.SetBool(MonsterAnimParam.IsMoving, target != null);
         canAttack = true;
