@@ -27,8 +27,26 @@ public class RepositionMap : MonoBehaviour
         float diffY = Mathf.Abs(playerPos.y - myPos.y);
 
         Vector3 playerDir = playerController.MovementDirection;
-        float dirX = playerDir.x < 0 ? -1 : 1;
-        float dirY = playerDir.y < 0 ? -1 : 1;
+
+        float dirX;
+        float dirY;
+        if (playerDir.x != 0)
+        {
+            dirX = playerDir.x < 0 ? -1 : 1;
+
+        }
+        else
+        {
+            dirX = playerController.LastMovementDirection.x < 0 ? -1 : 1;
+        }
+        if (playerDir.y != 0)
+        {
+            dirY = playerDir.y < 0 ? -1 : 1;
+        }
+        else
+        {
+            dirY = playerController.LastMovementDirection.y < 0 ? -1 : 1;
+        }
 
         if (diffX > diffY)
         {
