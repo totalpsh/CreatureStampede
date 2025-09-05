@@ -173,7 +173,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         {
             float cumulativeValue = 0f;
 
-            cumulativeValue += 0.05f;
+            cumulativeValue += 0.03f;
             if (randomValue < cumulativeValue)
             {
                 var potion = StageManager.Instance.Stage.itemPools["RecoveryPotion"].Get();
@@ -192,7 +192,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         }
         else if (Grade == MonsterGrade.Elite)
         {
-            if (randomValue < 0.5f)
+            if (randomValue < 0.3f)
             {
                 var weaponBox = StageManager.Instance.Stage.itemPools["WeaponBox"].Get();
 
@@ -240,8 +240,15 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     protected void HitReaction()
     {
-        StopForDuration(0.5f);
-        animator.SetTrigger(MonsterAnimParam.Hit);
+        if (Grade == MonsterGrade.Normal)
+        {
+            StopForDuration(0.2f);
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash(MonsterAnimParam.Hit))
+        {
+            animator.SetTrigger(MonsterAnimParam.Hit);
+
+        }
     }
 
     IEnumerator DestroyAfterDelay(float delay)
