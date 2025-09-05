@@ -70,6 +70,12 @@ public abstract class BaseWeapon : MonoBehaviour
         abilityValue += Data.WeaponData.abilityValueIncrease;
         Level++;
     }
+
+    protected void ShootSound()
+    {
+        if(Data.WeaponData.shootSound != null)  
+            AudioManager.Instance.PlaySfx(Data.WeaponData.shootSound);
+    }
 }
 
 

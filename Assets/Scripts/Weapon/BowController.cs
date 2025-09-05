@@ -61,6 +61,7 @@ public class BowController : BaseWeapon
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, fireDirection, Data.WeaponData.speed);
             bullet.SetParent(player.bulletpoolGO.transform);
         }
+        ShootSound();
     }
 
 

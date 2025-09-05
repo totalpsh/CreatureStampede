@@ -19,6 +19,7 @@ public class SO_Monster : ScriptableObject
     [SerializeField] private float damage;
     [SerializeField] private int score;
     [SerializeField] private int exp;
+    [SerializeField] private AudioClip hitSound;
 
     public string MonsterName => monsterName;
     public MonsterGrade Grade => grade;
@@ -27,4 +28,7 @@ public class SO_Monster : ScriptableObject
     public float Damage => damage;
     public int Score => score;
     public int Exp => exp;
+
+    public AudioClip HitSound => hitSound;
+
 }

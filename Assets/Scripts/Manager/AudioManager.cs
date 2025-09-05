@@ -49,7 +49,7 @@ public class AudioManager : Singleton<AudioManager>
 
     }
 
-    public void Playsfx(AudioClip clip)
+    public void PlaySfx(AudioClip clip)
     {
         for(int i = 0; i < sfxPlayers.Length; i++)
         {

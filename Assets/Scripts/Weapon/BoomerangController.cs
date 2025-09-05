@@ -43,5 +43,6 @@ public class BoomerangController : BaseWeapon
             
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, fireDirection, speed, abilityValue);
         }
+        ShootSound();
     }
 }
