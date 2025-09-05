@@ -13,7 +13,12 @@ public class UIIntro : UIBase
     void Start()
     {
         startButton.onClick.AddListener(() => SceneLoadManager.Instance.LoadScene(SceneType.Dungeon));
-        //settingButton.onClick.AddListener();
+        settingButton.onClick.AddListener(OpenSetting);
         exitButton.onClick.AddListener(Application.Quit);   
+    }
+
+    private void OpenSetting()
+    {
+        UIManager.Instance.OpenUI<UISetting>();
     }
 }
