@@ -7,6 +7,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
     protected static T _instance;
 
+    private static bool isQuitting = false;
+
+
+
     public static T Instance
     {
         get
@@ -16,6 +20,11 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
                 _instance = FindObjectOfType<T>();
                 if (_instance == null)
                 {
+                    if (isQuitting)
+                    {
+                        Debug.Log("종료 중에 실행");
+                        return null;
+                    }
                     GameObject go = new GameObject(typeof(T).ToString() + " (Singleton)");
                     _instance = go.AddComponent<T>();
                     
@@ -42,5 +51,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
             Destroy(_instance.gameObject);
             _instance = null;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
     }
 }
