@@ -19,16 +19,16 @@ MonoBehaviour:
       \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
     level: 1
     maxLevel: 5
-    damage: 3
-    count: 3
+    damage: 1.5
+    count: 1
     speed: 5
-    fireRate: 3
+    fireRate: 5
     abilityValue: 2
     isPierce: 1
-    damageIncrease: 1
+    damageIncrease: 0.5
     countIncrease: 1
     speedIncrease: 0
-    fireRateDecrease: 0
+    fireRateDecrease: 0.5
     abilityValueIncrease: 0.5
     projectilePrefab: {fileID: 6164056080916582720, guid: 7d789975ce7319746ae71004bc7a9a9a, type: 3}
     projectileLifetime: 5
