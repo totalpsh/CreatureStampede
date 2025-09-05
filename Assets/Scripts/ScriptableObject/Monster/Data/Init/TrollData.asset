@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TrollData
   m_EditorClassIdentifier: 
   monsterName: Troll
-  grade: 0
+  grade: 1
   maxHealth: 30
   moveSpeed: 1
   damage: 20
