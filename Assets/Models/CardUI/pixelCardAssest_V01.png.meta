@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: e74208da432f65743b3a49ca22451668
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 405
+        width: 86
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7693dee1248c8e3459290aca1df5290e
+      internalID: 1243329313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_16
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 445
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0394d6b853077ab4fa8648a3184b3381
+      internalID: -1236553897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_17
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 445
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e453978e9926d146b02a5484e79ff49
+      internalID: -587191830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_41
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 360
+        width: 96
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ff3d1017b66575408d4ffdff1b316d5
+      internalID: 912830848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_56
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 322
+        width: 96
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59eb9c345c4432d4ab1a08896df3caba
+      internalID: 848449712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_74
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 282
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05db2bb8563f44049a57852898838b1d
+      internalID: 1921176689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelCardAssest_V01_81
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 148
+        width: 100
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612bb02ea60b1a944a898115ab722806
+      internalID: 1460476410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      pixelCardAssest_V01_0: 1291074982
+      pixelCardAssest_V01_1: 499059038
+      pixelCardAssest_V01_10: -1746560831
+      pixelCardAssest_V01_11: -217760103
+      pixelCardAssest_V01_12: -1578276294
+      pixelCardAssest_V01_13: 1956486081
+      pixelCardAssest_V01_14: -51167090
+      pixelCardAssest_V01_15: 276998312
+      pixelCardAssest_V01_16: -1236553897
+      pixelCardAssest_V01_17: -587191830
+      pixelCardAssest_V01_18: -552057383
+      pixelCardAssest_V01_19: 1329910221
+      pixelCardAssest_V01_2: -67286615
+      pixelCardAssest_V01_20: -761875703
+      pixelCardAssest_V01_21: -683731754
+      pixelCardAssest_V01_22: -1631905060
+      pixelCardAssest_V01_23: 1687529871
+      pixelCardAssest_V01_24: -1104486199
+      pixelCardAssest_V01_25: 767344758
+      pixelCardAssest_V01_26: 598675769
+      pixelCardAssest_V01_27: 1625752973
+      pixelCardAssest_V01_28: -1346164939
+      pixelCardAssest_V01_29: 368979918
+      pixelCardAssest_V01_3: -922682413
+      pixelCardAssest_V01_30: 207495860
+      pixelCardAssest_V01_31: -1490912035
+      pixelCardAssest_V01_32: -1628958757
+      pixelCardAssest_V01_33: -585068972
+      pixelCardAssest_V01_34: -1083265965
+      pixelCardAssest_V01_35: -1232854121
+      pixelCardAssest_V01_36: 164931770
+      pixelCardAssest_V01_37: -1942366181
+      pixelCardAssest_V01_38: 2122417387
+      pixelCardAssest_V01_39: 1158545886
+      pixelCardAssest_V01_4: 598966477
+      pixelCardAssest_V01_40: 1666121396
+      pixelCardAssest_V01_41: 912830848
+      pixelCardAssest_V01_42: -1686548166
+      pixelCardAssest_V01_43: 1292287269
+      pixelCardAssest_V01_44: -2032509618
+      pixelCardAssest_V01_45: 1222281069
+      pixelCardAssest_V01_46: -719954600
+      pixelCardAssest_V01_47: 1136284588
+      pixelCardAssest_V01_48: 633926086
+      pixelCardAssest_V01_49: -849244125
+      pixelCardAssest_V01_5: 2003134322
+      pixelCardAssest_V01_50: 1948572459
+      pixelCardAssest_V01_51: 823103321
+      pixelCardAssest_V01_52: -1937265493
+      pixelCardAssest_V01_53: 1483103669
+      pixelCardAssest_V01_54: -993851970
+      pixelCardAssest_V01_55: -194582495
+      pixelCardAssest_V01_56: 848449712
+      pixelCardAssest_V01_57: -983027768
+      pixelCardAssest_V01_58: -351125058
+      pixelCardAssest_V01_59: 1287792041
+      pixelCardAssest_V01_6: -1926391098
+      pixelCardAssest_V01_60: -1831916460
+      pixelCardAssest_V01_61: 1481845266
+      pixelCardAssest_V01_62: 1137341061
+      pixelCardAssest_V01_63: 534804811
+      pixelCardAssest_V01_64: -9054867
+      pixelCardAssest_V01_65: -269245792
+      pixelCardAssest_V01_66: -63134311
+      pixelCardAssest_V01_67: 1548294542
+      pixelCardAssest_V01_68: -2082497917
+      pixelCardAssest_V01_69: -2139665331
+      pixelCardAssest_V01_7: 1243329313
+      pixelCardAssest_V01_70: 260345219
+      pixelCardAssest_V01_71: -239420029
+      pixelCardAssest_V01_72: -1220248596
+      pixelCardAssest_V01_73: -1527480981
+      pixelCardAssest_V01_74: 1921176689
+      pixelCardAssest_V01_75: 17503900
+      pixelCardAssest_V01_76: 822640116
+      pixelCardAssest_V01_77: 703633908
+      pixelCardAssest_V01_78: -1066887070
+      pixelCardAssest_V01_79: 959080833
+      pixelCardAssest_V01_8: 1511950988
+      pixelCardAssest_V01_80: 2105457793
+      pixelCardAssest_V01_81: 1460476410
+      pixelCardAssest_V01_82: 168176650
+      pixelCardAssest_V01_83: -603983580
+      pixelCardAssest_V01_84: -1909319327
+      pixelCardAssest_V01_9: -1096328414
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -9,15 +9,16 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     private Dictionary<SceneType, SceneBase> _scenes = new ();
     private SceneBase _prevScene;
     private SceneBase _currentScene;
-    
+    private SceneType _currentSceneType;
+
     Coroutine _loadingCoroutine;
     
     private void Awake()
     {
         // 씬 클래스와 enum 매핑
         _scenes.Add(SceneType.Intro, new IntroScene());
-        _scenes.Add(SceneType.Town, new TownScene());
-        _scenes.Add(SceneType.Battle, new BattleScene());
+        _scenes.Add(SceneType.Dungeon, new DungeonScene());
+
     }
 
     public void LoadScene(SceneType sceneType)
@@ -48,6 +49,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         // 이전 씬과 현재 씬의 기록을 전환
         _prevScene = _currentScene;
         _currentScene = scene;
+        _currentSceneType = sceneType;
         
         // 씬 로딩 시작
         var operation = SceneManager.LoadSceneAsync(sceneType.ToString());
@@ -75,5 +77,16 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         // 로딩된 씬의 진입 콜백 실행
         _currentScene.OnSceneEnter();
         _loadingCoroutine = null;
+    }
+
+    public void RestartScene()
+    {
+        if (_loadingCoroutine != null) StopCoroutine(_loadingCoroutine);
+
+        // 타임스케일이 0일 수 있으니 복구
+        if (Time.timeScale == 0f) Time.timeScale = 1f;
+
+        // 동일 씬 다시 로드
+        _loadingCoroutine = StartCoroutine(LoadSceneProcess(_currentSceneType));
     }
 }
