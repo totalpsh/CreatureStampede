@@ -17,16 +17,17 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 0732ff4561fbbc34ca5280cc077819f0, type: 3}
     description: "\uD654\uC0B4\uC744 \uC55E\uC73C\uB85C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
     level: 1
+    maxLevel: 5
     damage: 3
     count: 3
-    speed: 15
-    fireRate: 1
+    speed: 11
+    fireRate: 3
     abilityValue: 0
     isPierce: 0
-    damageIncrease: 0
+    damageIncrease: 0.5
     countIncrease: 2
-    speedIncrease: 0
-    fireRateDecrease: 0
+    speedIncrease: 1
+    fireRateDecrease: 0.5
     abilityValueIncrease: 0
     projectilePrefab: {fileID: 6164056080916582720, guid: e5aa5ff44d5baf247b931a62237259e3, type: 3}
     projectileLifetime: 5

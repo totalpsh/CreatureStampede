@@ -71,7 +71,14 @@ public class UICardSlot : UIBase
 
                 int level = player.GetWeaponLevel(weaponData);
 
-                levelText.text = $"Lv. {level.ToString()}";
+                if(level + 1 == 5)
+                {
+                    levelText.text = $"Lv. Max";
+                }
+                else
+                {
+                    levelText.text = $"Lv. {(level + 1).ToString()}";
+                }
 
                 break;
             case ButtonMode.GetScoreChest:
