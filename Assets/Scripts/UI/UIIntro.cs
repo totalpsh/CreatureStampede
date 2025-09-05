@@ -12,7 +12,7 @@ public class UIIntro : UIBase
     // Start is called before the first frame update
     void Start()
     {
-        startButton.onClick.AddListener(() => SceneLoadManager.Instance.LoadScene(SceneType.PlayerTest));
+        startButton.onClick.AddListener(() => SceneLoadManager.Instance.LoadScene(SceneType.Dungeon));
         //settingButton.onClick.AddListener();
         exitButton.onClick.AddListener(Application.Quit);   
     }

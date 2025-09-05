@@ -4,7 +4,7 @@ public enum SceneType
     Town,
     Battle,
     PlayerTest,
-    MonsterDev,
+    Dungeon,
 
 }
 
