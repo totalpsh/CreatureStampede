@@ -8,6 +8,7 @@ public class IceBullet : Bullet
     {
         if (target == null) return;
 
-        target.StopForDuration(abilityValue);
+        target.StopForDuration(abilityValue, Color.blue);
+        
     }
 }

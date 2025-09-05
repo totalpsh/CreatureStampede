@@ -213,20 +213,22 @@ public class MonsterBase : MonoBehaviour, IDamagable
         StartCoroutine(DestroyAfterDelay(0.5f));
     }
 
-    public void StopForDuration(float duration)
+    public void StopForDuration(float duration, Color newColor)
     {
         if (monsterStopCoroutine != null)
         {
             StopCoroutine(monsterStopCoroutine);
 
         }
-        monsterStopCoroutine = StartCoroutine(StopMonster(duration));
+        monsterStopCoroutine = StartCoroutine(StopMonster(duration, newColor));
 
         
     }
 
-    IEnumerator StopMonster(float duration)
+    IEnumerator StopMonster(float duration, Color newColor)
     {
+        Color color = spriteRenderer.color;
+        spriteRenderer.color = newColor;
         animator.SetBool(MonsterAnimParam.IsMoving, false);
         canMove = false;
         rb.simulated = false;
@@ -236,13 +238,15 @@ public class MonsterBase : MonoBehaviour, IDamagable
         rb.simulated = true;
 
         animator.SetBool(MonsterAnimParam.IsMoving, true);
+        spriteRenderer.color = color;
+
     }
 
     protected void HitReaction()
     {
         if (Grade == MonsterGrade.Normal)
         {
-            StopForDuration(0.2f);
+            StopForDuration(0.2f, Color.red);
         }
         if (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash(MonsterAnimParam.Hit))
         {
