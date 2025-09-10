@@ -6,7 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
-
+// ì¸í„°í˜ì´ìŠ¤ - ì¶”ìƒí™”ì˜ í™œìš© ì¢‹ìŒ
+// ì¸í„°í˜ì´ìŠ¤ì™€ ì¶”ìƒí´ë˜ìŠ¤ì˜ ì ìš©ì‹œì ì— ëŒ€í•œ ê³ ì°° ê°€ì§€ê³  ê°€ê¸°
 public interface IDamagable
 {
     void TakePhysicalDamage(float damage);
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour, IDamagable
     public PlayerController controller;
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
+    // ì´ë²¤íŠ¸ í™œìš© ì¢‹ìŒ
     public event Action<float, float> OnChangeHealth;
     public event Action OnCharacterDie;
 
@@ -28,16 +30,16 @@ public class Player : MonoBehaviour, IDamagable
     [field: SerializeField] public float Damage { get; private set; }
     public bool IsDead { get; private set; } = false;
 
-    // ÇÇ°İÁß
+    // ï¿½Ç°ï¿½ï¿½ï¿½
     private bool isHit = false;
 
-    // »ç¿ë °¡´ÉÇÑ ¹«±âµé
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private BaseWeapon[] baseWeapons;
 
-    // ÇöÀç »ç¿ëÇÏ´Â ¹«±â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
     [field: SerializeField] public List<BaseWeapon> Weapons { get; private set; }
 
-    // ½ÃÀÛ ¹«±â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private BaseWeapon startWeapon;
 
     private void Awake()
@@ -51,6 +53,9 @@ public class Player : MonoBehaviour, IDamagable
     public void Init()
     {
         DataInitialization();
+        // Data.PlayerData ê°€ ì „ë°˜ì ìœ¼ë¡œ ë°˜ë³µë¨
+        // ìºì‹±í•´ì„œ í™œìš©í•˜ë©´ ì¢‹ë‹¤
+        // PlayerData data = Data.PlayerData
         controller.DataInitialization(Data.PlayerData.moveSpeed, Data.PlayerData.dashSpeed, Data.PlayerData.dashDuration, Data.PlayerData.dashCooldown);
         foreach (var weapon in baseWeapons)
         {
@@ -100,7 +105,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             isHit = true;
             playerAnimator.TriggerIsShot();
-            // ÇÇ°İ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ıµ¿¾È ¹«Àû
+            // ï¿½Ç°ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             StartCoroutine(InvincibilityCoroutine());
         }
     }
@@ -122,7 +127,7 @@ public class Player : MonoBehaviour, IDamagable
         DisableAll();
         
         playerAnimator.TriggerIsDead();
-        // ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı ÈÄ ÀÌº¥Æ® È£Ãâ
+        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ® È£ï¿½ï¿½
         StartCoroutine(DeathCoroutine());
     }
 
@@ -144,21 +149,21 @@ public class Player : MonoBehaviour, IDamagable
         ChangeHealth(healAmount);
     }
 
-    // ¹«±â ÀåÂø
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void EquipWeapons(WeaponSO data)
     {
         if(Weapons.Count >= Data.PlayerData.maxWeaponCount)
         {
-            Debug.Log("ÃÖ´ë ¹«±â °³¼ö ÃÊ°ú");
+            Debug.Log("ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½");
             return;
         }
 
-        // ÇöÀç °¡Áö°í ÀÖ´Â ¹«±âÁß data¿Í °°Àº ¹«±â°¡ ÀÖ´Â Áö È®ÀÎ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½Ö´ï¿½ ï¿½ï¿½ È®ï¿½ï¿½
         for (int i = 0; i < baseWeapons.Length; i++)
         {
             if(baseWeapons[i].Data == data)
             {
-                // °°Àº ¹«±â°¡ ÀÖÀ¸¸é È°¼ºÈ­ ÈÄ ÇöÀç °¡Áö°í ÀÖ´Â ¹«±â¿¡ Ãß°¡
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ß°ï¿½
                 baseWeapons[i].gameObject.SetActive(true);
                 Weapons.Add(baseWeapons[i]);
                 return;
@@ -166,7 +171,7 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
-    // ¹«±â ·¹º§¾÷
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void LevelUpWeapon(WeaponSO data)
     {
         foreach(var weapon in Weapons)
@@ -179,7 +184,7 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
     
-    // ÇöÀç ¹«±â¸¦ °¡Áö°í ÀÖ´ÂÁö È®ÀÎ ÈÄ °¡Áö°í ÀÖÀ¸¸é ·¹º§ ¹İÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     public int GetWeaponLevel(WeaponSO data)
     {
         foreach (var weapon in Weapons)
@@ -192,7 +197,7 @@ public class Player : MonoBehaviour, IDamagable
         return 0;
     }
 
-    // Á×¾úÀ»¶§ ¹«±â ºñÈ°¼ºÈ­
+    // ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
     public void DisableAll()
     { 
         foreach (var weapon in Weapons)

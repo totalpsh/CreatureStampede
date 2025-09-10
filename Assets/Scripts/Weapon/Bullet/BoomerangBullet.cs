@@ -16,7 +16,7 @@ public class BoomerangBullet : Bullet
         base.Awake();
         circleCollider2D = GetComponent<CircleCollider2D>();
         player = PlayerManager.Instance.Player;
-        isBulletBoundary = false; // °æ°è Ã¼Å© ºñÈ°¼ºÈ­
+        isBulletBoundary = false; // ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½È°ï¿½ï¿½È­
         isReturning = false;
     }
 
@@ -44,7 +44,7 @@ public class BoomerangBullet : Bullet
         boomerangCoroutine = StartCoroutine(BoomerangRoundTrip());
 
     }
-    // ¿Õº¹ ¿îµ¿À» Ã³¸®ÇÏ´Â ÄÚ·çÆ¾
+    // ï¿½Õºï¿½ ï¿½îµ¿ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ú·ï¿½Æ¾
     private IEnumerator BoomerangRoundTrip()
     {
         isReturning = false;
@@ -55,15 +55,16 @@ public class BoomerangBullet : Bullet
         yield return new WaitForSeconds(0.01f);
         circleCollider2D.enabled = true;
 
-        // ÀÌÁ¦ ÇÃ·¹ÀÌ¾î¿¡°Ô µ¹¾Æ°©´Ï´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ï´ï¿½.
         isReturning = true;
         if (player != null && _rigidbody != null)
         {
-            // ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­µÉ ¶§±îÁö °è¼Ó ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿ÇÕ´Ï´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Õ´Ï´ï¿½.
             while (gameObject.activeSelf)
             {
                 Vector2 dirToPlayer = (player.transform.position - transform.position).normalized;
                 _rigidbody.velocity = dirToPlayer * speed;
+                // new WaitForSeconds ìºì‹± ê³ ë ¤
                 yield return new WaitForSeconds(0.1f);
             }
         }
@@ -71,14 +72,14 @@ public class BoomerangBullet : Bullet
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        // µ¹¾Æ¿À´Â ÁßÀÌ°í ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹Çß´Ù¸é ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
+        // ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½æµ¹ï¿½ß´Ù¸ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½Õ´Ï´ï¿½.
         if (isReturning && collision.CompareTag("Player"))
         {
             BulletSetActive();
             return;
         }
 
-        // ±× ¿ÜÀÇ Ãæµ¹Àº ±âº» ·ÎÁ÷À» µû¸¨´Ï´Ù.
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         base.OnTriggerEnter2D(collision);
     }
 

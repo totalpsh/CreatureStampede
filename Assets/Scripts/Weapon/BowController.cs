@@ -12,19 +12,19 @@ public class BowController : BaseWeapon
 
     protected override void Awake()
     {
-        base.Awake(); // BaseWeaponÀÇ Awake È£Ãâ
+        base.Awake(); // BaseWeaponï¿½ï¿½ Awake È£ï¿½ï¿½
         
     }
 
     protected override void Start()
     {
-        base.Start(); // BaseWeaponÀÇ Start È£Ãâ
+        base.Start(); // BaseWeaponï¿½ï¿½ Start È£ï¿½ï¿½
         playerController = player.GetComponent<PlayerController>();
     }
     private void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= fireRate) // fireRate´Â BaseWeapon¿¡¼­ °ü¸®µË´Ï´Ù.
+        if(timer >= fireRate) // fireRateï¿½ï¿½ BaseWeaponï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë´Ï´ï¿½.
         {
             timer = 0f;
             BulletSetting();
@@ -36,28 +36,30 @@ public class BowController : BaseWeapon
         //if (!player.scanner.nearestTarget)
         //    return;
 
-        // ¹ß»ç ¹æÇâ ¼³Á¤
+        // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector2 direction = playerController.MovementDirection;
         if (direction == Vector2.zero)
         {
-            // ÇÃ·¹ÀÌ¾î°¡ ¸ØÃçÀÖÀ» °æ¿ì, ¹Ù¶óº¸´Â ¹æÇâÀ¸·Î ¹ß»ç
+            // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
             direction = playerController.LastMovementDirection;
         }
 
-        float startAngle = -(count - 1) * Data.WeaponData.spreadAngle / 2; // ½ÃÀÛ °¢µµ °è»ê
+        float startAngle = -(count - 1) * Data.WeaponData.spreadAngle / 2; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
         for (int i = 0; i < count; i++)
         {
+            // íŠ¸ëžœìŠ¤í¼ ë§ê³  Bullet ìœ¼ë¡œ ê°€ì ¸ì˜¤ê³ 
+            // íŠ¸ëžœìŠ¤í¼ ì¡°ìž‘ì€ Bullet ì˜ ë©”ì„œë“œë¥¼ í†µí•´ ì´ˆê¸°í™” ê³ ë ¤
             Transform bullet = GetBullet().transform;
-            bullet.position = player.transform.position; // ¹ß»ç À§Ä¡ ÃÊ±âÈ­
+            bullet.position = player.transform.position; // ï¿½ß»ï¿½ ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­
 
-            // ÇöÀç °¢µµ °è»ê
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             float angle = startAngle + i * Data.WeaponData.spreadAngle;
-            // ¹æÇâ º¤ÅÍ È¸Àü
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
             Vector2 fireDirection = Quaternion.Euler(0, 0, angle) * direction;
 
-            bullet.position = transform.position; // ¹ß»ç À§Ä¡ ¼³Á¤
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, fireDirection); // ¹ß»ç ¹æÇâ ¼³Á¤
+            bullet.position = transform.position; // ï¿½ß»ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, fireDirection); // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             bullet.GetComponent<Bullet>().Init(damage, Data.WeaponData.isPierce, fireDirection, Data.WeaponData.speed);
             bullet.SetParent(player.bulletpoolGO.transform);
         }

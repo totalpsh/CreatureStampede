@@ -57,4 +57,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         isQuitting = true;
     }
+
+    public void Init()
+    {
+    }
 }

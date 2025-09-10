@@ -26,5 +26,6 @@ public class PlayerData
 [CreateAssetMenu(fileName = "New Player", menuName = "Players/New Player")]
 public class PlayerSO : ScriptableObject
 {
+    // 특별한 목적이 없다면 PlayerData 의 데이터를 SO 에서 관리하는 것도 방법
     [field: SerializeField] public PlayerData PlayerData { get; private set; }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Scanner : MonoBehaviour
 {
     public LayerMask targetLayer;
-    public Collider2D[] targets; // RaycastHit2D[]¿¡¼­ Collider2D[]·Î º¯°æµÇ¾ú½À´Ï´Ù.
+    public Collider2D[] targets; // RaycastHit2D[]ï¿½ï¿½ï¿½ï¿½ Collider2D[]ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
     public Transform nearestTarget;
 
     private Camera mainCamera;
@@ -19,12 +19,14 @@ public class Scanner : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        // Ä«¸Ş¶óÀÇ ¿ùµå ÁÂÇ¥ ±âÁØ Å©±â °è»ê
+        // Ä«ï¿½Ş¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
         float cameraHeight = mainCamera.orthographicSize * 2;
         float cameraWidth = cameraHeight * mainCamera.aspect;
         Vector2 boxSize = new Vector2(cameraWidth, cameraHeight);
 
-        // È­¸é Å©±â¿¡ ¸Â´Â »ç°¢Çü ¿µ¿ªÀ¸·Î ¸ğµç Å¸°ÙÀ» °¨Áö
+        // È­ï¿½ï¿½ Å©ï¿½â¿¡ ï¿½Â´ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ì„±ëŠ¥ì— ë¶€í•˜ê°€ ìˆëŠ” ê¸°ëŠ¥ NonAlloc ì„ ê°™ì´ ì²´í¬í•´ë³´ì
+        // ì§€ê¸ˆì€ ë§¤ë²ˆ ë°°ì—´ì„ ìƒˆë¡œ ë§Œë“¬
         targets = Physics2D.OverlapBoxAll(mainCamera.transform.position, boxSize, 0f, targetLayer);
         nearestTarget = GetNearest();
     }
@@ -32,15 +34,15 @@ public class Scanner : MonoBehaviour
     Transform GetNearest()
     {
         Transform result = null;
-        float diff = float.MaxValue; // ÃÖ´ë°ªÀ¸·Î ÃÊ±âÈ­
+        float diff = float.MaxValue; // ï¿½Ö´ë°ªï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
-        // Collider2D ¹è¿­À» ¼øÈ¸ÇÏµµ·Ï ¼öÁ¤
+        // Collider2D ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (Collider2D target in targets)
         {
             Vector2 myPos = transform.position;
             Vector2 targetPos = target.transform.position;
 
-            float curDiff = Vector2.Distance(myPos, targetPos); // ÇöÀç Å¸°Ù°úÀÇ °Å¸®
+            float curDiff = Vector2.Distance(myPos, targetPos); // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
 
             if(curDiff < diff)
             {
@@ -53,14 +55,14 @@ public class Scanner : MonoBehaviour
         return result;
     }
 
-    // µğ¹ö±×¿ë
+    // ï¿½ï¿½ï¿½ï¿½×¿ï¿½
     private void OnDrawGizmos()
     {
         if (mainCamera == null) return;
 
         Gizmos.color = Color.red;
         
-        // Ä«¸Ş¶ó ºä¿¡ ¸Â´Â »ç°¢Çü ±×¸®±â
+        // Ä«ï¿½Ş¶ï¿½ ï¿½ä¿¡ ï¿½Â´ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
         float cameraHeight = mainCamera.orthographicSize * 2;
         float cameraWidth = cameraHeight * mainCamera.aspect;
         Vector3 boxSize = new Vector3(cameraWidth, cameraHeight, 0);

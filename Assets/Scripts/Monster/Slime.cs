@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 
 public class Slime : MonsterBase
 {
+    // ??
     public IObjectPool<Slime> pool;
     protected override void SetCharacterDirection()
     {

@@ -17,6 +17,7 @@ public class PlayerAnimator : MonoBehaviour
     public void SetMoveAnimation(bool isMoving)
     {
         if(isDead) return;
+        // 고정 문자열 사용 지양, 상수/해시 사용 권장
         animator.SetBool("IsMove", isMoving);
     }
 

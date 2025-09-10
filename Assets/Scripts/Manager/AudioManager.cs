@@ -50,7 +50,7 @@ public class AudioManager : Singleton<AudioManager>
     void Init()
     {
         bgmClip = Resources.Load<AudioClip>(Path.Sound + "BGM/BGM");
-        // ������� �÷��̾� ����
+        // ������� �÷��̾� ����
         GameObject bgmObjcet = new GameObject("BGM Player");
         bgmObjcet.transform.parent = this.transform;
         bgmPlayer = bgmObjcet.AddComponent<AudioSource>();
@@ -60,7 +60,7 @@ public class AudioManager : Singleton<AudioManager>
         bgmPlayer.Play();
 
 
-        // ȿ���� �÷��̾� ����
+        // ȿ���� �÷��̾� ����
         GameObject sfxObjcet = new GameObject("SFX Player");
         sfxObjcet.transform.parent = this.transform;
         sfxPlayers = new AudioSource[channels];
@@ -84,8 +84,11 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlaySfx(AudioClip clip)
     {
+        // 사용하지 않는 플레이어 찾는 구조 좋음
+        // 실행가능한 플레이어를 얻어오는 기능을 별도로 두는 것도 고려
         for (int i = 0; i < sfxPlayers.Length; i++)
         {
+            // 루프 로직 많이 활용됨
             int loopIndex = (i + channelIndex) % sfxPlayers.Length;
 
             if (!sfxPlayers[loopIndex].isPlaying)

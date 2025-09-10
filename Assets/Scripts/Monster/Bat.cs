@@ -54,6 +54,8 @@ public class Bat : MonsterBase
     {
         base.Attack(player, delay);
 
+        // 애님 키값 상수 활용하는 것 좋음
+        // 애니메이션 성능면에서는 해시로 활용하는게 빠름 -> 문자열 비교 안해도 되기 때문
         animator.SetTrigger(MonsterAnimParam.Attack);
     }
 
@@ -68,6 +70,8 @@ public class Bat : MonsterBase
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            // 구조상으로는 타겟을 출동했을때 찾는게 개념상으로는 맞음
+            // 대상을 이미 정해두고 진행할거라면 타겟을 매개변수로 활용할 필요가 없음
             Attack(target, 0.5f);
         }
 

@@ -45,6 +45,7 @@ public static class PrefKey
     
 }
 
+// 나중에 범위가 커진다면 클래스파일 분리해도 좋음
 public static class MonsterAnimParam
 {
     public const string MoveX = "MoveX";

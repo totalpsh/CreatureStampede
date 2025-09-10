@@ -20,6 +20,7 @@ public class UIGetItem : UIBase
 
     private void OnEnable()
     {
+        // 한번 만들었으면 Clear 하고 사용하는 것을 고려
         playerWeapons = new List<WeaponSO>();
 
         _player = PlayerManager.Instance.Player;
@@ -58,6 +59,7 @@ public class UIGetItem : UIBase
         
     }
 
+    // 슬롯을 보여주기 위해서라기엔.. 반복문이 좀 많은 느낌
     public void ShowSlot()
     {
         openCards.Clear();
@@ -75,6 +77,7 @@ public class UIGetItem : UIBase
             if(!hasWeapon) openCardList.Add(slots[i]);
         }
 
+        // 목적없는 코드??
         for(int i = 0; i < playerWeapons.Count; i++)
         {
             Debug.Log(playerWeapons[i].name);

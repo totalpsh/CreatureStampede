@@ -108,6 +108,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
         {
             Die();
             
+            // Die 가 좀더 보편적인 표현
             OnHpZero?.Invoke(this);
         }
     }
@@ -148,6 +149,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     }
 
+    // player 보다 target 이 보편적
     protected virtual void Attack(Player player, float delay = 0.5f)
     {
         if (!canAttack)
@@ -157,6 +159,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     }
 
+    // 스테이중에 계속 요청하는 구조.
+    // 차라리 엔터헀을때 공격을 일정 주기마다 실행 -> 죽으면 취소가 관리면에서 편함
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player"))
@@ -234,6 +238,8 @@ public class MonsterBase : MonoBehaviour, IDamagable
         canMove = false;
         rb.simulated = false;
 
+        // 동일한 값을 여러개 사용한다면 캐싱한느 것도 방법
+        // 빈도가 많지 않을것 같아서 큰상관은 없을듯
         yield return new WaitForSeconds(duration);
         canMove = true;
         rb.simulated = true;
@@ -243,6 +249,7 @@ public class MonsterBase : MonoBehaviour, IDamagable
 
     }
 
+    // 노멀, 엘리트 로직이 자꾸 분기되는 것 같은데 그럼 차라리 상속구조 활용도 고려 
     protected void HitReaction()
     {
         if (Grade == MonsterGrade.Normal)
@@ -267,13 +274,15 @@ public class MonsterBase : MonoBehaviour, IDamagable
     {
         HitReaction();
         SetHealth(CurrentHealth - damage);
+        
+        // 데미지 처리 말고 Die 에서 처리가 직관적
         if (CurrentHealth == 0)
         {
-            // �÷��̾�� ����ġ �ֱ�
+            // �÷��̾�� ����ġ �ֱ�
             StageManager.Instance.AddExp(Exp);
-            // ���� ���ϱ�
+            // ���� ���ϱ�
             StageManager.Instance.AddScore(Score);
-            // ����ϱ�
+            // ����ϱ�
             DropItem();
         }
     }

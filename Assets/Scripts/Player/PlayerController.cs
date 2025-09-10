@@ -7,23 +7,23 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
 
-    SpriteRenderer spriteRenderer; // Ä³¸¯ÅÍ ½ºÇÁ¶óÀÌÆ® ·»´õ·¯
+    SpriteRenderer spriteRenderer; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     PlayerAnimator playerAnimator;
 
-    [SerializeField] private float moveSpeed = 5f; // ÀÌµ¿ ¼Óµµ
+    [SerializeField] private float moveSpeed = 5f; // ï¿½Ìµï¿½ ï¿½Óµï¿½
 
-    // ´ë½Ã °ü·Ã º¯¼ö
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [Header("Dash Settings")]
-    public float dashSpeed = 20f;     // ´ë½Ã ¼Óµµ
-    [Range(0.1f, 2.0f)] public float dashDuration = 0.2f; // ´ë½Ã Áö¼Ó ½Ã°£
-    public float dashCooldown = 1f;   // ´ë½Ã ÄğÅ¸ÀÓ
+    public float dashSpeed = 20f;     // ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    [Range(0.1f, 2.0f)] public float dashDuration = 0.2f; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    public float dashCooldown = 1f;   // ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
 
 
-    private bool isDashing = false;      // ÇöÀç ´ë½Ã ÁßÀÎÁö È®ÀÎ
-    private bool canDash = true;         // ´ë½Ã »ç¿ë °¡´É ¿©ºÎ È®ÀÎ
+    private bool isDashing = false;      // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+    private bool canDash = true;         // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 
-    private Vector2 dashDirection; // ´ë½Ã ¹æÇâ º¤ÅÍ
-    Vector2 movementDirection = Vector2.zero; // ÀÌµ¿ ¹æÇâ º¤ÅÍ
+    private Vector2 dashDirection; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Vector2 movementDirection = Vector2.zero; // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Vector2 LastMovementDirection { get; private set; } = Vector2.right;
     public Vector2 MovementDirection
     {
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
             if (movementDirection != Vector2.zero)
             {
                 LastMovementDirection = movementDirection;
-                if (movementDirection.x != 0) // ÁÂ¿ì ÀÌµ¿ ¹æÇâ¿¡ µû¶ó ½ºÇÁ¶óÀÌÆ® µÚÁı±â
+                if (movementDirection.x != 0) // ï¿½Â¿ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     spriteRenderer.flipX = movementDirection.x < 0;
                 }
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ´ë½Ã ÄğÅ¸ÀÔ ¿¬°áÇÒ ÀÌº¥Æ® ¾×¼Ç
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½×¼ï¿½
     public event Action dashAction;
 
     private void Awake()
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         this.dashCooldown = dashCooldown;
     }
 
+    // í™œìš© ì¢‹ë‹¤ -> ì™œ ì¨ì•¼í•˜ëŠ”ê°€ì— ëŒ€í•´ëŠ” íŒŒì•…í•˜ê³  ìˆëŠ”ì§€??
     private void FixedUpdate()
     {
         if (isDashing)
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDashing = true;
 
-        // ´ë½Ã ¹æÇâ ¼³Á¤ (ÇöÀç ÀÌµ¿ ¹æÇâ ¶Ç´Â ¹Ù¶óº¸´Â ¹æÇâ)
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½)
         Vector2 inputDir = MovementDirection;
         if (inputDir != Vector2.zero)
         {
@@ -112,31 +113,33 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // ¸ØÃçÀÖÀ» °æ¿ì, ¸¶Áö¸· ÀÌµ¿ ¹æÇâÀ¸·Î ´ë½Ã
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             dashDirection = LastMovementDirection;
         }
-        // ´ë½Ã µ¿¾È ¹«Àû
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
-        // ´ë½Ã ¼Óµµ Àû¿ë
+        // ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         _rigidbody.velocity = dashDirection * dashSpeed;
 
-        // ´ë½Ã Áö¼Ó ½Ã°£¸¸Å­ ´ë±â
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½Å­ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(dashDuration);
-        // ´ë½Ã ½ÇÇà ÈÄ ÄğÅ¸ÀÔUI ¹İ¿µÀ» À§ÇÑ ÀÌº¥Æ® ½ÇÇà
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½UI ï¿½İ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // ì´ë¦„ì´ ëŒ€ì‹œ ì‹œì‘ì‹œì¸ì§€, ì¢…ë£Œì‹œì¸ì§€ ëª¨í˜¸í•¨
+        // ë³´í†µ ì‹œì‘ìœ¼ë¡œ ì¸ì‹ë¼ëŠ” ê²½ìš°ê°€ ë§ìŒ
         dashAction?.Invoke();
-        // ´ë½Ã Á¾·á
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         isDashing = false;
         _rigidbody.velocity = Vector2.zero;
 
-        // ¹«Àû ÇØÁ¦
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
 
-        // ÄğÅ¸ÀÓ Àû¿ë
+        // ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
-    // ¸®±âµå¹Ùµğ ¼Óµµ 0À¸·Î
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½Óµï¿½ 0ï¿½ï¿½ï¿½ï¿½
     public void StopMovement()
     {
         _rigidbody.velocity = Vector2.zero;

@@ -8,58 +8,58 @@ public class WeaponData
 {
     [Header("Weapon Settings")]
 
-    [Tooltip("ÀÌ¸§")]
-    public string name; // ÀÌ¸§
+    
+    // íˆ´íŒìœ¼ë¡œ ìì„¸í•˜ê²Œ ì •ë³´ë¥¼ ê³µìœ í•˜ê³  ìˆì–´ì„œ ì¢‹ë‹¤
     //[SerializeField] private string skillIconPath;
-    [Tooltip("¾ÆÀÌÄÜ")]
-    public Sprite icon; // ¹«±â ¾ÆÀÌÄÜ
-    [Tooltip("¼³¸í")] // ¼³¸í
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public Sprite icon; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½")] // ï¿½ï¿½ï¿½ï¿½
     public string description;
 
-    [Tooltip("·¹º§")]
-    public int level; // ·¹º§
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½")]
+    public int level; // ï¿½ï¿½ï¿½ï¿½
 
-    [Tooltip("ÃÖ´ë ·¹º§")]
-    public int maxLevel = 5; // ÃÖ´ë ·¹º§
+    [Tooltip("ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public int maxLevel = 5; // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    [Tooltip("°ø°İ·Â")]
-    public float damage = 5f; // °ø°İ·Â
-    [Tooltip("¹ß»ç °³¼ö")]
-    public int count = 1; // ¹ß»ç °³¼ö
-    [Tooltip("¹ß»ç ¼Óµµ, È¸Àü ¼Óµµ")]
-    public float speed = 20f; // ¹ß»ç ¼Óµµ, È¸Àü ¼Óµµ
-    [Tooltip("¹ß»ç ¼Óµµ (ÃÊ´ç ¹ß»ç È½¼ö)")]
-    public float fireRate = 0.5f; // ¹ß»ç ¼Óµµ (ÃÊ´ç ¹ß»ç È½¼ö)
-    [Tooltip("´É·Â °ª")]
-    public float abilityValue = 0f; // ´É·Â °ª
+    [Tooltip("ï¿½ï¿½ï¿½İ·ï¿½")]
+    public float damage = 5f; // ï¿½ï¿½ï¿½İ·ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public int count = 1; // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½Óµï¿½, È¸ï¿½ï¿½ ï¿½Óµï¿½")]
+    public float speed = 20f; // ï¿½ß»ï¿½ ï¿½Óµï¿½, È¸ï¿½ï¿½ ï¿½Óµï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½Óµï¿½ (ï¿½Ê´ï¿½ ï¿½ß»ï¿½ È½ï¿½ï¿½)")]
+    public float fireRate = 0.5f; // ï¿½ß»ï¿½ ï¿½Óµï¿½ (ï¿½Ê´ï¿½ ï¿½ß»ï¿½ È½ï¿½ï¿½)
+    [Tooltip("ï¿½É·ï¿½ ï¿½ï¿½")]
+    public float abilityValue = 0f; // ï¿½É·ï¿½ ï¿½ï¿½
 
-    [Tooltip("°üÅë ¿©ºÎ")]
-    public bool isPierce = false; // °üÅë ¿©ºÎ    
+    // ê´€í†µ íšŸìˆ˜ë„ ë§ì´ ê´€ë¦¬í•¨
+    public bool isPierce = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    
 
     [Header("Level Up Settings")]
 
-    [Tooltip("°ø°İ·Â Áõ°¡·®")]
-    public float damageIncrease = 2f; // °ø°İ·Â Áõ°¡·®
-    [Tooltip("¹ß»ç °³¼ö Áõ°¡·®")]
-    public int countIncrease = 1; // ¹ß»ç °³¼ö Áõ°¡·®
-    [Tooltip("¹ß»ç ¼Óµµ, È¸Àü ¼Óµµ Áõ°¡·®")]
-    public float speedIncrease = 2f; // ¹ß»ç ¼Óµµ, È¸Àü ¼Óµµ Áõ°¡·®
-    [Tooltip("¹ß»ç ¼Óµµ (ÃÊ´ç ¹ß»ç È½¼ö) Áõ°¡·®")]
-    public float fireRateDecrease = 0.05f; // ¹ß»ç ¼Óµµ (ÃÊ´ç ¹ß»ç È½¼ö) Áõ°¡·®
-    [Tooltip("´É·Â Áõ°¡·®")]
-    public float abilityValueIncrease = 1f; // ´É·Â Áõ°¡·®
+    [Tooltip("ï¿½ï¿½ï¿½İ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float damageIncrease = 2f; // ï¿½ï¿½ï¿½İ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public int countIncrease = 1; // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½Óµï¿½, È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float speedIncrease = 2f; // ï¿½ß»ï¿½ ï¿½Óµï¿½, È¸ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½Óµï¿½ (ï¿½Ê´ï¿½ ï¿½ß»ï¿½ È½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float fireRateDecrease = 0.05f; // ï¿½ß»ï¿½ ï¿½Óµï¿½ (ï¿½Ê´ï¿½ ï¿½ß»ï¿½ È½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float abilityValueIncrease = 1f; // ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
     [Header("Projectile Settings")]
 
-    [Tooltip("¹ß»çÃ¼ ÇÁ¸®ÆÕ")]
-    public GameObject projectilePrefab; // ¹ß»çÃ¼ ÇÁ¸®ÆÕ
-    [Tooltip("¹ß»çÃ¼ ¼ö¸í")]
-    public float projectileLifetime = 5f; // ¹ß»çÃ¼ ¼ö¸í
-    [Tooltip("¹ß»çÃ¼ ÆÛÁü °¢µµ")]
-    public float spreadAngle = 15f; // ¹ß»çÃ¼ ÆÛÁü °¢µµ
-    [Tooltip("¹ß»ç »ç¿îµå")]
-    public AudioClip shootSound; // ¹ß»ç »ç¿îµå
+    [Tooltip("ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public GameObject projectilePrefab; // ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½")]
+    public float projectileLifetime = 5f; // ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public float spreadAngle = 15f; // ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public AudioClip shootSound; // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Weapons/New Weapon")]

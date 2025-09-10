@@ -26,6 +26,7 @@ public class ResourceManager : Singleton<ResourceManager>
         return Create<T>(key, parent);
     }
 
+    // 나중에 제약에 베이스 클래스 넣어도 좋습니다
     public T CreateCharacter<T>(string prefName, Transform parent = null)  where T : Object
     {
         return Create<T>(Path.Character, prefName, parent);

@@ -20,7 +20,7 @@ public class UIInGame : UIBase
     [SerializeField] private Button pauseButton;
     
     private Player _player;
-    private List<BaseWeapon> weapons;   // ÇÃ·¹ÀÌ¾î°¡ °¡Áø ½ºÅ³ ¹Ş¾Æ¿Ã ÇÊµå
+    private List<BaseWeapon> weapons;   // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½Ş¾Æ¿ï¿½ ï¿½Êµï¿½
 
     public float dashCooldown;
     private float currentCooldown;
@@ -74,9 +74,9 @@ public class UIInGame : UIBase
         _player.controller.dashAction += DashEndEvent; 
         dashCooldown = _player.controller.dashCooldown;
 
-        // ¿©±â¼­ UI¿¡ µé¾î°¥ °ªµé ¼¼ÆÃ
+        // ï¿½ï¿½ï¿½â¼­ UIï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ¾÷µ¥ÀÌÆ®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         //
     }
 
@@ -90,6 +90,7 @@ public class UIInGame : UIBase
         }
         UpdateDashIcon();
 
+        // ì•ˆì“°ëŠ” ì£¼ì„ì€ ê·¸ëƒ¥ ì—†ì• ê¸°
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
         //    UIManager.Instance.OpenUI<UIGetItem>();
@@ -138,6 +139,7 @@ public class UIInGame : UIBase
 
     public void UpdateLevel()
     {
+        // ì•ˆì“¸ê±°ë©´ ë³€ìˆ˜ì— í• ë‹¹ ì•ˆí•´ì¤˜ë„ ë©ë‹ˆë‹¤.
         UILevelUp levelup = UIManager.Instance.GetUI<UILevelUp>();
         Time.timeScale = 0f;
     }
@@ -150,6 +152,7 @@ public class UIInGame : UIBase
         int curExp = StageManager.Instance.CurrentExp;
         int score = StageManager.Instance.Score;
 
+        // ìœ„ì— ìºì‹±í•´ë’€ëŠ”ë° êµ³ì´ ë˜?
         levelText.text = StageManager.Instance.Level.ToString();
         expSlider.maxValue = StageManager.Instance.MaxExp;
         expSlider.value = StageManager.Instance.CurrentExp;
@@ -163,7 +166,7 @@ public class UIInGame : UIBase
     {
         if(weapons == null)
         {
-            Debug.Log("¹ö±× : Àåºñ ¾øÀ½");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
 
         for(int i = 0; i < weapons.Count; i++)
@@ -184,6 +187,7 @@ public class UIInGame : UIBase
 
     private void OpenPauseUI()
     {
+        // ì•„ë˜ ê¸°ëŠ¥ì„ ë¬¶ì–´ë‘”ê²Œ UIManager.Instance.OpenUI<UIPause>();
         UIPause ui = UIManager.Instance.GetUI<UIPause>();
         ui.OpenUI();
         Time.timeScale = 0;
